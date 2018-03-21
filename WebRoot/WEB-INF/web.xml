@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>fragment_server</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- UserRegisterServlet start -->
+  <servlet>
+    <servlet-name>flag_UserRegisterServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.UserRegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_UserRegisterServlet</servlet-name>
+    <url-pattern>/UserRegisterServlet</url-pattern>
+  </servlet-mapping>
+  <!-- UserRegisterServlet end -->
+  <!-- UserLoginServlet start -->
+  <servlet>
+    <servlet-name>flag_UserLoginServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.UserLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_UserLoginServlet</servlet-name>
+    <url-pattern>/UserLoginServlet</url-pattern>
+  </servlet-mapping>
+  <!-- UserLoginServlet end -->
+  <!-- UserFindFriendsServlet start -->
+  <servlet>
+    <servlet-name>flag_UserFindFriendsServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.UserFindFriendsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_UserFindFriendsServlet</servlet-name>
+    <url-pattern>/UserFindFriendsServlet</url-pattern>
+  </servlet-mapping>
+  <!-- UserFindFriendsServlet end -->
+  
+  <!-- VisitorReqVeriCodeServlet start -->
+  <servlet>
+    <servlet-name>flag_VisitorReqVeriCodeServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.VisitorReqVeriCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_VisitorReqVeriCodeServlet</servlet-name>
+    <url-pattern>/VisitorReqVeriCodeServlet</url-pattern>
+  </servlet-mapping>
+  <!-- VisitorReqVeriCodeServlet end -->
+  
+  <!-- UserFindFriendsJsonServlet start -->
+  <servlet>
+    <servlet-name>flag_UserFindFriendsJsonServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.UserFindFriendsJsonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_UserFindFriendsJsonServlet</servlet-name>
+    <url-pattern>/UserFindFriendsJsonServlet</url-pattern>
+  </servlet-mapping>
+  <!-- UserFindFriendsJsonServlet end -->
+  
+  <!-- GetNearbySkillInfosServlet start -->
+  <servlet>
+    <servlet-name>flag_GetNearbySkillInfosServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.GetNearbySkillInfosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_GetNearbySkillInfosServlet</servlet-name>
+    <url-pattern>/GetNearbySkillInfosServlet</url-pattern>
+  </servlet-mapping>
+  <!-- GetNearbySkillInfosServlet end -->
+  
+  <!-- GetNearbyNeedInfosServlet start -->
+  <servlet>
+    <servlet-name>flag_GetNearbyNeedInfosServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.GetNearbyNeedInfosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_GetNearbyNeedInfosServlet</servlet-name>
+    <url-pattern>/GetNearbyNeedInfosServlet</url-pattern>
+  </servlet-mapping>
+  <!-- GetNearbyNeedInfosServlet end -->
+  
+  <!-- GetPublishNeedServlet start -->
+  <servlet>
+    <servlet-name>flag_GetPublishNeedServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.GetPublishNeedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_GetPublishNeedServlet</servlet-name>
+    <url-pattern>/GetPublishNeedServlet</url-pattern>
+  </servlet-mapping>
+  <!-- GetPublishNeedServlet end -->
+  
+  <!-- GetPublishSkillServlet start -->
+  <servlet>
+    <servlet-name>flag_GetPublishSkillServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.GetPublishSkillServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_GetPublishSkillServlet</servlet-name>
+    <url-pattern>/GetPublishSkillServlet</url-pattern>
+  </servlet-mapping>
+  <!-- GetPublishSkillServlet end -->
+  
+  
+  <!-- NearbyFragmentInfosServlet start -->
+  <servlet>
+    <servlet-name>flag_NearbyFragmentInfosServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.NearbyFragmentInfosServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_NearbyFragmentInfosServlet</servlet-name>
+    <url-pattern>/NearbyFragmentInfosServlet</url-pattern>
+  </servlet-mapping>
+  <!-- NearbyFragmentInfosServlet end -->
+</web-app>

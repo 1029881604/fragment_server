@@ -1,0 +1,38 @@
+##################### 根目录下  start 
+# 根目录下的build 文件夹不用提交，里面有各种类的.class文件
+/build/
+
+# .settings 文件夹不提交  每个人都有自己的eclipse设置
+/.settings/
+
+# 根目录下的 .classpath文件不提交 
+/.classpath
+
+# 根目录下的 .project文件不提交
+/.project
+
+#  自定义的目录不提交
+/注意/
+
+
+################## WebRoot 目录下  start
+#存放jar包的目录不要提交， jar包太多太大了上传很慢， 线下传给你们， 注意eclipse中生成的是WebContent, 要改为WebRoot
+/WebRoot/WEB-INF/lib/
+
+################## 拓展
+
+# .log文件不提交
+*.log  
+
+# .txt文件不提交
+*.txt
+
+
+
+
+
+
+
+
+
+

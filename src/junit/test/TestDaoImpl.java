@@ -3,7 +3,6 @@ package junit.test;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import team.antelope.fg.dao.IUFDao;
@@ -28,11 +27,9 @@ import team.antelope.fg.entity.User;
 
 public class TestDaoImpl {
 
-	@Before
 	public void setUp() throws Exception {
 	}
 
-	@Test
 	public void testInsert() {
 		UserDaoImpl dao = new UserDaoImpl();
 		User u = dao.findByName("mhtbb");
@@ -41,7 +38,6 @@ public class TestDaoImpl {
 		all.forEach(user-> { System.out.println(user.toString());});
 	}
 
-	@Test
 	public void testUpdate() {
 		IUFDao dao = new UFDaoImpl();
 //		dao.insert(new Attention(100, 101));

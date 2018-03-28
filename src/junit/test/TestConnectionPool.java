@@ -1,7 +1,8 @@
 package junit.test;
 
 import static org.junit.Assert.fail;
-
+import org.junit.Before;
+import org.junit.Test;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-import org.junit.Before;
-import org.junit.Test;
+
 
 import team.antelope.fg.entity.User;
 import team.antelope.fg.util.jdbc.ConnectionPool;

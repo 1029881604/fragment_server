@@ -117,4 +117,15 @@
     <url-pattern>/NearbyFragmentInfosServlet</url-pattern>
   </servlet-mapping>
   <!-- NearbyFragmentInfosServlet end -->
+  
+  <!-- GetCustomizedSkillServlet start -->
+  <servlet>
+    <servlet-name>flag_CustomizedSkillServlet</servlet-name>
+    <servlet-class>team.antelope.fg.web.controller.GetCustomizedSkillServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flag_CustomizedSkillServlet</servlet-name>
+    <url-pattern>/GetCustomizedSkillServlet</url-pattern>
+  </servlet-mapping>
+  <!-- GetCustomizedSkillServlet end -->
 </web-app>

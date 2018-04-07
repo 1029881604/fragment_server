@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import team.antelope.fg.service.impl.ChangeProfileServiceImpl;
-
+@WebServlet(name="ChangeProfileServlet", urlPatterns={"/ChangeProfileServlet"})  
 public class ChangeProfileServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

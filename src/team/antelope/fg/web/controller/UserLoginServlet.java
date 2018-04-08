@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import team.antelope.fg.entity.Person;
 import team.antelope.fg.exception.UserNameNotFoundException;
 import team.antelope.fg.exception.UserPasswordErrorException;
@@ -49,6 +51,7 @@ public class UserLoginServlet extends HttpServlet {
 			return;
 		}
 		
+		Gson gson = new Gson();
 		System.out.println(account+"---"+password);
 		Person person = null;
 		try {
@@ -60,18 +63,21 @@ public class UserLoginServlet extends HttpServlet {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			System.out.println("用户名错误");
-			response.getWriter().write(ERROR_INPUT);
+			String json = gson.toJson(new String[]{ERROR_INPUT, null});
+			response.getWriter().write(json);
 			return;
 		} catch (UserPasswordErrorException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			System.out.println("密码错误");
-			response.getWriter().write(ERROR_INPUT);
+			String json = gson.toJson(new String[]{ERROR_INPUT, null});
+			response.getWriter().write(json);
 			return;
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("person", person);
-		response.getWriter().write(LOGIN_SUCCESS);
+		String json = gson.toJson(new String[]{LOGIN_SUCCESS, String.valueOf(person.getId())});
+		response.getWriter().write(json);
 	}
 
 	/**

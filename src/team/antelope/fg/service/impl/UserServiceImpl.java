@@ -122,6 +122,11 @@ public class UserServiceImpl implements IUserService {
 		return  needDao.queryById(id);
 	}
 
+	@Override
+	public Person getUserPerson(long id) {
+		return personDao.queryById(id);
+	}
+
 	
 	
 }

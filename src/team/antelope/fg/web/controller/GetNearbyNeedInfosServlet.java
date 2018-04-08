@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import team.antelope.fg.entity.NeedPreInfo;
-import team.antelope.fg.entity.SkillPreInfo;
+import team.antelope.fg.service.INearbyService;
 import team.antelope.fg.service.impl.NearbyServiceImpl;
-import team.antelope.fg.service.impl.UserServiceImpl;
 
 public class GetNearbyNeedInfosServlet extends HttpServlet {
 	@Override
@@ -31,7 +30,7 @@ public class GetNearbyNeedInfosServlet extends HttpServlet {
 		System.out.println("type:"+type+"latitude"+latitude+"longitude"+longitude);
 		// ÑéÖ¤´úÂë
 		//.....
-		NearbyServiceImpl nearbyServiceImpl = new NearbyServiceImpl();
+		INearbyService nearbyServiceImpl = new NearbyServiceImpl();
 		List<NeedPreInfo> nearbyNeedPreInfos = nearbyServiceImpl.getNearbyNeedPreInfos(type, latitude, longitude);
 		PrintWriter writer = resp.getWriter();
 //		session.setAttribute("friends", friends);

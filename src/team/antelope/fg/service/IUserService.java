@@ -54,4 +54,6 @@ public interface IUserService {
 	PublishSkill getSkill(long id);
 	PublishNeed getNeed(long id);
 	
+	Person getUserPerson(long id);
+	
 }

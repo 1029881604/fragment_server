@@ -1,6 +1,8 @@
 package team.antelope.fg.service.impl;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import team.antelope.fg.dao.impl.PersonDaoImpl;
 import team.antelope.fg.dao.impl.PersonInfoDaoImpl;
@@ -27,9 +29,25 @@ public class ChangeProfileServiceImpl implements IChangeProfileService {
 		person.setName(name);
 		System.out.println(name);
 		person.setSex(sex);
+		
+		setPersonDefault(person);
 		personDao.update(person);
 		System.out.println(sex+"---------插入结束");
 		return  person;
+	}
+	/**
+	 * 新注册用户设置默认信息
+	 * @param person 
+	 * void
+	 */
+	private void setPersonDefault(Person person) {
+		if(person.getHeadimg() == null){
+			person.setPhonenum(UUID.randomUUID().toString().substring(0, 11));
+			person.setHeadimg("img");
+			person.setStarnum(0.0f);
+			person.setDealnum(0);
+			person.setFansnum(0);
+		}
 	}
 
 

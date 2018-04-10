@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import team.antelope.fg.entity.PublishSkill;
+import team.antelope.fg.entity.SkillPreInfo;
 import team.antelope.fg.service.impl.SkillServiceImpl;
 
 /**
@@ -40,11 +41,14 @@ public class GetCustomizedSkillServlet extends HttpServlet {
 		
 		SkillServiceImpl skillServiceImpl = new SkillServiceImpl();
 		List<PublishSkill> skills = skillServiceImpl.getPublishSkillInfos();
-		
+		System.out.println("111111111111111");
 		PrintWriter printWriter = resp.getWriter();
-
+		returnJson(skills, printWriter);
+	}
+	
+	private void returnJson(List<PublishSkill> publishSkills, PrintWriter printWriter){
 		Gson gson = new Gson();
-		String json = gson.toJson(skills);
+		String json = gson.toJson(publishSkills);
 		System.out.println("json"+json);
 		printWriter.write(json);
 	}

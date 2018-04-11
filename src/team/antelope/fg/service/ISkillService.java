@@ -17,7 +17,11 @@ public interface ISkillService {
 	int getTotalRecords();
 	
 	List<PublishSkill> getPublishSkillInfos(int from, int to);
-	
-
+	/**
+	 * 根据类型查询所有的线上技能
+	 * @return 
+	 * List<PublishSkill>
+	 */
+	List<PublishSkill> getOnlineSkillsByType(String type);
 
 }

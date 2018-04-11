@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import team.antelope.fg.dao.IPublishSkillDao;
@@ -144,9 +145,32 @@ public class PublishSkillDaoImpl implements IPublishSkillDao {
 	}
 
 	@Override
+	@SuppressWarnings(value="all")
 	public List<PublishSkill> queryAllPublishSkill(int from, int to) {
 		List<PublishSkill> skills = (List<PublishSkill>) DBUtil.exeQuery("select * from publishskill limit ?, ?",
 				new Integer[]{from, to},
+				new BeanListHandler(PublishSkill.class));
+		return skills;
+	}
+
+//	 private long id;
+//	    private long uid;
+//	    private String title; 
+//	    private String content; 
+//	    private Timestamp publishdate;
+//	    private Timestamp stopdate;
+//	    private String img; 
+//	    private String  skilltype;
+//	    private boolean iscomplete;
+//	    private boolean isonline;   
+//	    private String addressdesc;	// allow null 
+//	    private Double longitude;	// allow null
+//		private Double latitude;	// allow null
+	@Override
+	@SuppressWarnings(value="all")
+	public List<PublishSkill> queryOnlineSkillsByType(String type) {
+		List<PublishSkill> skills = (List<PublishSkill>) DBUtil.exeQuery("select * from  publishskill where skilltype =? and isonline = 1",
+				new String[]{type},
 				new BeanListHandler(PublishSkill.class));
 		return skills;
 	}

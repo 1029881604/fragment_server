@@ -4,6 +4,7 @@ import java.util.List;
 
 import team.antelope.fg.entity.NearbyModularInfo;
 import team.antelope.fg.entity.NeedPreInfo;
+import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.entity.SkillPreInfo;
 
 public interface INearbyService {
@@ -35,4 +36,12 @@ public interface INearbyService {
 	 * NearbyModularInfo
 	 */
 	NearbyModularInfo getNearbyModularInfo(String type);
+	/**
+	 * 通过id查找个人信息
+	 * @param id
+	 * @return 
+	 * PersonInfo
+	 */
+	PersonInfo getPersonInfo(long id);
+	
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import team.antelope.fg.entity.PublishSkill;
-import team.antelope.fg.entity.SkillPreInfo;
+import team.antelope.fg.service.ISkillService;
 import team.antelope.fg.service.impl.SkillServiceImpl;
 
 /**
@@ -39,8 +39,8 @@ public class GetCustomizedSkillServlet extends HttpServlet {
 		String skillType = req.getParameter("skilltype");
 		System.out.println("skillType:"+skillType);
 		
-		SkillServiceImpl skillServiceImpl = new SkillServiceImpl();
-		List<PublishSkill> skills = skillServiceImpl.getPublishSkillInfos();
+		ISkillService skillServiceImpl = new SkillServiceImpl();
+		List<PublishSkill> skills = skillServiceImpl.getOnlineSkillsByType(skillType);
 		System.out.println("111111111111111");
 		PrintWriter printWriter = resp.getWriter();
 		returnJson(skills, printWriter);

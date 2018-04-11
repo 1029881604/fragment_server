@@ -2,6 +2,7 @@ package team.antelope.fg.service.impl;
 
 import java.util.List;
 
+import team.antelope.fg.dao.IPublishSkillDao;
 import team.antelope.fg.dao.impl.PublishSkillDaoImpl;
 import team.antelope.fg.entity.PublishSkill;
 import team.antelope.fg.service.ISkillService;
@@ -14,30 +15,31 @@ import team.antelope.fg.service.ISkillService;
 
 public class SkillServiceImpl implements ISkillService {
 	
-	private PublishSkillDaoImpl publishSkillDaoImpl = new PublishSkillDaoImpl();
+	private IPublishSkillDao publishSkillDao = new PublishSkillDaoImpl();
 
 	@Override
 	public PublishSkill getPublishSkillInfosById(long id) {
-		// TODO Auto-generated method stub
-		return publishSkillDaoImpl.queryById(id);
+		return publishSkillDao.queryById(id);
 	}
 	
 	@Override
 	public List<PublishSkill> getPublishSkillInfos() {
-		// TODO Auto-generated method stub
-		return publishSkillDaoImpl.queryAllPublishSkill();
+		return publishSkillDao.queryAllPublishSkill();
 	}
 
 	@Override
 	public int getTotalRecords() {
-		// TODO Auto-generated method stub
-		return publishSkillDaoImpl.queryTotalRecords();
+		return publishSkillDao.queryTotalRecords();
 	}
 
 	@Override
 	public List<PublishSkill> getPublishSkillInfos(int from, int to) {
-		// TODO Auto-generated method stub
-		return publishSkillDaoImpl.queryAllPublishSkill(from, to);
+		return publishSkillDao.queryAllPublishSkill(from, to);
+	}
+
+	@Override
+	public List<PublishSkill> getOnlineSkillsByType(String type) {
+		return publishSkillDao.queryOnlineSkillsByType(type);
 	}
 
 }

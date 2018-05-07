@@ -13,6 +13,7 @@ import team.antelope.fg.constant.SessionConst;
 import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.service.INearbyService;
 import team.antelope.fg.service.impl.NearbyServiceImpl;
+import team.antelope.fg.util.Log4jUtil;
 
 /**
  * 
@@ -34,6 +35,7 @@ public class ToUserInfoServlet extends HttpServlet {
 				return;
 			}
 			PersonInfo personInfo = nearbyService.getPersonInfo(id);
+			Log4jUtil.getInstance().debug("personInfo:" + personInfo);
 			HttpSession session = req.getSession();
 			session.setAttribute(SessionConst.NEARBY_PERSONINFO, personInfo);
 			req.getRequestDispatcher("/jsp/nearby/personInfo.jsp").forward(req, resp);

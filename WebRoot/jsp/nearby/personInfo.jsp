@@ -38,11 +38,19 @@
         }
         .span-block{
             display: block;
+            overflow: hidden; 		/*溢出隐藏*/
+            text-overflow:ellipsis;/*超出则加省略号*/
+            white-space:nowrap;	/*规定段落中的文本不进行换行*/
         }
         .separate{
             border-bottom: 1px solid #eee;
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+        .img_sex{
+        	margin-top:15px;
+        	max-height: 30px;
+        	max-width: 30px;	
         }
         button{
         	margin-top:5px;
@@ -60,11 +68,21 @@
             <h3 class="text-center text-info">详细资料</h3>
         </div>
         <div class="col-xs-12 col-sm-12 div-block">
+        	<div class="col-xs-1 col-sm-1">
+                <c:set var="url" scope="request" value="sex_unknow.png"/>
+                <c:if test="${nearby_personinfo.sex eq '男' }">
+                	<c:set var="url" scope="request" value="sex_man.png" />
+                </c:if>
+                <c:if test="${nearby_personinfo.sex eq '女' }">
+                	<c:set var="url" scope="request" value="sex_woman.png" />
+                </c:if>
+                <img src="images/commons/<c:out value='${url }' />" alt="img" class="img-responsive img_sex center-block" />
+        	</div>
             <div class="col-xs-4 col-sm-4">
-                <img src="${nearby_personinfo.headimg }" alt="img" class="head-img img-responsive img-circle center-block">
+                <img src="${nearby_personinfo.headimg }" alt="img" class="head-img img-responsive img-circle center-block" />
             </div>
             <div class="col-xs-offset-4 col-sm-offset-4">
-                <span class="text-nowrap span-block">昵称:&nbsp;&nbsp;${nearby_personinfo.name }</span>
+                <span class="text-nowrap span-block">昵称:&nbsp;&nbsp;${nearby_personinfo.name } </span>
                 <span class="text-muted span-block">碎片号:&nbsp;&nbsp;${nearby_personinfo.id }</span>
             </div>
         </div>
@@ -94,7 +112,7 @@
 
         <div class="col-xs-12 col-sm-12 div-block text-info">
             <button type="button" class="btn btn-success col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
-            	<span>发送信息</span>
+            	<span>添加好友</span>
             </button>
             <div class="col-xs-12 col-sm-12 separate"></div>
             <button type="button" class="btn btn-default col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">

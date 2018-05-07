@@ -16,14 +16,14 @@ public class PersonNeedDaoImpl implements IPersonNeedDao{
 	@Override
 	@SuppressWarnings(value="all")
 	public List<PersonNeed> queryAllPersonNeed() {
-		List<PersonNeed> psersonNeeds = (List<PersonNeed>) DBUtil.exeQuery("select n.id, n.uid, n.title, n.content, n.customdate, n.requestdate, " + 
+		List<PersonNeed> personNeeds = (List<PersonNeed>) DBUtil.exeQuery("select n.id, n.uid, n.title, n.content, n.customdate, n.requestdate, " + 
 				" n.needtype, n.iscomplete, n.isonline, n.addressdesc, " + 
 				" p.name, p.email, p.headimg, p.starnum, p.phonenum, p.dealnum, p.fansnum " + 
 				" from publishneed n , person p " + 
 				" WHERE n.uid = p.id; ",
 				null,
 				new BeanListHandler(PersonNeed.class));
-		return psersonNeeds;
+		return personNeeds;
 	}
 	
 }

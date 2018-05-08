@@ -46,13 +46,15 @@ public class AccessFilter implements Filter {
 		
 		// 定义表示变量 并验证用户请求URL 是否包含不过滤路径
         boolean flag = true;	//需要过滤
-        for (String page:excludedPages) {
-            if (request.getServletPath().equals(page)){
-                flag = false;	//不需要过滤
+        if(excludedPages != null && excludedPages.length !=0){
+        	for (String page:excludedPages) {
+                if (request.getServletPath().equals(page)){
+                    flag = false;	//不需要过滤
+                }
             }
         }
+        
         Log4jUtil.info("doFilter");
-
 		// 2.逻辑
         // 验证用户登录
         if (flag){
@@ -68,6 +70,8 @@ public class AccessFilter implements Filter {
     			return;
     		}
         }
+        Log4jUtil.info("reqsendid"+ request.getRequestedSessionId());
+        Log4jUtil.info("sessionid" + request.getSession().getId());
 		// 3.放行, 如果登入或者不用过滤的，则可以继续
 		chain.doFilter(request, response);
 	}

@@ -35,8 +35,6 @@ public class ToUserInfoServlet extends HttpServlet {
 			}
 			PersonInfo personInfo = nearbyService.getPersonInfo(id);
 			HttpSession session = req.getSession();
-			System.out.println("3_reqgetsessid"+req.getRequestedSessionId());
-			System.out.println("3_sessionid:" + session.getId());
 			session.setAttribute(SessionConst.NEARBY_PERSONINFO, personInfo);
 			req.getRequestDispatcher("/jsp/nearby/personInfo.jsp").forward(req, resp);
 		}

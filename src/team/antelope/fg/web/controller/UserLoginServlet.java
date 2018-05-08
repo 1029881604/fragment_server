@@ -57,8 +57,6 @@ public class UserLoginServlet extends HttpServlet {
 		try {
 			person = new UserServiceImpl().login(account, password);
 			System.out.println(person.toString());
-			System.out.println("reqgetsessid"+request.getRequestedSessionId());
-			System.out.println("sessionId"+ request.getSession().getId());
 		} catch (UserNameNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

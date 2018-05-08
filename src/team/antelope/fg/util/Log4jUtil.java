@@ -55,6 +55,7 @@ public class Log4jUtil {
 
 	public static void info(String str, Exception e) {
 		// logger.info(str, e);
+		jclLogger.info(str, e);
 	}
 
 	public static void warn(String str) {

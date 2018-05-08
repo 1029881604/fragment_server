@@ -26,8 +26,6 @@ public class GetPublishNeedServlet extends HttpServlet {
 		if(sid != null && !"".equals(sid)){
 			id = Long.parseLong(sid);
 		}
-		Log4jUtil.info("4sessionId: "+ req.getSession().getId());
-		Log4jUtil.info("4reqsId: "+ req.getRequestedSessionId());
 		PublishNeed need = new UserServiceImpl().getNeed(id);
 		PrintWriter writer = resp.getWriter();
 		returnJson(need, writer);

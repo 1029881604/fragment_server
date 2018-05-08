@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 import team.antelope.fg.entity.PublishNeed;
 import team.antelope.fg.service.impl.UserServiceImpl;
+import team.antelope.fg.util.Log4jUtil;
 
 public class GetPublishNeedServlet extends HttpServlet {
 	@Override
@@ -25,6 +26,8 @@ public class GetPublishNeedServlet extends HttpServlet {
 		if(sid != null && !"".equals(sid)){
 			id = Long.parseLong(sid);
 		}
+		Log4jUtil.info("4sessionId: "+ req.getSession().getId());
+		Log4jUtil.info("4reqsId: "+ req.getRequestedSessionId());
 		PublishNeed need = new UserServiceImpl().getNeed(id);
 		PrintWriter writer = resp.getWriter();
 		returnJson(need, writer);

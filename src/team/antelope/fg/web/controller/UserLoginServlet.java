@@ -75,6 +75,7 @@ public class UserLoginServlet extends HttpServlet {
 			return;
 		}
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("person", person);
 		String json = gson.toJson(new String[]{LOGIN_SUCCESS, String.valueOf(person.getId())});
 		response.getWriter().write(json);

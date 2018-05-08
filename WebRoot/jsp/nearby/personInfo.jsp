@@ -112,7 +112,7 @@
 
         <div class="col-xs-12 col-sm-12 div-block text-info">
             <button type="button" class="btn btn-success col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
-            	<span>添加好友</span>
+            	<span>添加关注</span>
             </button>
             <div class="col-xs-12 col-sm-12 separate"></div>
             <button type="button" class="btn btn-default col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">

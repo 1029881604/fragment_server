@@ -36,35 +36,27 @@ public class BeanHandler implements IResultSetHandler {
 				Field f = mClass.getDeclaredField(colName);//获取并设置bean的字段f，要求和数据库表列名一致
 				f.setAccessible(true);
 				if(f.getType().getSimpleName().equals(Long.class.getSimpleName())){
-					System.out.println(f.getType().getSimpleName() + ".. Long");
 //					f.setLong(bean, new Long(String.valueOf(object))); 怎么写都是错误的，因为f.setLong是给long类型的赋值而不是Long
 					if(colData == null){
 						colData = 0L;
 					}
 					f.set(bean, new Long(String.valueOf(colData)));	//这时候应该用f.set
-					System.out.println("endLong");
 				} else if (f.getType().getSimpleName().equals(long.class.getSimpleName())){
-					System.out.println(f.getType().getSimpleName()+ ".. long");
 					if(colData == null){
 						colData = 0l;
 					}
 					f.setLong(bean, Long.parseLong(String.valueOf(colData)));
-					System.out.println("endlong");
 				} else if (f.getType().getSimpleName().equals(float.class.getSimpleName())){
-					System.out.println(f.getType().getSimpleName()+ ".. float");
 					if(colData == null){
 						colData = 0f;
 					}
 					f.setFloat(bean, Float.parseFloat(String.valueOf(colData)));
-					System.out.println("endfloat");
 				} else if (f.getType().getSimpleName().equals(Float.class.getSimpleName())){
-					System.out.println(f.getType().getSimpleName()+ ".. Float");
 					if(colData == null){
 						colData = 0F;
 					}
 //					f.setFloat(bean, Float.parseFloat(String.valueOf(object)));  setFloat只给float类型字段而不是Float类型
 					f.set(bean, Float.parseFloat(String.valueOf(colData)));
-					System.out.println("endFloat");
 				}  else {
 					f.set(bean, colData);
 				}

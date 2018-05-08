@@ -84,11 +84,9 @@ public class ConnectionPool {
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			System.out.println("获取连接失败！add");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			System.out.println("没有找到驱动类!add");
 		}
 		return conn;
 	}

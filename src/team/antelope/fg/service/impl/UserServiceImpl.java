@@ -61,10 +61,10 @@ public class UserServiceImpl implements IUserService {
 			if(person == null){
 				person = personDao.queryByPhoneNum(account);
 				if(person == null){
-					person = personDao.queryById(Long.parseLong(account));
-					if(person == null){
+//					person = personDao.queryById(Long.parseLong(account));//不用id
+//					if(person == null){
 						throw new UserNameNotFoundException("账号不存在");
-					}
+//					}
 				}
 			}
 		} else if(!person.getPassword().equals(password)){

@@ -50,15 +50,13 @@ public class UserLoginServlet extends HttpServlet {
 			response.getWriter().write(NEED_PWD);
 			return;
 		}
-		
+		System.out.println("post 和get 执行！");
 		Gson gson = new Gson();
 		System.out.println(account+"---"+password);
 		Person person = null;
 		try {
 			person = new UserServiceImpl().login(account, password);
 			System.out.println(person.toString());
-			System.out.println("reqgetsessid"+request.getRequestedSessionId());
-			System.out.println("sessionId"+ request.getSession().getId());
 		} catch (UserNameNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -71,12 +69,15 @@ public class UserLoginServlet extends HttpServlet {
 			e.printStackTrace();
 			System.out.println("密码错误");
 			String json = gson.toJson(new String[]{ERROR_INPUT, null});
+			System.out.println("json:"+json);
 			response.getWriter().write(json);
 			return;
 		}
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("person", person);
 		String json = gson.toJson(new String[]{LOGIN_SUCCESS, String.valueOf(person.getId())});
+		System.out.println("登入成功");
 		response.getWriter().write(json);
 	}
 

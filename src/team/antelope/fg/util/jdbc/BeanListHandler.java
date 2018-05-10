@@ -24,7 +24,6 @@ public class BeanListHandler implements IResultSetHandler {
 	@Override
 	public Object handler(ResultSet rs) {
 		// TODO 自动生成的方法存根
-		System.out.println("start");
 		if(rs == null){
 			return null;
 		}
@@ -43,35 +42,27 @@ public class BeanListHandler implements IResultSetHandler {
 					f.setAccessible(true);
 					// add at 17/12/30 for modify a error
 					if(f.getType().getSimpleName().equals(Long.class.getSimpleName())){
-						System.out.println(f.getType().getSimpleName() + ".. Long");
 //						f.setLong(bean, new Long(String.valueOf(object))); 怎么写都是错误的，因为f.setLong是给long类型的赋值而不是Long
 						if(object == null){
 							object = 0L;
 						}
 						f.set(bean, new Long(String.valueOf(object)));	//这时候应该用f.set
-						System.out.println("endLong");
 					} else if (f.getType().getSimpleName().equals(long.class.getSimpleName())){
-						System.out.println(f.getType().getSimpleName()+ ".. long");
 						if(object == null){
 							object = 0l;
 						}
 						f.setLong(bean, Long.parseLong(String.valueOf(object)));
-						System.out.println("endlong");
 					} else if (f.getType().getSimpleName().equals(float.class.getSimpleName())){
-						System.out.println(f.getType().getSimpleName()+ ".. float");
 						if(object == null){
 							object = 0f;
 						}
 						f.setFloat(bean, Float.parseFloat(String.valueOf(object)));
-						System.out.println("endfloat");
 					} else if (f.getType().getSimpleName().equals(Float.class.getSimpleName())){
-						System.out.println(f.getType().getSimpleName()+ ".. Float");
 						if(object == null){
 							object = 0F;
 						}
 //						f.setFloat(bean, Float.parseFloat(String.valueOf(object)));  setFloat只给float类型字段而不是Float类型
 						f.set(bean, Float.parseFloat(String.valueOf(object)));
-						System.out.println("endFloat");
 					}  else {
 						f.set(bean, object);
 					}

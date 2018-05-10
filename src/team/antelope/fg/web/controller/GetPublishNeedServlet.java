@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 import team.antelope.fg.entity.PublishNeed;
 import team.antelope.fg.service.impl.UserServiceImpl;
+import team.antelope.fg.util.Log4jUtil;
 
 public class GetPublishNeedServlet extends HttpServlet {
 	@Override

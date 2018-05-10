@@ -43,10 +43,8 @@ public class ConnectionPool2 {
 		/*
 		 * 如果没有达到最小连接数，则一直装
 		 */
-		System.out.println(pool_min_size);
 		while(pool.size() < ConnectionPool2.pool_min_size){
 			pool.add(createConn());
-			System.out.println("初始化池，池中连接数:"+pool.size());
 		}
 	}
 	/**
@@ -62,11 +60,9 @@ public class ConnectionPool2 {
 		} catch (SQLException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			System.out.println("获取连接失败！add");
 		} catch (ClassNotFoundException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			System.out.println("没有找到驱动类!add");
 		}
 		return conn;
 	}

@@ -21,7 +21,7 @@ import team.antelope.fg.util.Log4jUtil;
  * @time:2018年4月10日 下午3:14:53
  * @Description:TODO， 跳转到用户个人信息页面
  */
-@WebServlet(name="flag_toUserInfoServlet", urlPatterns="/ToUserInfoServlet")
+@WebServlet(name="flag_toUserInfoServlet", urlPatterns="/forward/ToUserInfoServlet")
 public class ToUserInfoServlet extends HttpServlet {
 		private static INearbyService nearbyService = new NearbyServiceImpl();
 		@Override
@@ -30,12 +30,10 @@ public class ToUserInfoServlet extends HttpServlet {
 			resp.setContentType("text/html; charset=utf-8");
 			String sid = req.getParameter("id");
 			Long id = Long.valueOf(sid);
-			System.out.println("ididididididid"+id);
 			if(id <0){
 				return;
 			}
 			PersonInfo personInfo = nearbyService.getPersonInfo(id);
-			Log4jUtil.getInstance().debug("personInfo:" + personInfo);
 			HttpSession session = req.getSession();
 			session.setAttribute(SessionConst.NEARBY_PERSONINFO, personInfo);
 			req.getRequestDispatcher("/jsp/nearby/personInfo.jsp").forward(req, resp);

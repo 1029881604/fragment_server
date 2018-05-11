@@ -16,7 +16,10 @@ import team.antelope.fg.exception.UserPasswordErrorException;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserLoginServlet
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:24:52
+ * @Description:TODO
  */
 //@WebServlet("/UserLoginServlet")
 public class UserLoginServlet extends HttpServlet {

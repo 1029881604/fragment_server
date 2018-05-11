@@ -14,7 +14,10 @@ import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserFindFriendsServlet
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:25:01
+ * @Description:TODO
  */
 //@WebServlet("/UserFindFriendsServlet")
 public class UserFindFriendsServlet extends HttpServlet {

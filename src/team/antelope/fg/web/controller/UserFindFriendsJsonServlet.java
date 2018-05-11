@@ -18,7 +18,10 @@ import team.antelope.fg.entity.User;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserFindFriendsServlet
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:25:06
+ * @Description:TODO
  */
 public class UserFindFriendsJsonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

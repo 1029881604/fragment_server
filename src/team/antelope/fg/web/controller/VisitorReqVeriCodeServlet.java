@@ -12,7 +12,10 @@ import javax.servlet.http.HttpSession;
 import team.antelope.fg.service.impl.VisitorServiceSSLImpl;
 
 /**
- * Servlet implementation class UserRegisterServlet
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:24:16
+ * @Description:TODO
  */
 public class VisitorReqVeriCodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 5566081424996134093L;

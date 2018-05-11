@@ -13,7 +13,10 @@ import team.antelope.fg.exception.UserExistException;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
 /**
- * Servlet implementation class UserRegisterServlet
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:24:27
+ * @Description:TODO
  */
 //@WebServlet("/UserRegisterServlet")
 public class UserRegisterServlet extends HttpServlet {

@@ -5,16 +5,18 @@ import java.util.List;
 
 import org.junit.Test;
 
+import team.antelope.fg.dao.ICollectionSkillDao;
 import team.antelope.fg.dao.IUFDao;
+import team.antelope.fg.dao.impl.CollectionSkillDaoImpl;
 import team.antelope.fg.dao.impl.NearbyModularInfoDaoImpl;
 import team.antelope.fg.dao.impl.NeedPreInfoDaoImpl;
-import team.antelope.fg.dao.impl.PersonInfoDaoImpl;
 import team.antelope.fg.dao.impl.PrivateMessageDaoImpl;
 import team.antelope.fg.dao.impl.PublicMessageDaoImpl;
 import team.antelope.fg.dao.impl.PublishNeedDaoImpl;
 import team.antelope.fg.dao.impl.PublishSkillDaoImpl;
 import team.antelope.fg.dao.impl.UFDaoImpl;
 import team.antelope.fg.dao.impl.UserDaoImpl;
+import team.antelope.fg.entity.CollectionSkill;
 import team.antelope.fg.entity.NearbyModularInfo;
 import team.antelope.fg.entity.NeedPreInfo;
 import team.antelope.fg.entity.Person;
@@ -95,13 +97,13 @@ public class TestDaoImpl {
 
 	@Test
 	public void testFindAllIntInt() {
-		PersonInfoDaoImpl dao = new PersonInfoDaoImpl();
-//		PersonInfo info = dao.queryById(100l);
-//		info.setName("zs");
-//		info.setEmail("zsemail");
-//		dao.delete(info);
-		List<PersonInfo> all = dao.queryAllPersonInfo();
-		all.forEach(user-> { System.out.println(user.toString());});
+		ICollectionSkillDao dao = new CollectionSkillDaoImpl();
+		CollectionSkill collectionSkill = dao.queryById(1l);
+		System.out.println(collectionSkill);
+		List<CollectionSkill> list = dao.queryCollectsByUserId(101L);
+		list.forEach(c->{
+			System.out.println(c);
+		});
 	}
 
 	@Test

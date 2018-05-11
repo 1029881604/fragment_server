@@ -9,10 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import team.antelope.fg.entity.Person;
 import team.antelope.fg.util.Log4jUtil;
+/**
+ * 
+ * @author 华文财
+ * @time:2018年5月10日 下午7:24:45
+ * @Description:TODO
+ */
 @WebServlet(urlPatterns={"/user/UserLogoutServlet"})
 public class UserLogoutServlet  extends HttpServlet{
 	

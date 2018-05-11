@@ -3,6 +3,7 @@ package team.antelope.fg.dao;
 
 import java.util.List;
 
+import team.antelope.fg.entity.PersonSkill;
 import team.antelope.fg.entity.PublishSkill;
 
 /**
@@ -23,4 +24,7 @@ public interface IPublishSkillDao extends IBaseDao<PublishSkill> {
 	 * List<PublishSkill>
 	 */
     List<PublishSkill> queryOnlineSkillsByType(String type);
+    
+    //lry添加 查询所有的。。实体类
+  	List<PersonSkill> queryAllPersonSkill();
 }

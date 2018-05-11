@@ -24,4 +24,8 @@ public interface ISkillService {
 	 */
 	List<PublishSkill> getOnlineSkillsByType(String type);
 
+	List<PublishSkill> getSkillsByPerson(long id);
+	
+	
+
 }

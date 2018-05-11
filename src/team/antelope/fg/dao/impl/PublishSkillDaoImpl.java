@@ -110,6 +110,7 @@ public class PublishSkillDaoImpl implements IPublishSkillDao {
 	}
 
 	@Override
+	@SuppressWarnings(value="all")
 	public List<PublishSkill> queryAllPublishSkill() {
 		List<PublishSkill> skills = (List<PublishSkill>) DBUtil.exeQuery("select * from publishskill",
 				null,
@@ -170,7 +171,7 @@ public class PublishSkillDaoImpl implements IPublishSkillDao {
 	@Override
 	@SuppressWarnings(value="all")
 	public List<PublishSkill> queryOnlineSkillsByType(String type) {
-		List<PublishSkill> skills = (List<PublishSkill>) DBUtil.exeQuery("select * from  publishskill where skilltype =? and isonline = 1",
+		List<PublishSkill> skills = (List<PublishSkill>) DBUtil.exeQuery("select * from  publishskill where skilltype =? and isonline = 1 and iscomplete = 0",
 				new String[]{type},
 				new BeanListHandler(PublishSkill.class));
 		return skills;
@@ -188,6 +189,17 @@ public class PublishSkillDaoImpl implements IPublishSkillDao {
 				null,
 				new BeanListHandler(PersonSkill.class));
 		return psersonSkills;
+	}
+	
+	//kyrene
+	@Override
+	@SuppressWarnings(value="all")
+	public List<PublishSkill> querySkillsByPerson(Long id) {
+		// TODO Auto-generated method stub
+		List<PublishSkill> skills = (List<PublishSkill>)DBUtil.exeQuery("select * from publishskill where uid =? and isonline = 1",
+				new Long[] {id},
+				new BeanListHandler(PublishSkill.class));
+		return skills;
 	}
 
 }

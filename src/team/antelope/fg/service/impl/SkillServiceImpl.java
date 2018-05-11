@@ -42,4 +42,10 @@ public class SkillServiceImpl implements ISkillService {
 		return publishSkillDao.queryOnlineSkillsByType(type);
 	}
 
+	@Override
+	public List<PublishSkill> getSkillsByPerson(long id) {
+		// TODO Auto-generated method stub
+		return publishSkillDao.querySkillsByPerson(id);
+	}
+
 }

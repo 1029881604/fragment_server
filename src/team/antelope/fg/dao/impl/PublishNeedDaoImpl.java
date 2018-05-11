@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import team.antelope.fg.dao.IPublishNeedDao;
+import team.antelope.fg.entity.PersonNeed;
 import team.antelope.fg.entity.PublishNeed;
 import team.antelope.fg.entity.PublishSkill;
 import team.antelope.fg.util.jdbc.BeanHandler;
@@ -147,5 +148,19 @@ public class PublishNeedDaoImpl implements IPublishNeedDao {
 				new Integer[]{from, to},
 				new BeanListHandler(PublishSkill.class));
 		return needs;
+	}
+	
+	//lryÌí¼Ó
+	@Override
+	@SuppressWarnings(value="all")
+	public List<PersonNeed> queryAllPersonNeed() {
+		List<PersonNeed> personNeeds = (List<PersonNeed>) DBUtil.exeQuery("select n.id, n.uid, n.title, n.content, n.customdate, n.requestdate, " + 
+				" n.needtype, n.iscomplete, n.isonline, n.addressdesc, " + 
+				" p.name, p.email, p.headimg, p.starnum, p.phonenum, p.dealnum, p.fansnum " + 
+				" from publishneed n , person p " + 
+				" WHERE n.uid = p.id; ",
+				null,
+				new BeanListHandler(PersonNeed.class));
+		return personNeeds;
 	}
 }

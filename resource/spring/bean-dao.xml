@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+ <!-- 加载db.properties资源文件 -->
+   <context:property-placeholder location="classpath:db.properties"/>
+   
+   <!-- 开启注解方式配置bean 
+   <context:component-scan base-package="person.hwc.ssm.mapper" />-->
+   
+   <!-- 管理数据源对象 -->
+   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+   		<property name="driverClass" value="${db.driver}"/>
+   		<property name="jdbcUrl" value="${db.url}"/>
+   		<property name="user" value="${db.username}"/>
+   		<property name="password" value="${db.password}"/>
+   </bean>
+   
+   <!-- 整合mybatis， 配置SQLSessionFactory  bean, 这个bean在整合jar包中找 -->
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+   		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
+   		<property name="dataSource" ref="dataSource"/>
+   </bean>
+   
+   <!-- 配置mapper扫描器, 不用配置mapper接口了-->
+   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+   		<!-- 多个包用逗号隔开 -->
+   		<property name="basePackage" value="person.hwc.ssm.mapper"/>
+   		<!-- 注意是beanname， 属性是value不是ref -->
+   		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+   </bean>
+</beans>

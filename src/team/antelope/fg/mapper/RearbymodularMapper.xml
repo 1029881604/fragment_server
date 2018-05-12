@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.RearbymodularMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Rearbymodular">
+    <id column="type" jdbcType="VARCHAR" property="type" />
+    <result column="needtitle" jdbcType="VARCHAR" property="needtitle" />
+    <result column="needbody" jdbcType="varchar" property="needbody" />
+    <result column="needimg" jdbcType="VARCHAR" property="needimg" />
+    <result column="skilltitle" jdbcType="VARCHAR" property="skilltitle" />
+    <result column="skillbody" jdbcType="varchar" property="skillbody" />
+    <result column="skillimg" jdbcType="VARCHAR" property="skillimg" />
+    <result column="needupdatetime" jdbcType="TIMESTAMP" property="needupdatetime" />
+    <result column="skillupdatetime" jdbcType="TIMESTAMP" property="skillupdatetime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    type, needtitle, needbody, needimg, skilltitle, skillbody, skillimg, needupdatetime, 
+    skillupdatetime
+  </sql>
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nearbymodular
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nearbymodular
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from nearbymodular
+    where type = #{type,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample">
+    delete from nearbymodular
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="team.antelope.fg.pojo.Rearbymodular">
+    insert into nearbymodular (type, needtitle, needbody, 
+      needimg, skilltitle, skillbody, 
+      skillimg, needupdatetime, skillupdatetime
+      )
+    values (#{type,jdbcType=VARCHAR}, #{needtitle,jdbcType=VARCHAR}, #{needbody,jdbcType=varchar}, 
+      #{needimg,jdbcType=VARCHAR}, #{skilltitle,jdbcType=VARCHAR}, #{skillbody,jdbcType=varchar}, 
+      #{skillimg,jdbcType=VARCHAR}, #{needupdatetime,jdbcType=TIMESTAMP}, #{skillupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Rearbymodular">
+    insert into nearbymodular
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        type,
+      </if>
+      <if test="needtitle != null">
+        needtitle,
+      </if>
+      <if test="needbody != null">
+        needbody,
+      </if>
+      <if test="needimg != null">
+        needimg,
+      </if>
+      <if test="skilltitle != null">
+        skilltitle,
+      </if>
+      <if test="skillbody != null">
+        skillbody,
+      </if>
+      <if test="skillimg != null">
+        skillimg,
+      </if>
+      <if test="needupdatetime != null">
+        needupdatetime,
+      </if>
+      <if test="skillupdatetime != null">
+        skillupdatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="needtitle != null">
+        #{needtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="needbody != null">
+        #{needbody,jdbcType=varchar},
+      </if>
+      <if test="needimg != null">
+        #{needimg,jdbcType=VARCHAR},
+      </if>
+      <if test="skilltitle != null">
+        #{skilltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="skillbody != null">
+        #{skillbody,jdbcType=varchar},
+      </if>
+      <if test="skillimg != null">
+        #{skillimg,jdbcType=VARCHAR},
+      </if>
+      <if test="needupdatetime != null">
+        #{needupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skillupdatetime != null">
+        #{skillupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample" resultType="java.lang.Long">
+    select count(*) from nearbymodular
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nearbymodular
+    <set>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needtitle != null">
+        needtitle = #{record.needtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needbody != null">
+        needbody = #{record.needbody,jdbcType=varchar},
+      </if>
+      <if test="record.needimg != null">
+        needimg = #{record.needimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skilltitle != null">
+        skilltitle = #{record.skilltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skillbody != null">
+        skillbody = #{record.skillbody,jdbcType=varchar},
+      </if>
+      <if test="record.skillimg != null">
+        skillimg = #{record.skillimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needupdatetime != null">
+        needupdatetime = #{record.needupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.skillupdatetime != null">
+        skillupdatetime = #{record.skillupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nearbymodular
+    set type = #{record.type,jdbcType=VARCHAR},
+      needtitle = #{record.needtitle,jdbcType=VARCHAR},
+      needbody = #{record.needbody,jdbcType=varchar},
+      needimg = #{record.needimg,jdbcType=VARCHAR},
+      skilltitle = #{record.skilltitle,jdbcType=VARCHAR},
+      skillbody = #{record.skillbody,jdbcType=varchar},
+      skillimg = #{record.skillimg,jdbcType=VARCHAR},
+      needupdatetime = #{record.needupdatetime,jdbcType=TIMESTAMP},
+      skillupdatetime = #{record.skillupdatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Rearbymodular">
+    update nearbymodular
+    <set>
+      <if test="needtitle != null">
+        needtitle = #{needtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="needbody != null">
+        needbody = #{needbody,jdbcType=varchar},
+      </if>
+      <if test="needimg != null">
+        needimg = #{needimg,jdbcType=VARCHAR},
+      </if>
+      <if test="skilltitle != null">
+        skilltitle = #{skilltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="skillbody != null">
+        skillbody = #{skillbody,jdbcType=varchar},
+      </if>
+      <if test="skillimg != null">
+        skillimg = #{skillimg,jdbcType=VARCHAR},
+      </if>
+      <if test="needupdatetime != null">
+        needupdatetime = #{needupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skillupdatetime != null">
+        skillupdatetime = #{skillupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where type = #{type,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Rearbymodular">
+    update nearbymodular
+    set needtitle = #{needtitle,jdbcType=VARCHAR},
+      needbody = #{needbody,jdbcType=varchar},
+      needimg = #{needimg,jdbcType=VARCHAR},
+      skilltitle = #{skilltitle,jdbcType=VARCHAR},
+      skillbody = #{skillbody,jdbcType=varchar},
+      skillimg = #{skillimg,jdbcType=VARCHAR},
+      needupdatetime = #{needupdatetime,jdbcType=TIMESTAMP},
+      skillupdatetime = #{skillupdatetime,jdbcType=TIMESTAMP}
+    where type = #{type,jdbcType=VARCHAR}
+  </update>
+</mapper>

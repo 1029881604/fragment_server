@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.SkillMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Skill">
+    <id column="id" jdbcType="int" property="id" />
+    <result column="uid" jdbcType="int" property="uid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="publishdate" jdbcType="TIMESTAMP" property="publishdate" />
+    <result column="stopdate" jdbcType="TIMESTAMP" property="stopdate" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="skilltype" jdbcType="VARCHAR" property="skilltype" />
+    <result column="iscomplete" jdbcType="BIT" property="iscomplete" />
+    <result column="isonline" jdbcType="BIT" property="isonline" />
+    <result column="addressdesc" jdbcType="VARCHAR" property="addressdesc" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="team.antelope.fg.pojo.Skill">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, title, publishdate, stopdate, img, skilltype, iscomplete, isonline, addressdesc, 
+    longitude, latitude
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="team.antelope.fg.pojo.SkillExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from publishskill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.SkillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from publishskill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from publishskill
+    where id = #{id,jdbcType=int}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from publishskill
+    where id = #{id,jdbcType=int}
+  </delete>
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.SkillExample">
+    delete from publishskill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="team.antelope.fg.pojo.Skill">
+    insert into publishskill (id, uid, title, publishdate, 
+      stopdate, img, skilltype, 
+      iscomplete, isonline, addressdesc, 
+      longitude, latitude, content
+      )
+    values (#{id,jdbcType=int}, #{uid,jdbcType=int}, #{title,jdbcType=VARCHAR}, #{publishdate,jdbcType=TIMESTAMP}, 
+      #{stopdate,jdbcType=TIMESTAMP}, #{img,jdbcType=VARCHAR}, #{skilltype,jdbcType=VARCHAR}, 
+      #{iscomplete,jdbcType=BIT}, #{isonline,jdbcType=BIT}, #{addressdesc,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Skill">
+    insert into publishskill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="publishdate != null">
+        publishdate,
+      </if>
+      <if test="stopdate != null">
+        stopdate,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="skilltype != null">
+        skilltype,
+      </if>
+      <if test="iscomplete != null">
+        iscomplete,
+      </if>
+      <if test="isonline != null">
+        isonline,
+      </if>
+      <if test="addressdesc != null">
+        addressdesc,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=int},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=int},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        #{publishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopdate != null">
+        #{stopdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="skilltype != null">
+        #{skilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="iscomplete != null">
+        #{iscomplete,jdbcType=BIT},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=BIT},
+      </if>
+      <if test="addressdesc != null">
+        #{addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.SkillExample" resultType="java.lang.Long">
+    select count(*) from publishskill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update publishskill
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=int},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=int},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishdate != null">
+        publishdate = #{record.publishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stopdate != null">
+        stopdate = #{record.stopdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.img != null">
+        img = #{record.img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skilltype != null">
+        skilltype = #{record.skilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iscomplete != null">
+        iscomplete = #{record.iscomplete,jdbcType=BIT},
+      </if>
+      <if test="record.isonline != null">
+        isonline = #{record.isonline,jdbcType=BIT},
+      </if>
+      <if test="record.addressdesc != null">
+        addressdesc = #{record.addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update publishskill
+    set id = #{record.id,jdbcType=int},
+      uid = #{record.uid,jdbcType=int},
+      title = #{record.title,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=TIMESTAMP},
+      stopdate = #{record.stopdate,jdbcType=TIMESTAMP},
+      img = #{record.img,jdbcType=VARCHAR},
+      skilltype = #{record.skilltype,jdbcType=VARCHAR},
+      iscomplete = #{record.iscomplete,jdbcType=BIT},
+      isonline = #{record.isonline,jdbcType=BIT},
+      addressdesc = #{record.addressdesc,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update publishskill
+    set id = #{record.id,jdbcType=int},
+      uid = #{record.uid,jdbcType=int},
+      title = #{record.title,jdbcType=VARCHAR},
+      publishdate = #{record.publishdate,jdbcType=TIMESTAMP},
+      stopdate = #{record.stopdate,jdbcType=TIMESTAMP},
+      img = #{record.img,jdbcType=VARCHAR},
+      skilltype = #{record.skilltype,jdbcType=VARCHAR},
+      iscomplete = #{record.iscomplete,jdbcType=BIT},
+      isonline = #{record.isonline,jdbcType=BIT},
+      addressdesc = #{record.addressdesc,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Skill">
+    update publishskill
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=int},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null">
+        publishdate = #{publishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopdate != null">
+        stopdate = #{stopdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="skilltype != null">
+        skilltype = #{skilltype,jdbcType=VARCHAR},
+      </if>
+      <if test="iscomplete != null">
+        iscomplete = #{iscomplete,jdbcType=BIT},
+      </if>
+      <if test="isonline != null">
+        isonline = #{isonline,jdbcType=BIT},
+      </if>
+      <if test="addressdesc != null">
+        addressdesc = #{addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=int}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="team.antelope.fg.pojo.Skill">
+    update publishskill
+    set uid = #{uid,jdbcType=int},
+      title = #{title,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=TIMESTAMP},
+      stopdate = #{stopdate,jdbcType=TIMESTAMP},
+      img = #{img,jdbcType=VARCHAR},
+      skilltype = #{skilltype,jdbcType=VARCHAR},
+      iscomplete = #{iscomplete,jdbcType=BIT},
+      isonline = #{isonline,jdbcType=BIT},
+      addressdesc = #{addressdesc,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=int}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Skill">
+    update publishskill
+    set uid = #{uid,jdbcType=int},
+      title = #{title,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=TIMESTAMP},
+      stopdate = #{stopdate,jdbcType=TIMESTAMP},
+      img = #{img,jdbcType=VARCHAR},
+      skilltype = #{skilltype,jdbcType=VARCHAR},
+      iscomplete = #{iscomplete,jdbcType=BIT},
+      isonline = #{isonline,jdbcType=BIT},
+      addressdesc = #{addressdesc,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=int}
+  </update>
+</mapper>

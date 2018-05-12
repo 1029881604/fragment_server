@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.NeedMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Need">
+    <id column="id" jdbcType="int" property="id" />
+    <result column="uid" jdbcType="int" property="uid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="varchar" property="content" />
+    <result column="needtype" jdbcType="VARCHAR" property="needtype" />
+    <result column="customdate" jdbcType="TIMESTAMP" property="customdate" />
+    <result column="requestdate" jdbcType="TIMESTAMP" property="requestdate" />
+    <result column="iscomplete" jdbcType="BIT" property="iscomplete" />
+    <result column="isonline" jdbcType="BIT" property="isonline" />
+    <result column="addressdesc" jdbcType="VARCHAR" property="addressdesc" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, uid, title, content, needtype, customdate, requestdate, iscomplete, isonline, 
+    addressdesc, longitude, latitude
+  </sql>
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.NeedExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from publishneed
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from publishneed
+    where id = #{id,jdbcType=int}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from publishneed
+    where id = #{id,jdbcType=int}
+  </delete>
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.NeedExample">
+    delete from publishneed
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="team.antelope.fg.pojo.Need">
+    insert into publishneed (id, uid, title, content, 
+      needtype, customdate, requestdate, 
+      iscomplete, isonline, addressdesc, 
+      longitude, latitude)
+    values (#{id,jdbcType=int}, #{uid,jdbcType=int}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=varchar}, 
+      #{needtype,jdbcType=VARCHAR}, #{customdate,jdbcType=TIMESTAMP}, #{requestdate,jdbcType=TIMESTAMP}, 
+      #{iscomplete,jdbcType=BIT}, #{isonline,jdbcType=BIT}, #{addressdesc,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Need">
+    insert into publishneed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="needtype != null">
+        needtype,
+      </if>
+      <if test="customdate != null">
+        customdate,
+      </if>
+      <if test="requestdate != null">
+        requestdate,
+      </if>
+      <if test="iscomplete != null">
+        iscomplete,
+      </if>
+      <if test="isonline != null">
+        isonline,
+      </if>
+      <if test="addressdesc != null">
+        addressdesc,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=int},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=int},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=varchar},
+      </if>
+      <if test="needtype != null">
+        #{needtype,jdbcType=VARCHAR},
+      </if>
+      <if test="customdate != null">
+        #{customdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestdate != null">
+        #{requestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscomplete != null">
+        #{iscomplete,jdbcType=BIT},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=BIT},
+      </if>
+      <if test="addressdesc != null">
+        #{addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.NeedExample" resultType="java.lang.Long">
+    select count(*) from publishneed
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update publishneed
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=int},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=int},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=varchar},
+      </if>
+      <if test="record.needtype != null">
+        needtype = #{record.needtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customdate != null">
+        customdate = #{record.customdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.requestdate != null">
+        requestdate = #{record.requestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.iscomplete != null">
+        iscomplete = #{record.iscomplete,jdbcType=BIT},
+      </if>
+      <if test="record.isonline != null">
+        isonline = #{record.isonline,jdbcType=BIT},
+      </if>
+      <if test="record.addressdesc != null">
+        addressdesc = #{record.addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update publishneed
+    set id = #{record.id,jdbcType=int},
+      uid = #{record.uid,jdbcType=int},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=varchar},
+      needtype = #{record.needtype,jdbcType=VARCHAR},
+      customdate = #{record.customdate,jdbcType=TIMESTAMP},
+      requestdate = #{record.requestdate,jdbcType=TIMESTAMP},
+      iscomplete = #{record.iscomplete,jdbcType=BIT},
+      isonline = #{record.isonline,jdbcType=BIT},
+      addressdesc = #{record.addressdesc,jdbcType=VARCHAR},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      latitude = #{record.latitude,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Need">
+    update publishneed
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=int},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=varchar},
+      </if>
+      <if test="needtype != null">
+        needtype = #{needtype,jdbcType=VARCHAR},
+      </if>
+      <if test="customdate != null">
+        customdate = #{customdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestdate != null">
+        requestdate = #{requestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscomplete != null">
+        iscomplete = #{iscomplete,jdbcType=BIT},
+      </if>
+      <if test="isonline != null">
+        isonline = #{isonline,jdbcType=BIT},
+      </if>
+      <if test="addressdesc != null">
+        addressdesc = #{addressdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=int}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Need">
+    update publishneed
+    set uid = #{uid,jdbcType=int},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=varchar},
+      needtype = #{needtype,jdbcType=VARCHAR},
+      customdate = #{customdate,jdbcType=TIMESTAMP},
+      requestdate = #{requestdate,jdbcType=TIMESTAMP},
+      iscomplete = #{iscomplete,jdbcType=BIT},
+      isonline = #{isonline,jdbcType=BIT},
+      addressdesc = #{addressdesc,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=int}
+  </update>
+</mapper>

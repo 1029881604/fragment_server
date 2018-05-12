@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" /> -->
+  <properties resource="db.properties"/>
+  <context id="testTables" targetRuntime="MyBatis3">
+  <!-- 生成的pojo，将implements Serializable  
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>   
+    -->  
+    <commentGenerator>
+      <!--是否去除自动生成的注释 true是， false否  -->
+	  <property name="suppressAllComments" value="true" />
+	</commentGenerator>
+  	<!-- 数据库连接信息 -->
+    <jdbcConnection driverClass="${db.driver}"
+        connectionURL="${db.url}"
+        userId="${db.username}"
+        password="${db.password}">
+    </jdbcConnection>
+	<!-- 默认false, 把JDBC DECIMAL和NUMERIC类型解析为Integer，
+		true时把这些类型解析为java.math.BigDecimal
+	 -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="team.antelope.fg.pojo" targetProject=".\src">
+      <!-- enableSubPackages：是否让schema作为包的后缀 -->
+      <property name="enableSubPackages" value="false" />
+      <!-- 从数据库返回的值被清理前后的空格-->
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <!-- targetPackage: mapper映射文件生成的位置-->
+    <sqlMapGenerator targetPackage="team.antelope.fg.mapper"  targetProject=".\src">
+      <!-- enableSubPackages：是否让schema作为包的后缀 -->
+      <property name="enableSubPackages" value="false" />
+    </sqlMapGenerator>
+
+    <!-- targetPackage: mapper接口生成的位置-->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="team.antelope.fg.mapper"  targetProject=".\src">
+      <property name="enableSubPackages" value="false" />
+    </javaClientGenerator>
+
+    <!-- 指定数据库表 mapperName  domainObjectName-->
+    <table tableName="person" domainObjectName="Person">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+    </table>
+	<table tableName="attention" domainObjectName="Attention" >
+		<columnOverride column="attentionuserid" javaType="java.lang.Long" jdbcType="int" />
+		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="nearbymodular" domainObjectName="Rearbymodular">
+		<columnOverride column="needbody" javaType="java.lang.String" jdbcType="varchar" />
+		<columnOverride column="skillbody" javaType="java.lang.String" jdbcType="varchar" />
+	</table>
+	
+	<table tableName="privatemessage" domainObjectName="PrivateMessage">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
+   		<columnOverride column="senderid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="publicmessage" domainObjectName="PublicMessage">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
+   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="publishneed" domainObjectName="Need">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
+   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="publishskill" domainObjectName="Skill">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="collection_skill" domainObjectName="CollectionSkill">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="t_comment" domainObjectName="Comment">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
+   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<table tableName="comment_reply" domainObjectName="CommentReply">
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
+   		<columnOverride column="comment_id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="reply_id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="to_uid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="from_uid" javaType="java.lang.Long" jdbcType="int" />
+	</table>
+	<!-- 有些表的字段需要指定java类型 
+    <table schema="" tableName="" domainObjectName="Customer" >
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+      <columnOverride column="DATE_FIELD" property="startDate" />
+      <ignoreColumn column="FRED" />
+      <columnOverride column="LONG_VARCHAR_FIELD" javaType="" jdbcType="VARCHAR" />
+    </table>-->
+
+  </context>
+</generatorConfiguration>

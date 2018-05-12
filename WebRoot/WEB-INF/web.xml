@@ -10,6 +10,16 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- 配置spring的配置文件加载位置 -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:spring/bean-*.xml</param-value>
+  </context-param>
+  <!-- 配置spring的环境加载监听器 -->
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
   
   <!-- 字符编码过滤器 -->
   <filter>

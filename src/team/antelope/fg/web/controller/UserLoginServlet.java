@@ -43,18 +43,22 @@ public class UserLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("application/json; charset=utf-8"); 
+		Gson gson = new Gson();
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		if(account == null || "".equals(account.trim())){
-			response.getWriter().write(NEED_NAME);
+			System.out.println(NEED_NAME);
+			String json = gson.toJson(new String[]{NEED_NAME, null});
+			response.getWriter().write(json);
 			return;
 		} else if(password == null || "".equals(password.trim())){
-			response.getWriter().write(NEED_PWD);
+			System.out.println(NEED_PWD);
+			String json = gson.toJson(new String[]{NEED_PWD, null});
+			response.getWriter().write(json);
 			return;
 		}
 		System.out.println("post ºÍget Ö´ÐÐ£¡");
-		Gson gson = new Gson();
 		System.out.println(account+"---"+password);
 		Person person = null;
 		try {

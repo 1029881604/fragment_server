@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.CommentReplyMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.CommentReply">
+    <id column="id" jdbcType="int" property="id" />
+    <result column="comment_id" jdbcType="int" property="commentId" />
+    <result column="reply_type" jdbcType="SMALLINT" property="replyType" />
+    <result column="reply_id" jdbcType="int" property="replyId" />
+    <result column="content" jdbcType="varchar" property="content" />
+    <result column="to_uid" jdbcType="int" property="toUid" />
+    <result column="from_uid" jdbcType="int" property="fromUid" />
+    <result column="from_user_headimg" jdbcType="VARCHAR" property="fromUserHeadimg" />
+    <result column="from_nickname" jdbcType="VARCHAR" property="fromNickname" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="to_nickname" jdbcType="VARCHAR" property="toNickname" />
+    <result column="is_author" jdbcType="BIT" property="isAuthor" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, comment_id, reply_type, reply_id, content, to_uid, from_uid, from_user_headimg, 
+    from_nickname, create_time, to_nickname, is_author
+  </sql>
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.CommentReplyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from comment_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment_reply
+    where id = #{id,jdbcType=int}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment_reply
+    where id = #{id,jdbcType=int}
+  </delete>
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.CommentReplyExample">
+    delete from comment_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="team.antelope.fg.pojo.CommentReply">
+    insert into comment_reply (id, comment_id, reply_type, 
+      reply_id, content, to_uid, from_uid, 
+      from_user_headimg, from_nickname, create_time, 
+      to_nickname, is_author)
+    values (#{id,jdbcType=int}, #{commentId,jdbcType=int}, #{replyType,jdbcType=SMALLINT}, 
+      #{replyId,jdbcType=int}, #{content,jdbcType=varchar}, #{toUid,jdbcType=int}, #{fromUid,jdbcType=int}, 
+      #{fromUserHeadimg,jdbcType=VARCHAR}, #{fromNickname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{toNickname,jdbcType=VARCHAR}, #{isAuthor,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.CommentReply">
+    insert into comment_reply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="replyType != null">
+        reply_type,
+      </if>
+      <if test="replyId != null">
+        reply_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="toUid != null">
+        to_uid,
+      </if>
+      <if test="fromUid != null">
+        from_uid,
+      </if>
+      <if test="fromUserHeadimg != null">
+        from_user_headimg,
+      </if>
+      <if test="fromNickname != null">
+        from_nickname,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="toNickname != null">
+        to_nickname,
+      </if>
+      <if test="isAuthor != null">
+        is_author,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=int},
+      </if>
+      <if test="commentId != null">
+        #{commentId,jdbcType=int},
+      </if>
+      <if test="replyType != null">
+        #{replyType,jdbcType=SMALLINT},
+      </if>
+      <if test="replyId != null">
+        #{replyId,jdbcType=int},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=varchar},
+      </if>
+      <if test="toUid != null">
+        #{toUid,jdbcType=int},
+      </if>
+      <if test="fromUid != null">
+        #{fromUid,jdbcType=int},
+      </if>
+      <if test="fromUserHeadimg != null">
+        #{fromUserHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="fromNickname != null">
+        #{fromNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toNickname != null">
+        #{toNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuthor != null">
+        #{isAuthor,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.CommentReplyExample" resultType="java.lang.Long">
+    select count(*) from comment_reply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update comment_reply
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=int},
+      </if>
+      <if test="record.commentId != null">
+        comment_id = #{record.commentId,jdbcType=int},
+      </if>
+      <if test="record.replyType != null">
+        reply_type = #{record.replyType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.replyId != null">
+        reply_id = #{record.replyId,jdbcType=int},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=varchar},
+      </if>
+      <if test="record.toUid != null">
+        to_uid = #{record.toUid,jdbcType=int},
+      </if>
+      <if test="record.fromUid != null">
+        from_uid = #{record.fromUid,jdbcType=int},
+      </if>
+      <if test="record.fromUserHeadimg != null">
+        from_user_headimg = #{record.fromUserHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromNickname != null">
+        from_nickname = #{record.fromNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.toNickname != null">
+        to_nickname = #{record.toNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAuthor != null">
+        is_author = #{record.isAuthor,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update comment_reply
+    set id = #{record.id,jdbcType=int},
+      comment_id = #{record.commentId,jdbcType=int},
+      reply_type = #{record.replyType,jdbcType=SMALLINT},
+      reply_id = #{record.replyId,jdbcType=int},
+      content = #{record.content,jdbcType=varchar},
+      to_uid = #{record.toUid,jdbcType=int},
+      from_uid = #{record.fromUid,jdbcType=int},
+      from_user_headimg = #{record.fromUserHeadimg,jdbcType=VARCHAR},
+      from_nickname = #{record.fromNickname,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      to_nickname = #{record.toNickname,jdbcType=VARCHAR},
+      is_author = #{record.isAuthor,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.CommentReply">
+    update comment_reply
+    <set>
+      <if test="commentId != null">
+        comment_id = #{commentId,jdbcType=int},
+      </if>
+      <if test="replyType != null">
+        reply_type = #{replyType,jdbcType=SMALLINT},
+      </if>
+      <if test="replyId != null">
+        reply_id = #{replyId,jdbcType=int},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=varchar},
+      </if>
+      <if test="toUid != null">
+        to_uid = #{toUid,jdbcType=int},
+      </if>
+      <if test="fromUid != null">
+        from_uid = #{fromUid,jdbcType=int},
+      </if>
+      <if test="fromUserHeadimg != null">
+        from_user_headimg = #{fromUserHeadimg,jdbcType=VARCHAR},
+      </if>
+      <if test="fromNickname != null">
+        from_nickname = #{fromNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toNickname != null">
+        to_nickname = #{toNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuthor != null">
+        is_author = #{isAuthor,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=int}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.CommentReply">
+    update comment_reply
+    set comment_id = #{commentId,jdbcType=int},
+      reply_type = #{replyType,jdbcType=SMALLINT},
+      reply_id = #{replyId,jdbcType=int},
+      content = #{content,jdbcType=varchar},
+      to_uid = #{toUid,jdbcType=int},
+      from_uid = #{fromUid,jdbcType=int},
+      from_user_headimg = #{fromUserHeadimg,jdbcType=VARCHAR},
+      from_nickname = #{fromNickname,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      to_nickname = #{toNickname,jdbcType=VARCHAR},
+      is_author = #{isAuthor,jdbcType=BIT}
+    where id = #{id,jdbcType=int}
+  </update>
+</mapper>

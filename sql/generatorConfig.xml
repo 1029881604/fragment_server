@@ -53,7 +53,7 @@
 		<columnOverride column="attentionuserid" javaType="java.lang.Long" jdbcType="int" />
 		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
 	</table>
-	<table tableName="nearbymodular" domainObjectName="Rearbymodular">
+	<table tableName="nearbymodular" domainObjectName="Nearbymodular">
 		<columnOverride column="needbody" javaType="java.lang.String" jdbcType="varchar" />
 		<columnOverride column="skillbody" javaType="java.lang.String" jdbcType="varchar" />
 	</table>

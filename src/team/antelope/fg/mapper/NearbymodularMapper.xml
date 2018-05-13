@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Nearbymodular">
     <id column="type" jdbcType="VARCHAR" property="type" />
     <result column="needtitle" jdbcType="VARCHAR" property="needtitle" />
-    <result column="needbody" jdbcType="varchar" property="needbody" />
+    <result column="needbody" jdbcType="VARCHAR" property="needbody" />
     <result column="needimg" jdbcType="VARCHAR" property="needimg" />
     <result column="skilltitle" jdbcType="VARCHAR" property="skilltitle" />
-    <result column="skillbody" jdbcType="varchar" property="skillbody" />
+    <result column="skillbody" jdbcType="VARCHAR" property="skillbody" />
     <result column="skillimg" jdbcType="VARCHAR" property="skillimg" />
     <result column="needupdatetime" jdbcType="TIMESTAMP" property="needupdatetime" />
     <result column="skillupdatetime" jdbcType="TIMESTAMP" property="skillupdatetime" />
@@ -109,8 +109,8 @@
       needimg, skilltitle, skillbody, 
       skillimg, needupdatetime, skillupdatetime
       )
-    values (#{type,jdbcType=VARCHAR}, #{needtitle,jdbcType=VARCHAR}, #{needbody,jdbcType=varchar}, 
-      #{needimg,jdbcType=VARCHAR}, #{skilltitle,jdbcType=VARCHAR}, #{skillbody,jdbcType=varchar}, 
+    values (#{type,jdbcType=VARCHAR}, #{needtitle,jdbcType=VARCHAR}, #{needbody,jdbcType=VARCHAR}, 
+      #{needimg,jdbcType=VARCHAR}, #{skilltitle,jdbcType=VARCHAR}, #{skillbody,jdbcType=VARCHAR}, 
       #{skillimg,jdbcType=VARCHAR}, #{needupdatetime,jdbcType=TIMESTAMP}, #{skillupdatetime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -153,7 +153,7 @@
         #{needtitle,jdbcType=VARCHAR},
       </if>
       <if test="needbody != null">
-        #{needbody,jdbcType=varchar},
+        #{needbody,jdbcType=VARCHAR},
       </if>
       <if test="needimg != null">
         #{needimg,jdbcType=VARCHAR},
@@ -162,7 +162,7 @@
         #{skilltitle,jdbcType=VARCHAR},
       </if>
       <if test="skillbody != null">
-        #{skillbody,jdbcType=varchar},
+        #{skillbody,jdbcType=VARCHAR},
       </if>
       <if test="skillimg != null">
         #{skillimg,jdbcType=VARCHAR},
@@ -191,7 +191,7 @@
         needtitle = #{record.needtitle,jdbcType=VARCHAR},
       </if>
       <if test="record.needbody != null">
-        needbody = #{record.needbody,jdbcType=varchar},
+        needbody = #{record.needbody,jdbcType=VARCHAR},
       </if>
       <if test="record.needimg != null">
         needimg = #{record.needimg,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
         skilltitle = #{record.skilltitle,jdbcType=VARCHAR},
       </if>
       <if test="record.skillbody != null">
-        skillbody = #{record.skillbody,jdbcType=varchar},
+        skillbody = #{record.skillbody,jdbcType=VARCHAR},
       </if>
       <if test="record.skillimg != null">
         skillimg = #{record.skillimg,jdbcType=VARCHAR},
@@ -220,10 +220,10 @@
     update nearbymodular
     set type = #{record.type,jdbcType=VARCHAR},
       needtitle = #{record.needtitle,jdbcType=VARCHAR},
-      needbody = #{record.needbody,jdbcType=varchar},
+      needbody = #{record.needbody,jdbcType=VARCHAR},
       needimg = #{record.needimg,jdbcType=VARCHAR},
       skilltitle = #{record.skilltitle,jdbcType=VARCHAR},
-      skillbody = #{record.skillbody,jdbcType=varchar},
+      skillbody = #{record.skillbody,jdbcType=VARCHAR},
       skillimg = #{record.skillimg,jdbcType=VARCHAR},
       needupdatetime = #{record.needupdatetime,jdbcType=TIMESTAMP},
       skillupdatetime = #{record.skillupdatetime,jdbcType=TIMESTAMP}
@@ -238,7 +238,7 @@
         needtitle = #{needtitle,jdbcType=VARCHAR},
       </if>
       <if test="needbody != null">
-        needbody = #{needbody,jdbcType=varchar},
+        needbody = #{needbody,jdbcType=VARCHAR},
       </if>
       <if test="needimg != null">
         needimg = #{needimg,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
         skilltitle = #{skilltitle,jdbcType=VARCHAR},
       </if>
       <if test="skillbody != null">
-        skillbody = #{skillbody,jdbcType=varchar},
+        skillbody = #{skillbody,jdbcType=VARCHAR},
       </if>
       <if test="skillimg != null">
         skillimg = #{skillimg,jdbcType=VARCHAR},
@@ -264,10 +264,10 @@
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Nearbymodular">
     update nearbymodular
     set needtitle = #{needtitle,jdbcType=VARCHAR},
-      needbody = #{needbody,jdbcType=varchar},
+      needbody = #{needbody,jdbcType=VARCHAR},
       needimg = #{needimg,jdbcType=VARCHAR},
       skilltitle = #{skilltitle,jdbcType=VARCHAR},
-      skillbody = #{skillbody,jdbcType=varchar},
+      skillbody = #{skillbody,jdbcType=VARCHAR},
       skillimg = #{skillimg,jdbcType=VARCHAR},
       needupdatetime = #{needupdatetime,jdbcType=TIMESTAMP},
       skillupdatetime = #{skillupdatetime,jdbcType=TIMESTAMP}

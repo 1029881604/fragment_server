@@ -33,7 +33,7 @@
    <!-- 配置mapper扫描器, 不用配置mapper接口了-->
    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
    		<!-- 多个包用逗号隔开 -->
-   		<property name="basePackage" value="person.hwc.ssm.mapper"/>
+   		<property name="basePackage" value="team.antelope.fg.mapper"/>
    		<!-- 注意是beanname， 属性是value不是ref -->
    		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
    </bean>

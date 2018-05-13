@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.PrivateMessageMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.PrivateMessage">
-    <id column="id" jdbcType="int" property="id" />
-    <result column="senderid" jdbcType="int" property="senderid" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="senderid" jdbcType="INTEGER" property="senderid" />
     <result column="sendername" jdbcType="VARCHAR" property="sendername" />
-    <result column="receiverid" jdbcType="int" property="receiverid" />
+    <result column="receiverid" jdbcType="INTEGER" property="receiverid" />
     <result column="receivername" jdbcType="VARCHAR" property="receivername" />
     <result column="sendtime" jdbcType="TIMESTAMP" property="sendtime" />
-    <result column="content" jdbcType="varchar" property="content" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="isread" jdbcType="BIT" property="isread" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -90,11 +90,11 @@
     select 
     <include refid="Base_Column_List" />
     from privatemessage
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from privatemessage
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.PrivateMessageExample">
     delete from privatemessage
@@ -106,9 +106,9 @@
     insert into privatemessage (id, senderid, sendername, 
       receiverid, receivername, sendtime, 
       content, isread)
-    values (#{id,jdbcType=int}, #{senderid,jdbcType=int}, #{sendername,jdbcType=VARCHAR}, 
-      #{receiverid,jdbcType=int}, #{receivername,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, 
-      #{content,jdbcType=varchar}, #{isread,jdbcType=BIT})
+    values (#{id,jdbcType=INTEGER}, #{senderid,jdbcType=INTEGER}, #{sendername,jdbcType=VARCHAR}, 
+      #{receiverid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=VARCHAR}, #{isread,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="team.antelope.fg.pojo.PrivateMessage">
     insert into privatemessage
@@ -140,16 +140,16 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="senderid != null">
-        #{senderid,jdbcType=int},
+        #{senderid,jdbcType=INTEGER},
       </if>
       <if test="sendername != null">
         #{sendername,jdbcType=VARCHAR},
       </if>
       <if test="receiverid != null">
-        #{receiverid,jdbcType=int},
+        #{receiverid,jdbcType=INTEGER},
       </if>
       <if test="receivername != null">
         #{receivername,jdbcType=VARCHAR},
@@ -158,7 +158,7 @@
         #{sendtime,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null">
-        #{content,jdbcType=varchar},
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="isread != null">
         #{isread,jdbcType=BIT},
@@ -175,16 +175,16 @@
     update privatemessage
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.senderid != null">
-        senderid = #{record.senderid,jdbcType=int},
+        senderid = #{record.senderid,jdbcType=INTEGER},
       </if>
       <if test="record.sendername != null">
         sendername = #{record.sendername,jdbcType=VARCHAR},
       </if>
       <if test="record.receiverid != null">
-        receiverid = #{record.receiverid,jdbcType=int},
+        receiverid = #{record.receiverid,jdbcType=INTEGER},
       </if>
       <if test="record.receivername != null">
         receivername = #{record.receivername,jdbcType=VARCHAR},
@@ -193,7 +193,7 @@
         sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.content != null">
-        content = #{record.content,jdbcType=varchar},
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.isread != null">
         isread = #{record.isread,jdbcType=BIT},
@@ -205,13 +205,13 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update privatemessage
-    set id = #{record.id,jdbcType=int},
-      senderid = #{record.senderid,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      senderid = #{record.senderid,jdbcType=INTEGER},
       sendername = #{record.sendername,jdbcType=VARCHAR},
-      receiverid = #{record.receiverid,jdbcType=int},
+      receiverid = #{record.receiverid,jdbcType=INTEGER},
       receivername = #{record.receivername,jdbcType=VARCHAR},
       sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
-      content = #{record.content,jdbcType=varchar},
+      content = #{record.content,jdbcType=VARCHAR},
       isread = #{record.isread,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,13 +221,13 @@
     update privatemessage
     <set>
       <if test="senderid != null">
-        senderid = #{senderid,jdbcType=int},
+        senderid = #{senderid,jdbcType=INTEGER},
       </if>
       <if test="sendername != null">
         sendername = #{sendername,jdbcType=VARCHAR},
       </if>
       <if test="receiverid != null">
-        receiverid = #{receiverid,jdbcType=int},
+        receiverid = #{receiverid,jdbcType=INTEGER},
       </if>
       <if test="receivername != null">
         receivername = #{receivername,jdbcType=VARCHAR},
@@ -236,23 +236,23 @@
         sendtime = #{sendtime,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null">
-        content = #{content,jdbcType=varchar},
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="isread != null">
         isread = #{isread,jdbcType=BIT},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.PrivateMessage">
     update privatemessage
-    set senderid = #{senderid,jdbcType=int},
+    set senderid = #{senderid,jdbcType=INTEGER},
       sendername = #{sendername,jdbcType=VARCHAR},
-      receiverid = #{receiverid,jdbcType=int},
+      receiverid = #{receiverid,jdbcType=INTEGER},
       receivername = #{receivername,jdbcType=VARCHAR},
       sendtime = #{sendtime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=varchar},
+      content = #{content,jdbcType=VARCHAR},
       isread = #{isread,jdbcType=BIT}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

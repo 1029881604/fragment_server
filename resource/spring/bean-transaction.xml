@@ -31,7 +31,7 @@
    
    <!-- 配置aop, 指定由谁调用 -->
    <aop:config>
-   		<aop:advisor advice-ref="txAdvice" pointcut="execution (* person.hwc.ssm.service.impl.*.*(..))" />
+   		<aop:advisor advice-ref="txAdvice" pointcut="execution (* team.antelope.fg.service.simpl.*.*(..))" />
    </aop:config>
    
 </beans>

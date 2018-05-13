@@ -47,53 +47,57 @@
 
     <!-- 指定数据库表 mapperName  domainObjectName-->
     <table tableName="person" domainObjectName="Person">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+    </table>
+    <table tableName="person" domainObjectName="PersonInfo">
+        <ignoreColumn column="password" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
     </table>
 	<table tableName="attention" domainObjectName="Attention" >
-		<columnOverride column="attentionuserid" javaType="java.lang.Long" jdbcType="int" />
-		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+		<columnOverride column="attentionuserid" javaType="java.lang.Long" jdbcType="INTEGER" />
+		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="nearbymodular" domainObjectName="Nearbymodular">
-		<columnOverride column="needbody" javaType="java.lang.String" jdbcType="varchar" />
-		<columnOverride column="skillbody" javaType="java.lang.String" jdbcType="varchar" />
+		<columnOverride column="needbody" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<columnOverride column="skillbody" javaType="java.lang.String" jdbcType="VARCHAR" />
 	</table>
 	
 	<table tableName="privatemessage" domainObjectName="PrivateMessage">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
-   		<columnOverride column="senderid" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+   		<columnOverride column="senderid" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="publicmessage" domainObjectName="PublicMessage">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
-   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+   		<columnOverride column="receiverid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="publishneed" domainObjectName="Need">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
-   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="publishskill" domainObjectName="Skill">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="uid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="collection_skill" domainObjectName="CollectionSkill">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="t_comment" domainObjectName="Comment">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
-   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+   		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<table tableName="comment_reply" domainObjectName="CommentReply">
-   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="content" javaType="java.lang.String" jdbcType="varchar" />
-   		<columnOverride column="comment_id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="reply_id" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="to_uid" javaType="java.lang.Long" jdbcType="int" />
-   		<columnOverride column="from_uid" javaType="java.lang.Long" jdbcType="int" />
+   		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+   		<columnOverride column="comment_id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="reply_id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="to_uid" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="from_uid" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>
 	<!-- 有些表的字段需要指定java类型 
     <table schema="" tableName="" domainObjectName="Customer" >

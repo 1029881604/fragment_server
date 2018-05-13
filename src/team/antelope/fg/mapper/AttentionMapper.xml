@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.AttentionMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.AttentionKey">
-    <id column="uid" jdbcType="int" property="uid" />
-    <id column="attentionuserid" jdbcType="int" property="attentionuserid" />
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <id column="attentionuserid" jdbcType="INTEGER" property="attentionuserid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -82,8 +82,8 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="team.antelope.fg.pojo.AttentionKey">
     delete from attention
-    where uid = #{uid,jdbcType=int}
-      and attentionuserid = #{attentionuserid,jdbcType=int}
+    where uid = #{uid,jdbcType=INTEGER}
+      and attentionuserid = #{attentionuserid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.AttentionExample">
     delete from attention
@@ -93,7 +93,7 @@
   </delete>
   <insert id="insert" parameterType="team.antelope.fg.pojo.AttentionKey">
     insert into attention (uid, attentionuserid)
-    values (#{uid,jdbcType=int}, #{attentionuserid,jdbcType=int})
+    values (#{uid,jdbcType=INTEGER}, #{attentionuserid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="team.antelope.fg.pojo.AttentionKey">
     insert into attention
@@ -107,10 +107,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
-        #{uid,jdbcType=int},
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="attentionuserid != null">
-        #{attentionuserid,jdbcType=int},
+        #{attentionuserid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -124,10 +124,10 @@
     update attention
     <set>
       <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=int},
+        uid = #{record.uid,jdbcType=INTEGER},
       </if>
       <if test="record.attentionuserid != null">
-        attentionuserid = #{record.attentionuserid,jdbcType=int},
+        attentionuserid = #{record.attentionuserid,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -136,8 +136,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update attention
-    set uid = #{record.uid,jdbcType=int},
-      attentionuserid = #{record.attentionuserid,jdbcType=int}
+    set uid = #{record.uid,jdbcType=INTEGER},
+      attentionuserid = #{record.attentionuserid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

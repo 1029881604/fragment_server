@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.NeedMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Need">
-    <id column="id" jdbcType="int" property="id" />
-    <result column="uid" jdbcType="int" property="uid" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="content" jdbcType="varchar" property="content" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="needtype" jdbcType="VARCHAR" property="needtype" />
     <result column="customdate" jdbcType="TIMESTAMP" property="customdate" />
     <result column="requestdate" jdbcType="TIMESTAMP" property="requestdate" />
@@ -95,11 +95,11 @@
     select 
     <include refid="Base_Column_List" />
     from publishneed
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from publishneed
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.NeedExample">
     delete from publishneed
@@ -112,7 +112,7 @@
       needtype, customdate, requestdate, 
       iscomplete, isonline, addressdesc, 
       longitude, latitude)
-    values (#{id,jdbcType=int}, #{uid,jdbcType=int}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=varchar}, 
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
       #{needtype,jdbcType=VARCHAR}, #{customdate,jdbcType=TIMESTAMP}, #{requestdate,jdbcType=TIMESTAMP}, 
       #{iscomplete,jdbcType=BIT}, #{isonline,jdbcType=BIT}, #{addressdesc,jdbcType=VARCHAR}, 
       #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE})
@@ -159,16 +159,16 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="uid != null">
-        #{uid,jdbcType=int},
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
-        #{content,jdbcType=varchar},
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="needtype != null">
         #{needtype,jdbcType=VARCHAR},
@@ -206,16 +206,16 @@
     update publishneed
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=int},
+        uid = #{record.uid,jdbcType=INTEGER},
       </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null">
-        content = #{record.content,jdbcType=varchar},
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.needtype != null">
         needtype = #{record.needtype,jdbcType=VARCHAR},
@@ -248,10 +248,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update publishneed
-    set id = #{record.id,jdbcType=int},
-      uid = #{record.uid,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=varchar},
+      content = #{record.content,jdbcType=VARCHAR},
       needtype = #{record.needtype,jdbcType=VARCHAR},
       customdate = #{record.customdate,jdbcType=TIMESTAMP},
       requestdate = #{record.requestdate,jdbcType=TIMESTAMP},
@@ -268,13 +268,13 @@
     update publishneed
     <set>
       <if test="uid != null">
-        uid = #{uid,jdbcType=int},
+        uid = #{uid,jdbcType=INTEGER},
       </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
-        content = #{content,jdbcType=varchar},
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="needtype != null">
         needtype = #{needtype,jdbcType=VARCHAR},
@@ -301,13 +301,13 @@
         latitude = #{latitude,jdbcType=DOUBLE},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Need">
     update publishneed
-    set uid = #{uid,jdbcType=int},
+    set uid = #{uid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
-      content = #{content,jdbcType=varchar},
+      content = #{content,jdbcType=VARCHAR},
       needtype = #{needtype,jdbcType=VARCHAR},
       customdate = #{customdate,jdbcType=TIMESTAMP},
       requestdate = #{requestdate,jdbcType=TIMESTAMP},
@@ -316,6 +316,6 @@
       addressdesc = #{addressdesc,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=DOUBLE},
       latitude = #{latitude,jdbcType=DOUBLE}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

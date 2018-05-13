@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.CollectionSkillMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.CollectionSkill">
-    <id column="id" jdbcType="int" property="id" />
-    <result column="user_id" jdbcType="int" property="userId" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="skill_id" jdbcType="INTEGER" property="skillId" />
     <result column="collect_date" jdbcType="TIMESTAMP" property="collectDate" />
   </resultMap>
@@ -86,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from collection_skill
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from collection_skill
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.CollectionSkillExample">
     delete from collection_skill
@@ -101,7 +101,7 @@
   <insert id="insert" parameterType="team.antelope.fg.pojo.CollectionSkill">
     insert into collection_skill (id, user_id, skill_id, 
       collect_date)
-    values (#{id,jdbcType=int}, #{userId,jdbcType=int}, #{skillId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{skillId,jdbcType=INTEGER}, 
       #{collectDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="team.antelope.fg.pojo.CollectionSkill">
@@ -122,10 +122,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=int},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="skillId != null">
         #{skillId,jdbcType=INTEGER},
@@ -145,10 +145,10 @@
     update collection_skill
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=int},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.skillId != null">
         skill_id = #{record.skillId,jdbcType=INTEGER},
@@ -163,8 +163,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update collection_skill
-    set id = #{record.id,jdbcType=int},
-      user_id = #{record.userId,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
       skill_id = #{record.skillId,jdbcType=INTEGER},
       collect_date = #{record.collectDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -175,7 +175,7 @@
     update collection_skill
     <set>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=int},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="skillId != null">
         skill_id = #{skillId,jdbcType=INTEGER},
@@ -184,13 +184,13 @@
         collect_date = #{collectDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.CollectionSkill">
     update collection_skill
-    set user_id = #{userId,jdbcType=int},
+    set user_id = #{userId,jdbcType=INTEGER},
       skill_id = #{skillId,jdbcType=INTEGER},
       collect_date = #{collectDate,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

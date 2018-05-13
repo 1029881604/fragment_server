@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Comment">
-    <id column="id" jdbcType="int" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="topic_id" jdbcType="INTEGER" property="topicId" />
     <result column="topic_type" jdbcType="SMALLINT" property="topicType" />
-    <result column="content" jdbcType="varchar" property="content" />
-    <result column="user_id" jdbcType="int" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="user_img" jdbcType="VARCHAR" property="userImg" />
     <result column="is_top" jdbcType="BIT" property="isTop" />
@@ -97,11 +97,11 @@
     select 
     <include refid="Base_Column_List" />
     from t_comment
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_comment
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.CommentExample">
     delete from t_comment
@@ -115,8 +115,8 @@
       user_img, is_top, is_hot, like_num, 
       reply_num, is_reply, comment_status, 
       create_time)
-    values (#{id,jdbcType=int}, #{topicId,jdbcType=INTEGER}, #{topicType,jdbcType=SMALLINT}, 
-      #{content,jdbcType=varchar}, #{userId,jdbcType=int}, #{nickname,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{topicType,jdbcType=SMALLINT}, 
+      #{content,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, 
       #{userImg,jdbcType=VARCHAR}, #{isTop,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{likeNum,jdbcType=INTEGER}, 
       #{replyNum,jdbcType=INTEGER}, #{isReply,jdbcType=BIT}, #{commentStatus,jdbcType=SMALLINT}, 
       #{createTime,jdbcType=TIMESTAMP})
@@ -169,7 +169,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="topicId != null">
         #{topicId,jdbcType=INTEGER},
@@ -178,10 +178,10 @@
         #{topicType,jdbcType=SMALLINT},
       </if>
       <if test="content != null">
-        #{content,jdbcType=varchar},
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=int},
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="nickname != null">
         #{nickname,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
     update t_comment
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.topicId != null">
         topic_id = #{record.topicId,jdbcType=INTEGER},
@@ -231,10 +231,10 @@
         topic_type = #{record.topicType,jdbcType=SMALLINT},
       </if>
       <if test="record.content != null">
-        content = #{record.content,jdbcType=varchar},
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=int},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.nickname != null">
         nickname = #{record.nickname,jdbcType=VARCHAR},
@@ -270,11 +270,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update t_comment
-    set id = #{record.id,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
       topic_id = #{record.topicId,jdbcType=INTEGER},
       topic_type = #{record.topicType,jdbcType=SMALLINT},
-      content = #{record.content,jdbcType=varchar},
-      user_id = #{record.userId,jdbcType=int},
+      content = #{record.content,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
       nickname = #{record.nickname,jdbcType=VARCHAR},
       user_img = #{record.userImg,jdbcType=VARCHAR},
       is_top = #{record.isTop,jdbcType=BIT},
@@ -298,10 +298,10 @@
         topic_type = #{topicType,jdbcType=SMALLINT},
       </if>
       <if test="content != null">
-        content = #{content,jdbcType=varchar},
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=int},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="nickname != null">
         nickname = #{nickname,jdbcType=VARCHAR},
@@ -331,14 +331,14 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Comment">
     update t_comment
     set topic_id = #{topicId,jdbcType=INTEGER},
       topic_type = #{topicType,jdbcType=SMALLINT},
-      content = #{content,jdbcType=varchar},
-      user_id = #{userId,jdbcType=int},
+      content = #{content,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
       nickname = #{nickname,jdbcType=VARCHAR},
       user_img = #{userImg,jdbcType=VARCHAR},
       is_top = #{isTop,jdbcType=BIT},
@@ -348,6 +348,6 @@
       is_reply = #{isReply,jdbcType=BIT},
       comment_status = #{commentStatus,jdbcType=SMALLINT},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

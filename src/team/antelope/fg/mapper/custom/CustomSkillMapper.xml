@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.custom.CustomSkillMapper">
+	
+	<sql id="sp_nearbyskill_infos">
+		call sp_nearbyskill_infos(#{skillExpand.skilltype},#{skillExpand.latitude},#{skillExpand.longitude})
+	</sql>
+	
+	<select id="queryNearbyInfos" resultType="team.antelope.fg.pojo.expand.SkillExpand"
+		 parameterType="team.antelope.fg.pojo.vo.SkillVo">
+		<include refid="sp_nearbyskill_infos"/>
+	</select>
+	
+</mapper>

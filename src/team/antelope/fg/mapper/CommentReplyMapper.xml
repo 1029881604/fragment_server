@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.CommentReplyMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.CommentReply">
-    <id column="id" jdbcType="int" property="id" />
-    <result column="comment_id" jdbcType="int" property="commentId" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="reply_type" jdbcType="SMALLINT" property="replyType" />
-    <result column="reply_id" jdbcType="int" property="replyId" />
-    <result column="content" jdbcType="varchar" property="content" />
-    <result column="to_uid" jdbcType="int" property="toUid" />
-    <result column="from_uid" jdbcType="int" property="fromUid" />
+    <result column="reply_id" jdbcType="INTEGER" property="replyId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="to_uid" jdbcType="INTEGER" property="toUid" />
+    <result column="from_uid" jdbcType="INTEGER" property="fromUid" />
     <result column="from_user_headimg" jdbcType="VARCHAR" property="fromUserHeadimg" />
     <result column="from_nickname" jdbcType="VARCHAR" property="fromNickname" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -95,11 +95,11 @@
     select 
     <include refid="Base_Column_List" />
     from comment_reply
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from comment_reply
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.CommentReplyExample">
     delete from comment_reply
@@ -112,8 +112,8 @@
       reply_id, content, to_uid, from_uid, 
       from_user_headimg, from_nickname, create_time, 
       to_nickname, is_author)
-    values (#{id,jdbcType=int}, #{commentId,jdbcType=int}, #{replyType,jdbcType=SMALLINT}, 
-      #{replyId,jdbcType=int}, #{content,jdbcType=varchar}, #{toUid,jdbcType=int}, #{fromUid,jdbcType=int}, 
+    values (#{id,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{replyType,jdbcType=SMALLINT}, 
+      #{replyId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{toUid,jdbcType=INTEGER}, #{fromUid,jdbcType=INTEGER}, 
       #{fromUserHeadimg,jdbcType=VARCHAR}, #{fromNickname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{toNickname,jdbcType=VARCHAR}, #{isAuthor,jdbcType=BIT})
   </insert>
@@ -159,25 +159,25 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="commentId != null">
-        #{commentId,jdbcType=int},
+        #{commentId,jdbcType=INTEGER},
       </if>
       <if test="replyType != null">
         #{replyType,jdbcType=SMALLINT},
       </if>
       <if test="replyId != null">
-        #{replyId,jdbcType=int},
+        #{replyId,jdbcType=INTEGER},
       </if>
       <if test="content != null">
-        #{content,jdbcType=varchar},
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="toUid != null">
-        #{toUid,jdbcType=int},
+        #{toUid,jdbcType=INTEGER},
       </if>
       <if test="fromUid != null">
-        #{fromUid,jdbcType=int},
+        #{fromUid,jdbcType=INTEGER},
       </if>
       <if test="fromUserHeadimg != null">
         #{fromUserHeadimg,jdbcType=VARCHAR},
@@ -206,25 +206,25 @@
     update comment_reply
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.commentId != null">
-        comment_id = #{record.commentId,jdbcType=int},
+        comment_id = #{record.commentId,jdbcType=INTEGER},
       </if>
       <if test="record.replyType != null">
         reply_type = #{record.replyType,jdbcType=SMALLINT},
       </if>
       <if test="record.replyId != null">
-        reply_id = #{record.replyId,jdbcType=int},
+        reply_id = #{record.replyId,jdbcType=INTEGER},
       </if>
       <if test="record.content != null">
-        content = #{record.content,jdbcType=varchar},
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
       <if test="record.toUid != null">
-        to_uid = #{record.toUid,jdbcType=int},
+        to_uid = #{record.toUid,jdbcType=INTEGER},
       </if>
       <if test="record.fromUid != null">
-        from_uid = #{record.fromUid,jdbcType=int},
+        from_uid = #{record.fromUid,jdbcType=INTEGER},
       </if>
       <if test="record.fromUserHeadimg != null">
         from_user_headimg = #{record.fromUserHeadimg,jdbcType=VARCHAR},
@@ -248,13 +248,13 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update comment_reply
-    set id = #{record.id,jdbcType=int},
-      comment_id = #{record.commentId,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      comment_id = #{record.commentId,jdbcType=INTEGER},
       reply_type = #{record.replyType,jdbcType=SMALLINT},
-      reply_id = #{record.replyId,jdbcType=int},
-      content = #{record.content,jdbcType=varchar},
-      to_uid = #{record.toUid,jdbcType=int},
-      from_uid = #{record.fromUid,jdbcType=int},
+      reply_id = #{record.replyId,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      to_uid = #{record.toUid,jdbcType=INTEGER},
+      from_uid = #{record.fromUid,jdbcType=INTEGER},
       from_user_headimg = #{record.fromUserHeadimg,jdbcType=VARCHAR},
       from_nickname = #{record.fromNickname,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -268,22 +268,22 @@
     update comment_reply
     <set>
       <if test="commentId != null">
-        comment_id = #{commentId,jdbcType=int},
+        comment_id = #{commentId,jdbcType=INTEGER},
       </if>
       <if test="replyType != null">
         reply_type = #{replyType,jdbcType=SMALLINT},
       </if>
       <if test="replyId != null">
-        reply_id = #{replyId,jdbcType=int},
+        reply_id = #{replyId,jdbcType=INTEGER},
       </if>
       <if test="content != null">
-        content = #{content,jdbcType=varchar},
+        content = #{content,jdbcType=VARCHAR},
       </if>
       <if test="toUid != null">
-        to_uid = #{toUid,jdbcType=int},
+        to_uid = #{toUid,jdbcType=INTEGER},
       </if>
       <if test="fromUid != null">
-        from_uid = #{fromUid,jdbcType=int},
+        from_uid = #{fromUid,jdbcType=INTEGER},
       </if>
       <if test="fromUserHeadimg != null">
         from_user_headimg = #{fromUserHeadimg,jdbcType=VARCHAR},
@@ -301,21 +301,21 @@
         is_author = #{isAuthor,jdbcType=BIT},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.CommentReply">
     update comment_reply
-    set comment_id = #{commentId,jdbcType=int},
+    set comment_id = #{commentId,jdbcType=INTEGER},
       reply_type = #{replyType,jdbcType=SMALLINT},
-      reply_id = #{replyId,jdbcType=int},
-      content = #{content,jdbcType=varchar},
-      to_uid = #{toUid,jdbcType=int},
-      from_uid = #{fromUid,jdbcType=int},
+      reply_id = #{replyId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      to_uid = #{toUid,jdbcType=INTEGER},
+      from_uid = #{fromUid,jdbcType=INTEGER},
       from_user_headimg = #{fromUserHeadimg,jdbcType=VARCHAR},
       from_nickname = #{fromNickname,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       to_nickname = #{toNickname,jdbcType=VARCHAR},
       is_author = #{isAuthor,jdbcType=BIT}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

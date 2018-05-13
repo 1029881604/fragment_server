@@ -3,13 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 全局设置 -->
-	<settings>
-		 <!-- 打开延迟加载的开关 -->
-	    <setting name="lazyLoadingEnabled" value="true"/>
-	    <!-- 将积极加载改为消极加载，即延迟加载 -->
-	    <setting name="aggressiveLazyLoading" value="false"/>
-	</settings>
 	
 	<!-- orm映射文件配置  配置mapper在spring中配置扫描即可
 	但要求mapper接口文件必须和mapper.xml映射文件同名且在同一个包下

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.SkillMapper">
   <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Skill">
-    <id column="id" jdbcType="int" property="id" />
-    <result column="uid" jdbcType="int" property="uid" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="publishdate" jdbcType="TIMESTAMP" property="publishdate" />
     <result column="stopdate" jdbcType="TIMESTAMP" property="stopdate" />
@@ -119,11 +119,11 @@
     ,
     <include refid="Blob_Column_List" />
     from publishskill
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from publishskill
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.SkillExample">
     delete from publishskill
@@ -137,7 +137,7 @@
       iscomplete, isonline, addressdesc, 
       longitude, latitude, content
       )
-    values (#{id,jdbcType=int}, #{uid,jdbcType=int}, #{title,jdbcType=VARCHAR}, #{publishdate,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{publishdate,jdbcType=TIMESTAMP}, 
       #{stopdate,jdbcType=TIMESTAMP}, #{img,jdbcType=VARCHAR}, #{skilltype,jdbcType=VARCHAR}, 
       #{iscomplete,jdbcType=BIT}, #{isonline,jdbcType=BIT}, #{addressdesc,jdbcType=VARCHAR}, 
       #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{content,jdbcType=LONGVARCHAR}
@@ -188,10 +188,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=int},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="uid != null">
-        #{uid,jdbcType=int},
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -238,10 +238,10 @@
     update publishskill
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=int},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=int},
+        uid = #{record.uid,jdbcType=INTEGER},
       </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
@@ -283,8 +283,8 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update publishskill
-    set id = #{record.id,jdbcType=int},
-      uid = #{record.uid,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       publishdate = #{record.publishdate,jdbcType=TIMESTAMP},
       stopdate = #{record.stopdate,jdbcType=TIMESTAMP},
@@ -302,8 +302,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update publishskill
-    set id = #{record.id,jdbcType=int},
-      uid = #{record.uid,jdbcType=int},
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       publishdate = #{record.publishdate,jdbcType=TIMESTAMP},
       stopdate = #{record.stopdate,jdbcType=TIMESTAMP},
@@ -322,7 +322,7 @@
     update publishskill
     <set>
       <if test="uid != null">
-        uid = #{uid,jdbcType=int},
+        uid = #{uid,jdbcType=INTEGER},
       </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
@@ -358,11 +358,11 @@
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="team.antelope.fg.pojo.Skill">
     update publishskill
-    set uid = #{uid,jdbcType=int},
+    set uid = #{uid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       publishdate = #{publishdate,jdbcType=TIMESTAMP},
       stopdate = #{stopdate,jdbcType=TIMESTAMP},
@@ -374,11 +374,11 @@
       longitude = #{longitude,jdbcType=DOUBLE},
       latitude = #{latitude,jdbcType=DOUBLE},
       content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Skill">
     update publishskill
-    set uid = #{uid,jdbcType=int},
+    set uid = #{uid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       publishdate = #{publishdate,jdbcType=TIMESTAMP},
       stopdate = #{stopdate,jdbcType=TIMESTAMP},
@@ -389,6 +389,6 @@
       addressdesc = #{addressdesc,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=DOUBLE},
       latitude = #{latitude,jdbcType=DOUBLE}
-    where id = #{id,jdbcType=int}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

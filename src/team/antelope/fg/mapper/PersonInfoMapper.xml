@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="team.antelope.fg.mapper.PersonMapper">
-  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Person">
+<mapper namespace="team.antelope.fg.mapper.PersonInfoMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.PersonInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="sex" jdbcType="VARCHAR" property="sex" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="phonenum" jdbcType="VARCHAR" property="phonenum" />
@@ -73,9 +72,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, password, sex, email, phonenum, age, headimg, starnum, dealnum, fansnum
+    id, name, sex, email, phonenum, age, headimg, starnum, dealnum, fansnum
   </sql>
-  <select id="selectByExample" parameterType="team.antelope.fg.pojo.PersonExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.PersonInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -99,23 +98,23 @@
     delete from person
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.PersonExample">
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.PersonInfoExample">
     delete from person
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="team.antelope.fg.pojo.Person">
-    insert into person (id, name, password, 
-      sex, email, phonenum, 
-      age, headimg, starnum, 
-      dealnum, fansnum)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR}, 
-      #{age,jdbcType=SMALLINT}, #{headimg,jdbcType=VARCHAR}, #{starnum,jdbcType=DOUBLE}, 
-      #{dealnum,jdbcType=INTEGER}, #{fansnum,jdbcType=INTEGER})
+  <insert id="insert" parameterType="team.antelope.fg.pojo.PersonInfo">
+    insert into person (id, name, sex, email, 
+      phonenum, age, headimg, 
+      starnum, dealnum, fansnum
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phonenum,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{headimg,jdbcType=VARCHAR}, 
+      #{starnum,jdbcType=DOUBLE}, #{dealnum,jdbcType=INTEGER}, #{fansnum,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Person">
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.PersonInfo">
     insert into person
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -123,9 +122,6 @@
       </if>
       <if test="name != null">
         name,
-      </if>
-      <if test="password != null">
-        password,
       </if>
       <if test="sex != null">
         sex,
@@ -159,9 +155,6 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
       </if>
@@ -188,7 +181,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="team.antelope.fg.pojo.PersonExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.PersonInfoExample" resultType="java.lang.Long">
     select count(*) from person
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -202,9 +195,6 @@
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
@@ -239,7 +229,6 @@
     update person
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       phonenum = #{record.phonenum,jdbcType=VARCHAR},
@@ -252,14 +241,11 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Person">
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.PersonInfo">
     update person
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=VARCHAR},
@@ -288,10 +274,9 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Person">
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.PersonInfo">
     update person
     set name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       phonenum = #{phonenum,jdbcType=VARCHAR},

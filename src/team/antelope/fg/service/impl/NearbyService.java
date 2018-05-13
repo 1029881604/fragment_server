@@ -2,23 +2,29 @@ package team.antelope.fg.service.impl;
 
 import java.util.List;
 
-import team.antelope.fg.dao.IPersonInfoDao;
-import team.antelope.fg.dao.impl.NearbyModularInfoDaoImpl;
-import team.antelope.fg.dao.impl.NeedPreInfoDaoImpl;
-import team.antelope.fg.dao.impl.PersonInfoDaoImpl;
-import team.antelope.fg.dao.impl.SkillPreInfoDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import team.antelope.fg.entity.NearbyModularInfo;
 import team.antelope.fg.entity.NeedPreInfo;
 import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.entity.SkillPreInfo;
+import team.antelope.fg.mapper.NeedMapper;
+import team.antelope.fg.mapper.PersonMapper;
+import team.antelope.fg.mapper.SkillMapper;
 import team.antelope.fg.service.INearbyService;
 
 public class NearbyService implements INearbyService {
 
-	private static NeedPreInfoDaoImpl needPreDao = new NeedPreInfoDaoImpl();
-	private static SkillPreInfoDaoImpl skillPreDao = new SkillPreInfoDaoImpl();
-	private static NearbyModularInfoDaoImpl modularInfo = new NearbyModularInfoDaoImpl();
-	private static IPersonInfoDao personInfoDao = new PersonInfoDaoImpl();
+	//×¢ÈëneedMapper, skillMapper,modularInfoMapper,  personMapper
+	@Autowired
+	private NeedMapper needMapper;
+	@Autowired
+	private SkillMapper skillMapper;
+	@Autowired
+	private ModularI modularInfoMapper;
+	@Autowired
+	private PersonMapper personMapper;
+	
 	
 	@Override
 	public List<NeedPreInfo> getNearbyNeedPreInfos(String type, double latitude, double longitude) {

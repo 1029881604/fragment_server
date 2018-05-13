@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="team.antelope.fg.mapper.RearbymodularMapper">
-  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Rearbymodular">
+<mapper namespace="team.antelope.fg.mapper.NearbymodularMapper">
+  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.Nearbymodular">
     <id column="type" jdbcType="VARCHAR" property="type" />
     <result column="needtitle" jdbcType="VARCHAR" property="needtitle" />
     <result column="needbody" jdbcType="varchar" property="needbody" />
@@ -74,7 +74,7 @@
     type, needtitle, needbody, needimg, skilltitle, skillbody, skillimg, needupdatetime, 
     skillupdatetime
   </sql>
-  <select id="selectByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="team.antelope.fg.pojo.NearbymodularExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -98,13 +98,13 @@
     delete from nearbymodular
     where type = #{type,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample">
+  <delete id="deleteByExample" parameterType="team.antelope.fg.pojo.NearbymodularExample">
     delete from nearbymodular
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="team.antelope.fg.pojo.Rearbymodular">
+  <insert id="insert" parameterType="team.antelope.fg.pojo.Nearbymodular">
     insert into nearbymodular (type, needtitle, needbody, 
       needimg, skilltitle, skillbody, 
       skillimg, needupdatetime, skillupdatetime
@@ -114,7 +114,7 @@
       #{skillimg,jdbcType=VARCHAR}, #{needupdatetime,jdbcType=TIMESTAMP}, #{skillupdatetime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Rearbymodular">
+  <insert id="insertSelective" parameterType="team.antelope.fg.pojo.Nearbymodular">
     insert into nearbymodular
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="type != null">
@@ -175,7 +175,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="team.antelope.fg.pojo.RearbymodularExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="team.antelope.fg.pojo.NearbymodularExample" resultType="java.lang.Long">
     select count(*) from nearbymodular
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -231,7 +231,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Rearbymodular">
+  <update id="updateByPrimaryKeySelective" parameterType="team.antelope.fg.pojo.Nearbymodular">
     update nearbymodular
     <set>
       <if test="needtitle != null">
@@ -261,7 +261,7 @@
     </set>
     where type = #{type,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Rearbymodular">
+  <update id="updateByPrimaryKey" parameterType="team.antelope.fg.pojo.Nearbymodular">
     update nearbymodular
     set needtitle = #{needtitle,jdbcType=VARCHAR},
       needbody = #{needbody,jdbcType=varchar},

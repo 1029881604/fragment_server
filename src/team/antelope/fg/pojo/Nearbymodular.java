@@ -2,7 +2,7 @@ package team.antelope.fg.pojo;
 
 import java.util.Date;
 
-public class Rearbymodular {
+public class Nearbymodular {
     private String type;
 
     private String needtitle;

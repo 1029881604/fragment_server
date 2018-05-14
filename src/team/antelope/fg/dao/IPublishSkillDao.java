@@ -11,6 +11,7 @@ public interface IPublishSkillDao extends IBaseDao<PublishSkill> {
     int queryTotalRecords();    //
     List <PublishSkill> queryAllPublishSkill(int from, int to);//
 	
+    //kyrene
     List<PublishSkill> queryOnlineSkillsByType(String type);
     
     //lry
@@ -18,4 +19,6 @@ public interface IPublishSkillDao extends IBaseDao<PublishSkill> {
   	
   	//kyrene
   	List<PublishSkill> querySkillsByPerson(Long id);
+  	List<PublishSkill> queryByKeyword(String keyword);
+  	
 }

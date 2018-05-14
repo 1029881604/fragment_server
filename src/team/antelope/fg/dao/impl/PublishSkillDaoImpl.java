@@ -202,4 +202,15 @@ public class PublishSkillDaoImpl implements IPublishSkillDao {
 		return skills;
 	}
 
+	//kyrene
+	@Override
+	@SuppressWarnings(value="all")
+	public List<PublishSkill> queryByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		List<PublishSkill> skills = (List<PublishSkill>)DBUtil.exeQuery("select * from publishskill where title like '%"+keyword+"%' or content like '%"+keyword+"%'",
+				null, 
+				new BeanListHandler(PublishSkill.class));
+		return skills;
+	}
+
 }

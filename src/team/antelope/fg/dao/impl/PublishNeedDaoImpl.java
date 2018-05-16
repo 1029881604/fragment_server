@@ -163,4 +163,12 @@ public class PublishNeedDaoImpl implements IPublishNeedDao {
 				new BeanListHandler(PersonNeed.class));
 		return personNeeds;
 	}
+
+	@Override
+	public List<PublishNeed> queryByuid(Long uid) {
+		List<PublishNeed> publishNeeds = (List<PublishNeed>) DBUtil.exeQuery("select * from publishneed where uid=?",
+				new Long[]{uid},
+				new BeanListHandler(PublishNeed.class));
+		return publishNeeds;
+	}
 }

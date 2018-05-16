@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.custom.CustomNeedMapper">
+
+	<sql id="base_list_column">
+		b.id, b.uid, title, content, needtype, customdate, requestdate, iscomplete, isonline, 
+		addressdesc, longitude, latitude
+	</sql>
+	
+	<sql id="expand_list_column">
+		, a.name userName, a.headimg
+	</sql>
 	
 	<sql id="sp_nearbyneed_infos">
 		call sp_nearbyneed_infos(#{needExpand.needtype},#{needExpand.latitude},#{needExpand.longitude})
 	</sql>
-	
+	<!-- 通过需求类型和经度纬度查询附近的需求 -->
 	<select id="queryNearbyInfos" resultType="team.antelope.fg.pojo.expand.NeedExpand"
 		 parameterType="team.antelope.fg.pojo.vo.NeedVo">
 		<include refid="sp_nearbyneed_infos"/>
+	</select>
+	
+	<!-- 通过需求id 联合查询person和需求的信息 -->
+	<sql id="query_need_person_condition">
+		and b.id = #{id}
+		and b.uid = a.id
+	</sql>
+	<select id="queryNeedInfoById" parameterType="java.lang.Long" resultType="team.antelope.fg.pojo.expand.NeedExpand">
+		select 
+		<include refid="base_list_column"/>
+		<include refid="expand_list_column"/>
+		from
+		publishneed b, person a
+		<where>
+			<include refid="query_need_person_condition"/>
+		</where>
 	</select>
 	
 </mapper>

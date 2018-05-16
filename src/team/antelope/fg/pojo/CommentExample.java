@@ -175,52 +175,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdEqualTo(Integer value) {
+        public Criteria andTopicIdEqualTo(Long value) {
             addCriterion("topic_id =", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotEqualTo(Integer value) {
+        public Criteria andTopicIdNotEqualTo(Long value) {
             addCriterion("topic_id <>", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdGreaterThan(Integer value) {
+        public Criteria andTopicIdGreaterThan(Long value) {
             addCriterion("topic_id >", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTopicIdGreaterThanOrEqualTo(Long value) {
             addCriterion("topic_id >=", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdLessThan(Integer value) {
+        public Criteria andTopicIdLessThan(Long value) {
             addCriterion("topic_id <", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdLessThanOrEqualTo(Integer value) {
+        public Criteria andTopicIdLessThanOrEqualTo(Long value) {
             addCriterion("topic_id <=", value, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdIn(List<Integer> values) {
+        public Criteria andTopicIdIn(List<Long> values) {
             addCriterion("topic_id in", values, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotIn(List<Integer> values) {
+        public Criteria andTopicIdNotIn(List<Long> values) {
             addCriterion("topic_id not in", values, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdBetween(Integer value1, Integer value2) {
+        public Criteria andTopicIdBetween(Long value1, Long value2) {
             addCriterion("topic_id between", value1, value2, "topicId");
             return (Criteria) this;
         }
 
-        public Criteria andTopicIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andTopicIdNotBetween(Long value1, Long value2) {
             addCriterion("topic_id not between", value1, value2, "topicId");
             return (Criteria) this;
         }

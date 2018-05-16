@@ -8,6 +8,10 @@ import team.antelope.fg.pojo.Need;
  * @Description:TODO
  */
 public class NeedExpand extends Need {
+	
+	//biz add  
+	private Double distance;
+	//vo add
 	private String userName;
 	private String headimg;
 	
@@ -23,5 +27,10 @@ public class NeedExpand extends Need {
 	public void setHeadimg(String headimg) {
 		this.headimg = headimg;
 	}
-	
+	public Double getDistance() {
+		return distance;
+	}
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
 }

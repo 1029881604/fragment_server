@@ -4,12 +4,11 @@ package team.antelope.fg.dao;
 import java.util.List;
 /**
  * 
- * @author åæ–‡è´¢
- * @time:2017å¹´12æœˆ29æ—¥ ä¸‹åˆ11:26:42
+ * @author »ªÎÄ²Æ
+ * @time:2018Äê5ÔÂ14ÈÕ ÉÏÎç11:09:20
  * @Description:TODO
  * @param <T>
  */
-
 public interface IBaseDao<T> {
 	public int insert(T t);	
 	public int update(T t);	

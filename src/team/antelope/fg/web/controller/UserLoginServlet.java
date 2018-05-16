@@ -21,7 +21,6 @@ import team.antelope.fg.service.impl.UserServiceImpl;
  * @time:2018年5月10日 下午7:24:52
  * @Description:TODO
  */
-//@WebServlet("/UserLoginServlet")
 public class UserLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String LOGIN_SUCCESS="登入成功";

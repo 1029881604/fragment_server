@@ -88,6 +88,7 @@
 	</table>
 	<table tableName="t_comment" domainObjectName="Comment">
    		<columnOverride column="id" javaType="java.lang.Long" jdbcType="INTEGER" />
+   		<columnOverride column="topic_id" javaType="java.lang.Long" jdbcType="INTEGER" />
    		<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
    		<columnOverride column="user_id" javaType="java.lang.Long" jdbcType="INTEGER" />
 	</table>

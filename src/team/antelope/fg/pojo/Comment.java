@@ -5,7 +5,7 @@ import java.util.Date;
 public class Comment {
     private Long id;
 
-    private Integer topicId;
+    private Long topicId;
 
     private Short topicType;
 
@@ -39,11 +39,11 @@ public class Comment {
         this.id = id;
     }
 
-    public Integer getTopicId() {
+    public Long getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(Integer topicId) {
+    public void setTopicId(Long topicId) {
         this.topicId = topicId;
     }
 

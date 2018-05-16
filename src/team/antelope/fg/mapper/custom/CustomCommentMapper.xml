@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.antelope.fg.mapper.custom.CustomCommentMapper">
+	<!--  topic_type   1为user, 2为skill, 3为need -->
+	<sql id="confirm_table">
+		<if test="commentExpand != null">
+			<if test="commentExpand.topicType == 1" >
+				person 
+			</if>
+			<if test="commentExpand.topicType == 2" >
+				publishskill 
+			</if>
+			<if test="commentExpand.topicType == 3" >
+				publishneed 
+			</if>
+		</if> 
+	</sql>
+	
+	
+	<select id="queryCommentsByTopicId" resultType="team.antelope.fg.pojo.expand.CommentExpand"
+		 parameterType="team.antelope.fg.pojo.vo.CommentVo">
+		select a.* from
+		 t_comment  a,
+		 <include refid="confirm_table"/> b
+		 <where>
+		 	 a.topic_id = #{commentExpand.topicId} 
+		 	 and b.id = a.topic_id 
+		 	 and topic_type = #{commentExpand.topicType} 
+		 </where>
+		 order by a.create_time 
+	</select>
+	
+</mapper>

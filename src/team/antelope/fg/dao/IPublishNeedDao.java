@@ -8,6 +8,7 @@ import team.antelope.fg.entity.PublishNeed;
 
 public interface IPublishNeedDao extends IBaseDao<PublishNeed> {
     List<PublishNeed> queryAllPublishNeed();  
+    List<PublishNeed> queryByuid(Long uid);//add by YY 20180514
     int queryTotalRecords();    
     List <PublishNeed> queryAllPublishNeed(int from, int to);
     
@@ -16,4 +17,5 @@ public interface IPublishNeedDao extends IBaseDao<PublishNeed> {
 	 * @return
 	 */
 	List<PersonNeed> queryAllPersonNeed();
+	
 }

@@ -20,5 +20,14 @@ public interface CustomCommentMapper {
 	 * @return 
 	 * List<CommentExpand>
 	 */
-	List<CommentExpand> queryCommentsByTopicId(CommentVo commentVo);
+	List<CommentExpand> queryCommentsByTopicId(CommentVo commentVo) throws Exception;
+	/**
+	 * 
+	 * @param customExpand 
+	 * 插入数据，返回自动增长的key
+	 * void
+	 */
+	void insertAndReturnKey(CommentVo customVo) throws Exception;
+	
+	
 }

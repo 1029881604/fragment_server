@@ -110,4 +110,12 @@ public class Person {
     public void setFansnum(Integer fansnum) {
         this.fansnum = fansnum;
     }
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", password=" + password + ", sex=" + sex + ", email=" + email
+				+ ", phonenum=" + phonenum + ", age=" + age + ", headimg=" + headimg + ", starnum=" + starnum
+				+ ", dealnum=" + dealnum + ", fansnum=" + fansnum + "]";
+	}
+    
 }

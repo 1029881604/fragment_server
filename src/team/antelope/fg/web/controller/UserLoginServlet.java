@@ -8,8 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.google.gson.Gson;
 
+import team.antelope.fg.biz.IPersonService;
+import team.antelope.fg.biz.impl.PersonServiceImpl;
+import team.antelope.fg.constant.SessionConst;
 import team.antelope.fg.entity.Person;
 import team.antelope.fg.exception.UserNameNotFoundException;
 import team.antelope.fg.exception.UserPasswordErrorException;
@@ -27,7 +33,14 @@ public class UserLoginServlet extends HttpServlet {
 	public static final String NEED_NAME="«Î ‰»Î’À∫≈";
 	public static final String NEED_PWD="«Î ‰»Î√‹¬Î";
 	public static final String ERROR_INPUT="’À∫≈ªÚ√‹¬Î¥ÌŒÛ";
-       
+	private IPersonService personService;
+	
+	@Override
+	public void init() throws ServletException {
+		WebApplicationContext  ctx= WebApplicationContextUtils.getWebApplicationContext(getServletContext());  
+		personService = (IPersonService) ctx.getBean("personService");
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -81,8 +94,12 @@ public class UserLoginServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("person", person);
+		session.setAttribute(SessionConst.SESSION_LOGIN_PERSON, person);
+		
 		String json = gson.toJson(new String[]{LOGIN_SUCCESS, String.valueOf(person.getId())});
+
+	    team.antelope.fg.pojo.Person user = personService.loginByName(person.getName(), person.getPassword());
+		session.setAttribute(SessionConst.SESSION_LOGIN_USER, user);
 		System.out.println("µ«»Î≥…π¶");
 		response.getWriter().write(json);
 	}

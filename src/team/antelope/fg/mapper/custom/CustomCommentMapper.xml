@@ -15,9 +15,24 @@
 			</if>
 		</if> 
 	</sql>
-	
-	
-	<select id="queryCommentsByTopicId" resultType="team.antelope.fg.pojo.expand.CommentExpand"
+	  <resultMap id="BaseResultMap" type="team.antelope.fg.pojo.expand.CommentExpand">
+	    <id column="id" jdbcType="INTEGER" property="id" />
+	    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+	    <result column="topic_type" jdbcType="SMALLINT" property="topicType" />
+	    <result column="content" jdbcType="VARCHAR" property="content" />
+	    <result column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+	    <result column="user_img" jdbcType="VARCHAR" property="userImg" />
+	    <result column="is_top" jdbcType="BIT" property="isTop" />
+	    <result column="is_hot" jdbcType="BIT" property="isHot" />
+	    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
+	    <result column="reply_num" jdbcType="INTEGER" property="replyNum" />
+	    <result column="is_reply" jdbcType="BIT" property="isReply" />
+	    <result column="comment_status" jdbcType="SMALLINT" property="commentStatus" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	  </resultMap>
+	<!-- 通过主题id和主题类型查询 -->
+	<select id="queryCommentsByTopicId" resultMap="BaseResultMap"
 		 parameterType="team.antelope.fg.pojo.vo.CommentVo">
 		select a.* from
 		 t_comment  a,
@@ -27,7 +42,107 @@
 		 	 and b.id = a.topic_id 
 		 	 and topic_type = #{commentExpand.topicType} 
 		 </where>
-		 order by a.create_time 
+		 order by a.create_time desc
 	</select>
+	
+	<!-- 插入一条记录，返回自定增长的key -->
+	<insert id="insertAndReturnKey" parameterType="team.antelope.fg.pojo.vo.CommentVo" >
+		<selectKey keyProperty="commentExpand.id" order="AFTER" resultType="java.lang.Long">
+			select last_insert_id()
+		</selectKey>
+		insert into t_comment
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	     <if test="commentExpand != null">
+		      <if test="commentExpand.id != null">
+		        id,
+		      </if>
+		      <if test="commentExpand.topicId != null">
+		        topic_id,
+		      </if>
+		      <if test="commentExpand.topicType != null">
+		        topic_type,
+		      </if>
+		      <if test="commentExpand.content != null">
+		        content,
+		      </if>
+		      <if test="commentExpand.userId != null">
+		        user_id,
+		      </if>
+		      <if test="commentExpand.nickname != null">
+		        nickname,
+		      </if>
+		      <if test="commentExpand.userImg != null">
+		        user_img,
+		      </if>
+		      <if test="commentExpand.isTop != null">
+		        is_top,
+		      </if>
+		      <if test="commentExpand.isHot != null">
+		        is_hot,
+		      </if>
+		      <if test="commentExpand.likeNum != null">
+		        like_num,
+		      </if>
+		      <if test="commentExpand.replyNum != null">
+		        reply_num,
+		      </if>
+		      <if test="commentExpand.isReply != null">
+		        is_reply,
+		      </if>
+		      <if test="commentExpand.commentStatus != null">
+		        comment_status,
+		      </if>
+		      <if test="commentExpand.createTime != null">
+		        create_time,
+	      </if>
+	     </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="commentExpand != null">
+	      	  <if test="commentExpand.id != null">
+		        #{commentExpand.id,jdbcType=INTEGER},
+		      </if>
+		      <if test="commentExpand.topicId != null">
+		        #{commentExpand.topicId,jdbcType=INTEGER},
+		      </if>
+		      <if test="commentExpand.topicType != null">
+		        #{commentExpand.topicType,jdbcType=SMALLINT},
+		      </if>
+		      <if test="commentExpand.content != null">
+		        #{commentExpand.content,jdbcType=VARCHAR},
+		      </if>
+		      <if test="commentExpand.userId != null">
+		        #{commentExpand.userId,jdbcType=INTEGER},
+		      </if>
+		      <if test="commentExpand.nickname != null">
+		        #{commentExpand.nickname,jdbcType=VARCHAR},
+		      </if>
+		      <if test="commentExpand.userImg != null">
+		        #{commentExpand.userImg,jdbcType=VARCHAR},
+		      </if>
+		      <if test="commentExpand.isTop != null">
+		        #{commentExpand.isTop,jdbcType=BIT},
+		      </if>
+		      <if test="commentExpand.isHot != null">
+		        #{commentExpand.isHot,jdbcType=BIT},
+		      </if>
+		      <if test="commentExpand.likeNum != null">
+		        #{commentExpand.likeNum,jdbcType=INTEGER},
+		      </if>
+		      <if test="commentExpand.replyNum != null">
+		        #{commentExpand.replyNum,jdbcType=INTEGER},
+		      </if>
+		      <if test="commentExpand.isReply != null">
+		        #{commentExpand.isReply,jdbcType=BIT},
+		      </if>
+		      <if test="commentExpand.commentStatus != null">
+		        #{commentExpand.commentStatus,jdbcType=SMALLINT},
+		      </if>
+		      <if test="commentExpand.createTime != null">
+		        #{commentExpand.createTime,jdbcType=TIMESTAMP},
+		      </if>
+	      </if>
+	    </trim>
+	</insert>
 	
 </mapper>

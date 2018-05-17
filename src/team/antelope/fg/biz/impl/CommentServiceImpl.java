@@ -1,13 +1,17 @@
 package team.antelope.fg.biz.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import team.antelope.fg.biz.ICommentService;
+import team.antelope.fg.constant.DBConst;
 import team.antelope.fg.mapper.custom.CustomCommentMapper;
+import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.expand.CommentExpand;
 import team.antelope.fg.pojo.vo.CommentVo;
+import team.antelope.fg.util.Log4jUtil;
 /**
  * 评论实体业务服务类实现类
  * @author 华文财
@@ -16,15 +20,43 @@ import team.antelope.fg.pojo.vo.CommentVo;
  */
 public class CommentServiceImpl implements ICommentService {
 
-	@Autowired  //注入commentMapper
-	private CustomCommentMapper commentMapper;
+	@Autowired  //注入自定义customCommentMapper
+	private CustomCommentMapper customCommentMapper;
+	
 	
 	@Override
-	public List<CommentExpand> getCommentsByTopicId(Long topicId, Short topicType, CommentVo commentVo) {
+	public List<CommentExpand> getCommentsByTopicId(Long topicId, Short topicType, CommentVo commentVo)  throws Exception {
 		CommentExpand commentExpand = commentVo.getCommentExpand();
 		commentExpand.setTopicId(topicId);
 		commentExpand.setTopicType(topicType);
-		return commentMapper.queryCommentsByTopicId(commentVo);
+		return customCommentMapper.queryCommentsByTopicId(commentVo);
+	}
+	
+	@Override
+	public CommentExpand saveNeedCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception{
+		//指定业务类型--主题类型
+		CommentExpand commentExpand = commentVo.getCommentExpand();
+		commentExpand.setTopicType(topicType);
+		//指定业务对象， user相关uid, headimg, userName
+		commentExpand.setUserId(user.getId());
+		commentExpand.setUserImg(user.getHeadimg());
+		commentExpand.setNickname(user.getName());
+		
+		commentExpand.setCommentStatus((short)1);
+		commentExpand.setCreateTime(new Date());  //创建时间
+		//其余的字段要么指定默认的，要么就封装好了,在业务层在指定一遍
+		commentExpand.setCommentStatus(DBConst.COMMENT_STATUS_PUBLISH);
+		commentExpand.setIsHot(false);
+		commentExpand.setIsReply(false);
+		commentExpand.setIsTop(false);
+		commentExpand.setLikeNum(0);
+		//commentExpand.setTopicId(topicId);已经有了
+		commentExpand.setReplyNum(0);
+		
+		Log4jUtil.error("customExpandid1:" + commentExpand.getId());
+		customCommentMapper.insertAndReturnKey(commentVo);
+		Log4jUtil.error("customExpandid2:" + commentExpand.getId()+",userimg"+commentExpand.getUserImg());
+		return commentExpand;
 	}
 
 }

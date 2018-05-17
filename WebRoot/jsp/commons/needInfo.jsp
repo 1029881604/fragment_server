@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -69,6 +70,7 @@
      }
      .comment .comment-item{
      	padding-bottom:10px;
+     	width:100%;
      }
      .head-img{
      	padding:2px;
@@ -131,12 +133,12 @@
 			<tr ><td>所属用户</td> <td>${needExpand.userName }</td></tr>
 			<tr ><td>需求类型</td> <td>${needExpand.needtype }</td></tr>
 			<tr ><td>开始日期</td> 
-				<td><f:formatDate value="${needExpand.customdate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td></tr>
+				<td><fmt:formatDate value="${needExpand.customdate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td></tr>
 			<tr ><td>截止日期</td> 
-				<td><f:formatDate value="${needExpand.requestdate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td></tr>
+				<td><fmt:formatDate value="${needExpand.requestdate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td></tr>
 			<tr ><td>地址</td> <td>${needExpand.title }</td></tr>
 			<tr ><td>距离(m)</td> 
-				<td><f:formatNumber value="${needExpand.distance }" pattern="#.00"></f:formatNumber> </td></tr>
+				<td><fmt:formatNumber value="${needExpand.distance }" pattern="#.00"></fmt:formatNumber> </td></tr>
 			<tr ><td>是否线上</td> <td>${needExpand.isonline == true ? '是' : '否' }</td></tr>
 			<tr ><td>是否完成</td> <td>${needExpand.iscomplete == true ? '是' : '否' }</td></tr>
 		</table>        
@@ -174,27 +176,29 @@
         <div class="comment panel panel-primary">
 	        <div class="panel-heading">评论区</div>
 	        <!-- foreach start -->
-	        <c:forEach items="${commentExpands }" var="commentExpand" >
-	        <div class="row comment-item">
-			  	<!-- 第一层， 头像、id/name、点赞数 -->
-			 	<div class="col-xs-12 col-sm-12 first-level">
-			 		<div class="col-xs-1 head-img">
-				 		<img class="img-responsive img-circle" alt="img" src="${commentExpand.userImg != null ?commentExpand.userImg : 'images/commons/default_headimg.png' }" >
-			 		</div>
-			 		<div class="col-xs-9 text-primary">${commentExpand.nickname != null ? commentExpand.nickname : '匿名用户' }</div>
-			 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">${commentExpand.likeNum }</span></div>
-			 	</div>
-			  	<!-- 第二层 ， 内容-->
-			 	<div class="col-xs-offset-1 col-xs-11 second-level">
-			 		<p class="text-muted">${commentExpand.content }</p>
-			 	</div>
-			  	<!-- 第三层 ， 日期、回复(如果有显示条数)-->
-			 	<div class="col-xs-offset-1 col-xs-11 third-level">
-			 		<span class="text-muted time"><f:formatDate value="${commentExpand.createTime}" pattern="yy-MM-dd HH:mm" /></span>
-			 		 <a href="#" class="text-primary col-xs-offset-1">回复${commentExpand.replyNum }</a>
-			 	</div>
-		  	</div>
-	        </c:forEach>
+	        <div class="row" id="comment-container">
+		        <c:forEach items="${commentExpands }" var="commentExpand" >
+		        <div class="comment-item">
+				  	<!-- 第一层， 头像、id/name、点赞数 -->
+				 	<div class="col-xs-12 col-sm-12 first-level">
+				 		<div class="col-xs-1 head-img">
+					 		<img class="img-responsive img-circle" alt="img" src="${commentExpand.userImg != null ?commentExpand.userImg : 'images/commons/default_headimg.png' }" >
+				 		</div>
+				 		<div class="col-xs-9 text-primary">${commentExpand.nickname != null ? commentExpand.nickname : '匿名用户' }</div>
+				 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">${commentExpand.likeNum }</span></div>
+				 	</div>
+				  	<!-- 第二层 ， 内容-->
+				 	<div class="col-xs-offset-1 col-xs-11 second-level">
+				 		<p class="text-muted">${commentExpand.content }</p>
+				 	</div>
+				  	<!-- 第三层 ， 日期、回复(如果有显示条数)-->
+				 	<div class="col-xs-offset-1 col-xs-11 third-level">
+				 		<span class="text-muted time"><fmt:formatDate value="${commentExpand.createTime}" pattern="yy-MM-dd HH:mm" /></span>
+				 		 <a href="#" class="text-primary col-xs-offset-1">回复${commentExpand.replyNum }</a>
+				 	</div>
+			  	</div>
+		        </c:forEach>
+	        </div>
 	        
         </div>
         
@@ -214,45 +218,73 @@
 		function func_reload(){
 			android.reload();
 		}
-		
-		$('#commentModal').on('show.bs.modal', function (event) {
-			  var button = $(event.relatedTarget) 
-			  var recipient = button.data('whatever') 
-			  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-			  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-			  var modal = $(this)
-			  modal.find('.modal-title').text('对 ' + recipient + '进行评论')
-			  modal.find('.modal-body input').val(recipient)
-			  $("#btn-submit").click(function(e){
+		//jquery start
+		$(function(){
+			$('#commentModal').on('show.bs.modal', function (event) {
+				  var button = $(event.relatedTarget) 
+				  var recipient = button.data('whatever') 
+				  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+				  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+				  var modal = $(this)
+				  modal.find('.modal-title').text('对 ' + recipient + '进行评论')
+				  modal.find('.modal-body input').val(recipient)
+			});
+			
+			$("#btn-submit").click(function(e){
 				  $.ajax({
 						type:"POST",
-						url:"index.jsp",
-						data:{'id':'1'},
+						url:"comment/addNeedCommentAsync.do",
+						data:{'topicId':"${needExpand.id}", 'content':$("#message-text").val()},
 						dataType:'json',
 						async:true,
+//					    crossDomain: true,
 						beforeSend:function(){
 							var content = $("#message-text").val();
 							if($.trim(content) == ""){
-								return false;
+								return false; 
 							}
 						},
-						success:function(data){
-						    //$("body").append(data);
-						    //console.log("加载完成！");
-						    alert("data:"+data);
+						success:function(commentExpand){  //后端已经将数据转为json对象了....
+							
+							console.log(commentExpand);
+							if(commentExpand.message != null){
+								alert(commentExpand.message)
+								return;
+							}
+							var str = '<div class="comment-item">'+
+								'				 	<div class="col-xs-12 col-sm-12 first-level">'+
+								'				 		<div class="col-xs-1 head-img">'+
+								'					 		<img class="img-responsive img-circle" alt="img" src="'+commentExpand.userImg+'" >'+
+								'				 		</div>'+
+								'				 		<div class="col-xs-9 text-primary">'+commentExpand.nickname+'</div>'+
+								'				 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">'+commentExpand.likeNum +'</span></div>'+
+								'				 	</div>'+
+								'				 	<div class="col-xs-offset-1 col-xs-11 second-level">'+
+								'				 		<p class="text-muted">'+commentExpand.content+'</p>'+
+								'				 	</div>'+
+								'				 	<div class="col-xs-offset-1 col-xs-11 third-level">'+
+								'				 		<span class="text-muted time"><f:formatDate value="'+commentExpand.createTime+'" pattern="yy-MM-dd HH:mm" /></span>'+
+								'				 		 <a href="#" class="text-primary col-xs-offset-1">回复'+commentExpand.replyNum+'</a>'+
+								'				 	</div>'+
+								'			  	</div>';
+						    $("#comment-container").prepend(str);
+						    $("#message-text").val("");
+						    
 						},
 						error:function(xhr){
 							  alert('error:' + JSON.stringify(xhr));
 						}
 		            }).done(function() {
+		            	$("#commentModal").fadeOut(1000);
 		            	setTimeout(function(){
 		            		$("#btn-close").click();
 		            		},1000);
 		            }).fail(function(){
-		            	alert("fail");
+		            	alert("发送失败");
 		            });
 			  });
-		});
+		}); //jqeuery end
+		
 		
 	</script>
 	

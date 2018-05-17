@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team.antelope.fg.biz.ICommentService;
 import team.antelope.fg.biz.INeedService;
+import team.antelope.fg.constant.DBConst;
 import team.antelope.fg.pojo.expand.CommentExpand;
 import team.antelope.fg.pojo.expand.NeedExpand;
 import team.antelope.fg.pojo.vo.CommentVo;
@@ -26,16 +27,15 @@ import team.antelope.fg.util.Log4jUtil;
 @RequestMapping("/need")
 public class NeedController {
 	
-	private static final Short TOPICTYPE = 3;
 	@Autowired
 	private INeedService needService;
 	@Autowired
 	private ICommentService commentService;
 	
 	
-	@RequestMapping(value="/toNeedInfo", method=RequestMethod.POST)
+	@RequestMapping(value="/toNeedInfo", method={RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView toNeedInfo(@RequestParam(name="id") Long id, @RequestParam(name="latitude") Double latitude, 
-			@RequestParam(name="longitude") Double longitude){
+			@RequestParam(name="longitude") Double longitude) throws Exception{
 		
 		//调用service方法获取NeedExpand
 		Log4jUtil.info("id: " + id + " latitude: "+ latitude +" longitude:" + longitude);
@@ -44,12 +44,15 @@ public class NeedController {
 		//查询所属的评论
 		CommentVo commentVo = new CommentVo();
 		commentVo.setCommentExpand(new CommentExpand());
-		List<CommentExpand> commentExpands = commentService.getCommentsByTopicId(id, TOPICTYPE, commentVo);
+		List<CommentExpand> commentExpands = commentService.getCommentsByTopicId(id, DBConst.COMMENT_TOPICTYPE_NEED, commentVo);
 		//建立模型数据
 		ModelAndView modelAndView = new ModelAndView();
 		//给modelAndView设置数据
 		modelAndView.addObject("needExpand", needExpand);
 		modelAndView.addObject("commentExpands", commentExpands);
+		commentExpands.forEach(s->{
+			System.out.println(s);
+		});
 		//设置视图
 		modelAndView.setViewName("commons/needInfo");
 		return modelAndView;

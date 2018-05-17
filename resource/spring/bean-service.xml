@@ -9,15 +9,17 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-   
+    
+   <!-- 开启注解方式配置bean -->
+   <context:component-scan base-package="team.antelope.fg.biz.impl" />
    <!-- 配置service的bean， 其属性已经用注解方式注入  -->
    <bean id="nearbyService" class="team.antelope.fg.biz.impl.NearbyServiceImpl"/>
    <!-- 配置service needService， 其属性已经用注解方式注入  -->
    <bean id="needService" class="team.antelope.fg.biz.impl.NeedServiceImpl"/>
    <!-- 配置service skillService， 其属性已经用注解方式注入  -->
    <bean id="skillService" class="team.antelope.fg.biz.impl.SkillServiceImpl"/>
-   <!-- 配置service  personService， 其属性已经用注解方式注入  -->
-   <bean id="personService" class="team.antelope.fg.biz.impl.PersonServiceImpl"/>
+   <!-- 配置service  personService， 注解方式注入 
+   <bean id="personService" class="team.antelope.fg.biz.impl.PersonServiceImpl"/> -->
    <!-- 配置service  personService， 其属性已经用注解方式注入  -->
    <bean id="commentService" class="team.antelope.fg.biz.impl.CommentServiceImpl"/>
    

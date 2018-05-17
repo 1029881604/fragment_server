@@ -2,6 +2,8 @@ package team.antelope.fg.biz;
 
 import java.util.List;
 
+import team.antelope.fg.pojo.Comment;
+import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.expand.CommentExpand;
 import team.antelope.fg.pojo.vo.CommentVo;
 
@@ -18,6 +20,16 @@ public interface ICommentService {
 	 * @return 
 	 * List<Comment>
 	 */
-	List<CommentExpand> getCommentsByTopicId(Long topicId, Short topicType, CommentVo commentVo);
-
+	List<CommentExpand> getCommentsByTopicId(Long topicId, Short topicType, CommentVo commentVo) throws Exception;
+	/**
+	 * 
+	 * @param topicId  被评论的id
+	 * @param topicType	被评论的类型
+	 * @param uid		评论者id
+	 * @param CommentVo	评论实体vo
+	 * @throws Exception   
+	 * 因为是异步，所以要更新的返回给视图显示
+	 * void
+	 */
+	CommentExpand saveNeedCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception;
 }

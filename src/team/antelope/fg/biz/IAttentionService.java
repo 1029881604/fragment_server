@@ -10,11 +10,19 @@ import team.antelope.fg.pojo.AttentionKey;
  */
 public interface IAttentionService {
 	/**
-	 * 关注某人
+	 * 关注某人  (插入一条Attention数据)
 	 * @param attention 
 	 * void
 	 */
 	void followPerson(AttentionKey attention) throws Exception;
-	
+	/**
+	 * 检查关注状态person1对person2  (查询一条Attention数据)
+	 * 如果已经关注了就不用再关注
+	 * @param attention
+	 * @return
+	 * @throws Exception 
+	 * AttentionKey
+	 */
 	AttentionKey checkFollowStatus(AttentionKey attention) throws Exception;
+	
 }

@@ -1,5 +1,7 @@
 package team.antelope.fg.pojo.vo;
 
+import java.util.Date;
+
 import team.antelope.fg.pojo.PersonInfo;
 import team.antelope.fg.pojo.expand.PersonInfoExpand;
 
@@ -10,10 +12,14 @@ import team.antelope.fg.pojo.expand.PersonInfoExpand;
  * @Description:TODO
  */
 public class PersonInfoVo {
-	
+	//用户信息拓展
 	private PersonInfoExpand personInfoExpand;
+	//用户信息
 	private PersonInfo personInfo;
-
+	
+	//关注时间或被关注时间  业务拓展
+	private Date followTime;
+	
 	public PersonInfo getPersonInfo() {
 		return personInfo;
 	}
@@ -25,5 +31,11 @@ public class PersonInfoVo {
 	}
 	public void setPersonInfoExpand(PersonInfoExpand personInfoExpand) {
 		this.personInfoExpand = personInfoExpand;
+	}
+	public Date getFollowTime() {
+		return followTime;
+	}
+	public void setFollowTime(Date followTime) {
+		this.followTime = followTime;
 	}
 }

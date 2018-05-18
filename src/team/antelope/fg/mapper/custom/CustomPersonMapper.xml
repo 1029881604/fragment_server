@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.antelope.fg.mapper.custom.CustomPersonMapper">
+	<!-- 检查登入 -->
 	<select id="selectByNameAndPassword" parameterType="team.antelope.fg.pojo.Person" resultType="team.antelope.fg.pojo.Person">
 		select * from person 
 		where name = #{name} and password = #{password}
 	</select>
+	<!-- 1.查询用户a关注的人      -->
+	<sql id="queryFollowedUsers_condition">
+		<if test="personInfoExpand != null and personInfoExpand.id != null">
+			 b.uid = #{personInfoExpand.id} and b.attentionuserid = a.id
+		</if>
+	</sql>
+	<select id="queryFollowedUsers"  parameterType="team.antelope.fg.pojo.vo.PersonInfoVo" 
+				resultType="team.antelope.fg.pojo.expand.PersonInfoExpand">
+		select a.* 
+			from person a, attention b 
+			<where>
+				<include refid="queryFollowedUsers_condition"/>
+			</where>
+	</select>
+	
+	<!-- 2.查询关注用户a的人      -->
+	<sql id="queryFollowers_condition">
+		<if test="personInfoExpand != null and personInfoExpand.id != null">
+			 b.attentionuserid = #{personInfoExpand.id} and b.uid = a.id
+		</if>
+	</sql>
+	<select id="queryFollowers"  parameterType="team.antelope.fg.pojo.vo.PersonInfoVo" 
+				resultType="team.antelope.fg.pojo.expand.PersonInfoExpand">
+		select a.* 
+			from person a, attention b 
+			<where>
+				<include refid="queryFollowers_condition"/>
+			</where>
+	</select>
+	
+	<!-- 3.查询和a相互关注的人     有问题， 类型对不上 -->
+	<select id="queryFriends"  parameterType="team.antelope.fg.pojo.vo.PersonInfoVo" 
+				resultType="team.antelope.fg.pojo.expand.PersonInfoExpand">
+		call sp_find_attention(personInfoExpand.id);
+	</select>
+	
+	
 </mapper>

@@ -21,7 +21,7 @@
 		}
 		
         body{
-            background: url("images/commons/bg_follow_result.png");
+            background: url("images/commons/bg_shalou.png");
             background-attachment: fixed;
             background-size:inherit;
             background-repeat:no-repeat;
@@ -55,7 +55,7 @@
     window.onload=function(){  
         setInterval(go, 1000);  
     };  
-    var x=3; //利用了全局变量来执行  
+    var x=4; //利用了全局变量来执行  
     function go(){  
  		   x--;  
         if(x>0){  

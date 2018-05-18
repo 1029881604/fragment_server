@@ -1,5 +1,7 @@
 package team.antelope.fg.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,7 @@ import team.antelope.fg.constant.SessionConst;
 import team.antelope.fg.pojo.AttentionKey;
 import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.expand.PersonInfoExpand;
+import team.antelope.fg.pojo.vo.PersonInfoVo;
 
 /**
  * 会员后端控制器
@@ -41,6 +44,14 @@ public class PersonController {
 //		HttpSession session = req.getSession();
 //		session.setAttribute(SessionConst.SESSION_LOGIN_USER, user);
 	}
+	/**
+	 * 关注用户
+	 * @param req
+	 * @param needFollowPerson
+	 * @return
+	 * @throws Exception 
+	 * ModelAndView
+	 */
 	@RequestMapping(value="/followPerson", method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView followPerson(HttpServletRequest req, PersonInfoExpand needFollowPerson) throws Exception{
 		
@@ -49,7 +60,6 @@ public class PersonController {
 		Person user = (Person) session.getAttribute(SessionConst.SESSION_LOGIN_USER);
 
 		ModelAndView modelAndView = new ModelAndView();
-		
 		if(user == null){
 			session.setAttribute(SessionConst.ERROR_MESSAGE, "登入超时， 请重新登入...");
 			modelAndView.setViewName("commons/error");
@@ -74,5 +84,26 @@ public class PersonController {
 		modelAndView.setViewName("commons/followResult");
 		return modelAndView;
 	}
+	
+	@RequestMapping(value="/getPersonDetail", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView getPersonDetail(HttpServletRequest req, PersonInfoExpand personInfoExpand) throws Exception{
+		
+		//关注列表，发布过的技能列表， 发布过的需求列表，评论列表
+		//关注列表
+		PersonInfoVo personInfoVo = new PersonInfoVo();
+		personInfoVo.setPersonInfoExpand(personInfoExpand);
+		
+		List<PersonInfoExpand> followedUsers = personService.getFollowedUsers(personInfoVo);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		//设置request域的数据
+		modelAndView.addObject(RequestScopeConst.FOLLOWEDUSERS, followedUsers);
+		modelAndView.setViewName("nearby/personDetail");
+		return modelAndView;
+	}
+	
+	
+	
+	
 	
 }

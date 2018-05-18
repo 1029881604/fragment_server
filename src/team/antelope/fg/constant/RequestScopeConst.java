@@ -11,4 +11,9 @@ public interface RequestScopeConst {
 	 * 关注成功/已经关注
 	 */
 	String FOLLOW_STATUS = "follow_status"; 
+	/**
+	 * 被关注的人
+	 */
+	String FOLLOWEDUSERS = "followedUsers";
+	
 }

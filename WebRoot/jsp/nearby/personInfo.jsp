@@ -128,10 +128,14 @@
 			$(this).attr("disabled", true);
 			setTimeout(function() {
 				$("#btn-follow").attr("disabled", false);
-			}, 2000);
+			}, 5000);
 			window.location.href="person/followPerson.do?id=${nearby_personinfo.id}";
 		});
 		$("#btn-more-info").click(function(e){
+			$(this).attr("disabled", true);
+			setTimeout(function() {
+				$("#btn-more-info").attr("disabled", false);
+			}, 5000);
 			window.location.href="person/getPersonDetail.do?id=${nearby_personinfo.id}";
 		});
 	});

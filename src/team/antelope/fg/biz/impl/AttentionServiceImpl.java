@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import team.antelope.fg.biz.IAttentionService;
 import team.antelope.fg.mapper.AttentionMapper;
 import team.antelope.fg.pojo.AttentionExample;
-import team.antelope.fg.pojo.AttentionExample.Criteria;
 import team.antelope.fg.pojo.AttentionKey;
 
 /**
@@ -40,6 +39,5 @@ public class AttentionServiceImpl implements IAttentionService {
 		System.out.println("attentio:" + attention + " attentions: "+attentions);
 		return  attentions.isEmpty() ? null : attentions.get(0);
 	}
-	
 
 }

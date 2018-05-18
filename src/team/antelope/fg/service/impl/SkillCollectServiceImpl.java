@@ -27,7 +27,6 @@ public class SkillCollectServiceImpl implements SkillCollectService {
 			// TODO: handle exception
 			return false;
 		}
-		
 	}
 
 	@Override

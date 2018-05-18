@@ -111,15 +111,30 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 div-block text-info">
-            <button type="button" class="btn btn-success col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+            <button id="btn-follow" type="button" class="btn btn-success col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1" >
             	<span>添加关注</span>
             </button>
             <div class="col-xs-12 col-sm-12 separate"></div>
-            <button type="button" class="btn btn-default col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
+            <button id="btn-more-info" type="button" class="btn btn-default col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1">
             	<span>更多信息</span>       
            </button>
         </div>
 
     </div>
 </body>
+<script type="text/javascript">
+	$(function(){
+		$("#btn-follow").click(function(e){
+			$(this).attr("disabled", true);
+			setTimeout(function() {
+				$("#btn-follow").attr("disabled", false);
+			}, 2000);
+			window.location.href="person/followPerson.do?id=${nearby_personinfo.id}";
+		});
+		$("#btn-more-info").click(function(e){
+			window.location.href="person/getPersonDetail.do?id=${nearby_personinfo.id}";
+		});
+	});
+	
+</script>
 </html>

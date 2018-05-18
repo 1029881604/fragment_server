@@ -20,4 +20,10 @@ public class AttentionKey {
     public void setAttentionuserid(Long attentionuserid) {
         this.attentionuserid = attentionuserid;
     }
+
+	@Override
+	public String toString() {
+		return "AttentionKey [uid=" + uid + ", attentionuserid=" + attentionuserid + "]";
+	}
+    
 }

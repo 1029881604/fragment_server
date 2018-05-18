@@ -1,6 +1,7 @@
 package team.antelope.fg.pojo.vo;
 
 import team.antelope.fg.pojo.PersonInfo;
+import team.antelope.fg.pojo.expand.PersonInfoExpand;
 
 /**
  * PersonInfo的包装类
@@ -9,14 +10,20 @@ import team.antelope.fg.pojo.PersonInfo;
  * @Description:TODO
  */
 public class PersonInfoVo {
+	
+	private PersonInfoExpand personInfoExpand;
 	private PersonInfo personInfo;
 
 	public PersonInfo getPersonInfo() {
 		return personInfo;
 	}
-
 	public void setPersonInfo(PersonInfo personInfo) {
 		this.personInfo = personInfo;
 	}
-	
+	public PersonInfoExpand getPersonInfoExpand() {
+		return personInfoExpand;
+	}
+	public void setPersonInfoExpand(PersonInfoExpand personInfoExpand) {
+		this.personInfoExpand = personInfoExpand;
+	}
 }

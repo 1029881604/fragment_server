@@ -16,7 +16,7 @@ import team.antelope.fg.service.impl.SkillCollectServiceImpl;
  * @author 廖翔
  *
  */
-@WebServlet(name="k_CollectSkillsServlet", urlPatterns="/CollectSkillsServlet")
+@WebServlet(name="CollectSkillsServlet", urlPatterns="/CollectSkillsServlet")
 public class CollectSkillsServlet extends HttpServlet {
 	/**
 	 * 
@@ -24,12 +24,12 @@ public class CollectSkillsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		super.doPost(req, resp);
 	}
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html; charset=utf-8");
@@ -38,15 +38,21 @@ public class CollectSkillsServlet extends HttpServlet {
 		String skill_id = req.getParameter("skillid");
 		
 		SkillCollectService skillCollectService = new SkillCollectServiceImpl();
-		//判断是否已经收藏过，是则执行取消收藏事件，否则添加收藏。
-		boolean flag = skillCollectService.judgeSkillExist(user_id, skill_id);
-		System.out.println(flag);
+//		if ((user_id!=null||!user_id.equals(""))||(skill_id!=null||!skill_id.equals(""))) {
+			//判断是否已经收藏过，是则执行取消收藏事件，否则添加收藏。
+		System.out.println("userID"+user_id+"——————skillID"+skill_id);
+			boolean flag = skillCollectService.judgeSkillExist(user_id, skill_id);
+			System.out.println(flag);
+			
+			if (flag) {
+				skillCollectService.cancelCollection(user_id, skill_id);
+				System.out.println("取消");
+			}else {
+				skillCollectService.addCollection(user_id, skill_id);
+				System.out.println("收藏");
+			}
+//		}
 		
-		if (flag) {
-			skillCollectService.cancelCollection(user_id, skill_id);
-		}else {
-			skillCollectService.addCollection(user_id, skill_id);
-		}
 		
 	}
 }

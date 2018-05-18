@@ -16,24 +16,42 @@ public class SkillCollectServiceImpl implements SkillCollectService {
 	
 	@Override
 	public boolean judgeSkillExist(String m, String n) {
-		int flag = collectionSkillDao.queryJudgeSkillExist(Long.parseLong(m), Long.parseLong(n));
+		try {
+			int flag = collectionSkillDao.queryJudgeSkillExist(Long.parseLong(m), Long.parseLong(n));
 		if (flag == 1) {
 			return true;
 		}else {
 		return false;
 		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		
 	}
 
 	@Override
 	public int cancelCollection(String user_id, String skill_id) {
 		// TODO Auto-generated method stub
-		return collectionSkillDao.deleteByUseridSkillId(Long.parseLong(user_id), Long.parseLong(skill_id));
+		try {
+			System.out.println("已执行取消收藏");
+			return collectionSkillDao.deleteByUseridSkillId(Long.parseLong(user_id), Long.parseLong(skill_id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 	}
 
 	@Override
 	public int addCollection(String user_id, String skill_id) {
 		// TODO Auto-generated method stub
-		return collectionSkillDao.addByUseridSkillId(Long.parseLong(user_id), Long.parseLong(skill_id));
+		try {
+			System.out.println("已执行收藏");
+			return collectionSkillDao.addByUseridSkillId(Long.parseLong(user_id), Long.parseLong(skill_id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 	}
 
 }

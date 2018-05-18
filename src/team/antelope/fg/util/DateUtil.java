@@ -13,6 +13,10 @@ public class DateUtil {
 	  /*
 	    * 日期时间*/
 	    private static final SimpleDateFormat DATETIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    /**
+	     * 日期时间2
+	     */
+	    private static final SimpleDateFormat DATETIME2 = new SimpleDateFormat("MM-dd HH:mm");
 	    /*
 	    * 日期*/
 	    private static final SimpleDateFormat DATE = new SimpleDateFormat("yyyy-MM-dd");
@@ -24,6 +28,9 @@ public class DateUtil {
 	    }
 	    public static String formatDataTime2(Date date) {
 	        return DATETIME.format(date);
+	    }
+	    public static String formatDataTime3(Date date) {
+	    	return DATETIME2.format(date);
 	    }
 
 	    public static String formatDate(long date) {

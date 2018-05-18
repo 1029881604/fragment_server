@@ -9,5 +9,15 @@ import team.antelope.fg.pojo.Comment;
  * @Description:TODO
  */
 public class CommentExpand extends Comment {
+	//biz  ÒµÎñÍØÕ¹
+	private String createTimeStr;
 
+	public String getCreateTimeStr() {
+		return createTimeStr;
+	}
+
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+	
 }

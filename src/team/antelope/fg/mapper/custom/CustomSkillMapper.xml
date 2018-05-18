@@ -11,4 +11,30 @@
 		<include refid="sp_nearbyskill_infos"/>
 	</select>
 	
+	<sql id="base_list_column">
+		b.id, b.uid, title, content, skilltype, publishdate, stopdate, iscomplete, isonline, img,
+		addressdesc, longitude, latitude
+	</sql>
+	
+	<sql id="expand_list_column">
+		, a.name userName, a.headimg
+	</sql>
+	
+	<!-- 通过需求id 联合查询person和需求的信息 -->
+	<sql id="query_skill_person_condition">
+		and b.id = #{id}
+		and b.uid = a.id
+	</sql>
+	<select id="querySkillInfoById" parameterType="java.lang.Long" resultType="team.antelope.fg.pojo.expand.SkillExpand">
+		select 
+		<include refid="base_list_column"/>
+		<include refid="expand_list_column"/>
+		from
+		publishskill b, person a
+		<where>
+			<include refid="query_skill_person_condition"/>
+		</where>
+	</select>
+	
+	
 </mapper>

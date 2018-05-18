@@ -9,20 +9,29 @@ import team.antelope.fg.pojo.Skill;
  * @Description:TODO
  */
 public class SkillExpand extends Skill {
-
-	private String usreName;
+	//biz add  
+	private Double distance;
+	
+	private String userName;
 	private String headimg;
-	public String getUsreName() {
-		return usreName;
+	
+	public Double getDistance() {
+		return distance;
 	}
-	public void setUsreName(String usreName) {
-		this.usreName = usreName;
+	public void setDistance(Double distance) {
+		this.distance = distance;
 	}
 	public String getHeadimg() {
 		return headimg;
 	}
 	public void setHeadimg(String headimg) {
 		this.headimg = headimg;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

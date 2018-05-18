@@ -35,8 +35,6 @@ public class CommentController {
 			return;
 		}
 		
-		System.out.println("sessionUser:" +user.toString());
-		
 		//指定业务类型
 		Short topicType = DBConst.COMMENT_TOPICTYPE_NEED;
 		//调用业务类进行业务处理
@@ -44,6 +42,29 @@ public class CommentController {
 		commentVo.setCommentExpand(commentExpand);
 		//业务处理后返回带有主键的comment
 		CommentExpand addedCommentExpand = commentService.saveNeedCommentsAsync(topicType, user, commentVo);
+		System.out.println(addedCommentExpand);
+		resp.getWriter().write(GsonUtil.GsonString(addedCommentExpand));
+		
+	}
+	
+	@RequestMapping(value="/addSkillCommentAsync", method={RequestMethod.POST, RequestMethod.GET})
+	public void addSkillCommentAsync(CommentExpand commentExpand, HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		//从session中获取person，将其传入service
+		HttpSession session = req.getSession();
+		resp.setContentType("application/json; charset=utf-8"); 
+		Person user = (Person) session.getAttribute(SessionConst.SESSION_LOGIN_USER);
+		if(user == null){
+			resp.getWriter().write("{\"message\":\"请重新登入\"}");
+			return;
+		}
+		
+		//指定业务类型
+		Short topicType = DBConst.COMMENT_TOPICTYPE_Skill;
+		//调用业务类进行业务处理
+		CommentVo commentVo = new CommentVo();
+		commentVo.setCommentExpand(commentExpand);
+		//业务处理后返回带有主键的comment
+		CommentExpand addedCommentExpand = commentService.saveSkillCommentsAsync(topicType, user, commentVo);
 		System.out.println(addedCommentExpand);
 		resp.getWriter().write(GsonUtil.GsonString(addedCommentExpand));
 		

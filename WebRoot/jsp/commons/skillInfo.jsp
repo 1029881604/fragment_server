@@ -106,7 +106,7 @@
 		  </button>
 		  <ul class="dropdown-menu">
 		    <li>
-		    	<a href="#"  data-toggle="modal" data-target="#commentModal" data-whatever="@${needExpand.id }">
+		    	<a href="#"  data-toggle="modal" data-target="#commentModal" data-whatever="@${skillExpand.id }">
 		    		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;去评论
 		    	</a>
 		    </li>
@@ -121,26 +121,27 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="title">
-            <h4 class="text-center text-info">需求信息</h4>
+            <h4 class="text-center text-info">技能信息</h4>
         </div>
 		<table class="table table-bordered">
 			<tr class="info">
 				<th class="col-xs-2 col-sm-2">条目</th>
 				<th class="col-xs-10 col-sm-10">数据</th>
 			</tr>
-			<tr ><td>标题</td> <td>${needExpand.title }</td></tr>
-			<tr ><td>内容</td> <td>${needExpand.content }</td></tr>
-			<tr ><td>所属用户</td> <td>${needExpand.userName }</td></tr>
-			<tr ><td>需求类型</td> <td>${needExpand.needtype }</td></tr>
+			<tr ><td>标题</td> <td>${skillExpand.title }</td></tr>
+			<tr ><td>内容</td> <td>${skillExpand.content }</td></tr>
+			<tr ><td>所属用户</td> <td>${skillExpand.userName }</td></tr>
+			<tr ><td>需求类型</td> <td>${skillExpand.skilltype }</td></tr>
+			<tr ><td>图片预览</td> <td><img class="img-responsive img-rounded" alt="img" src="${skillExpand.img != null ? skillExpand.img : 'images/commons/default_invalid.png' }" ></td></tr>
 			<tr ><td>开始日期</td> 
-				<td><fmt:formatDate value="${needExpand.customdate }" pattern="yyyy-MM-dd HH:mm" /> </td></tr>
+				<td><fmt:formatDate value="${skillExpand.publishdate }" pattern="yyyy-MM-dd HH:mm" /> </td></tr>
 			<tr ><td>截止日期</td> 
-				<td><fmt:formatDate value="${needExpand.requestdate }" pattern="yyyy-MM-dd HH:mm" /> </td></tr>
-			<tr ><td>地址</td> <td>${needExpand.title }</td></tr>
+				<td><fmt:formatDate value="${skillExpand.stopdate }" pattern="yyyy-MM-dd HH:mm" /> </td></tr>
+			<tr ><td>地址</td> <td>${skillExpand.title }</td></tr>
 			<tr ><td>距离(m)</td> 
-				<td><fmt:formatNumber value="${needExpand.distance }" pattern="#.00"></fmt:formatNumber> </td></tr>
-			<tr ><td>是否线上</td> <td>${needExpand.isonline == true ? '是' : '否' }</td></tr>
-			<tr ><td>是否完成</td> <td>${needExpand.iscomplete == true ? '是' : '否' }</td></tr>
+				<td><fmt:formatNumber value="${skillExpand.distance }" pattern="#.00"></fmt:formatNumber> </td></tr>
+			<tr ><td>是否线上</td> <td>${skillExpand.isonline == true ? '是' : '否' }</td></tr>
+			<tr ><td>是否完成</td> <td>${skillExpand.iscomplete == true ? '是' : '否' }</td></tr>
 		</table>        
         
         
@@ -233,8 +234,8 @@
 			$("#btn-submit").click(function(e){
 				  $.ajax({
 						type:"POST",
-						url:"comment/addNeedCommentAsync.do",
-						data:{'topicId':"${needExpand.id}", 'content':$("#message-text").val()},
+						url:"comment/addSkillCommentAsync.do",
+						data:{'topicId':"${skillExpand.id}", 'content':$("#message-text").val()},
 						dataType:'json',
 						async:true,
 //					    crossDomain: true,
@@ -273,6 +274,7 @@
 			            	setTimeout(function(){
 			            		$("#btn-close").click();
 			            		},1000);
+						    
 						},
 						error:function(xhr){
 							  alert('error:' + JSON.stringify(xhr));

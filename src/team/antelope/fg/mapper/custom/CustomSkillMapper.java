@@ -15,5 +15,11 @@ public interface CustomSkillMapper {
 	 * List<NeedVo>
 	 */
 	List<SkillExpand> queryNearbyInfos(SkillVo skillVo);
-
+	/**
+	 * 根据id联合查询skill和person相关信息
+	 * @param id
+	 * @return 
+	 * SkillExpand
+	 */
+	SkillExpand querySkillInfoById(Long id);
 }

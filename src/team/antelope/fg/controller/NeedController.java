@@ -50,9 +50,6 @@ public class NeedController {
 		//给modelAndView设置数据
 		modelAndView.addObject("needExpand", needExpand);
 		modelAndView.addObject("commentExpands", commentExpands);
-		commentExpands.forEach(s->{
-			System.out.println(s);
-		});
 		//设置视图
 		modelAndView.setViewName("commons/needInfo");
 		return modelAndView;

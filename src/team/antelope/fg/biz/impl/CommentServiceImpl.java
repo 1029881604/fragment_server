@@ -11,6 +11,7 @@ import team.antelope.fg.mapper.custom.CustomCommentMapper;
 import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.expand.CommentExpand;
 import team.antelope.fg.pojo.vo.CommentVo;
+import team.antelope.fg.util.DateUtil;
 import team.antelope.fg.util.Log4jUtil;
 /**
  * 评论实体业务服务类实现类
@@ -29,7 +30,14 @@ public class CommentServiceImpl implements ICommentService {
 		CommentExpand commentExpand = commentVo.getCommentExpand();
 		commentExpand.setTopicId(topicId);
 		commentExpand.setTopicType(topicType);
-		return customCommentMapper.queryCommentsByTopicId(commentVo);
+		List<CommentExpand> commentExpandList = customCommentMapper.queryCommentsByTopicId(commentVo);
+		commentExpandList.forEach(comment ->{
+			Date date = comment.getCreateTime();
+			//业务指定str
+			String dateStr = DateUtil.formatDataTime3(date);
+			comment.setCreateTimeStr(dateStr);
+		});
+		return commentExpandList;
 	}
 	
 	@Override
@@ -43,7 +51,8 @@ public class CommentServiceImpl implements ICommentService {
 		commentExpand.setNickname(user.getName());
 		
 		commentExpand.setCommentStatus((short)1);
-		commentExpand.setCreateTime(new Date());  //创建时间
+		Date date = new Date();
+		commentExpand.setCreateTime(date);  //创建时间
 		//其余的字段要么指定默认的，要么就封装好了,在业务层在指定一遍
 		commentExpand.setCommentStatus(DBConst.COMMENT_STATUS_PUBLISH);
 		commentExpand.setIsHot(false);
@@ -53,9 +62,41 @@ public class CommentServiceImpl implements ICommentService {
 		//commentExpand.setTopicId(topicId);已经有了
 		commentExpand.setReplyNum(0);
 		
-		Log4jUtil.error("customExpandid1:" + commentExpand.getId());
+		//业务指定str
+		String dateStr = DateUtil.formatDataTime3(date);
+		commentExpand.setCreateTimeStr(dateStr);
 		customCommentMapper.insertAndReturnKey(commentVo);
-		Log4jUtil.error("customExpandid2:" + commentExpand.getId()+",userimg"+commentExpand.getUserImg());
+		return commentExpand;
+	}
+	/**
+	 * 暂时异步添加需求和技能的业务是一样的
+	 */
+	@Override
+	public CommentExpand saveSkillCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception {
+		//指定业务类型--主题类型
+		CommentExpand commentExpand = commentVo.getCommentExpand();
+		commentExpand.setTopicType(topicType);
+		//指定业务对象， user相关uid, headimg, userName
+		commentExpand.setUserId(user.getId());
+		commentExpand.setUserImg(user.getHeadimg());
+		commentExpand.setNickname(user.getName());
+		
+		commentExpand.setCommentStatus((short)1);
+		Date date = new Date();
+		commentExpand.setCreateTime(date);  //创建时间
+		//其余的字段要么指定默认的，要么就封装好了,在业务层在指定一遍
+		commentExpand.setCommentStatus(DBConst.COMMENT_STATUS_PUBLISH);
+		commentExpand.setIsHot(false);
+		commentExpand.setIsReply(false);
+		commentExpand.setIsTop(false);
+		commentExpand.setLikeNum(0);
+		//commentExpand.setTopicId(topicId);已经有了
+		commentExpand.setReplyNum(0);
+		//业务指定str
+		String dateStr = DateUtil.formatDataTime3(date);
+		commentExpand.setCreateTimeStr(dateStr);
+		//业务指定key  id
+		customCommentMapper.insertAndReturnKey(commentVo);
 		return commentExpand;
 	}
 

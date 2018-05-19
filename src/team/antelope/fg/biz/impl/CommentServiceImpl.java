@@ -39,40 +39,12 @@ public class CommentServiceImpl implements ICommentService {
 		});
 		return commentExpandList;
 	}
-	
-	@Override
-	public CommentExpand saveNeedCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception{
-		//指定业务类型--主题类型
-		CommentExpand commentExpand = commentVo.getCommentExpand();
-		commentExpand.setTopicType(topicType);
-		//指定业务对象， user相关uid, headimg, userName
-		commentExpand.setUserId(user.getId());
-		commentExpand.setUserImg(user.getHeadimg());
-		commentExpand.setNickname(user.getName());
-		
-		commentExpand.setCommentStatus((short)1);
-		Date date = new Date();
-		commentExpand.setCreateTime(date);  //创建时间
-		//其余的字段要么指定默认的，要么就封装好了,在业务层在指定一遍
-		commentExpand.setCommentStatus(DBConst.COMMENT_STATUS_PUBLISH);
-		commentExpand.setIsHot(false);
-		commentExpand.setIsReply(false);
-		commentExpand.setIsTop(false);
-		commentExpand.setLikeNum(0);
-		//commentExpand.setTopicId(topicId);已经有了
-		commentExpand.setReplyNum(0);
-		
-		//业务指定str
-		String dateStr = DateUtil.formatDataTime3(date);
-		commentExpand.setCreateTimeStr(dateStr);
-		customCommentMapper.insertAndReturnKey(commentVo);
-		return commentExpand;
-	}
+
 	/**
-	 * 暂时异步添加需求和技能的业务是一样的
+	 * 暂时异步添加需求和技能和用户的业务是一样的
 	 */
 	@Override
-	public CommentExpand saveSkillCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception {
+	public CommentExpand saveCommentsAsync(Short topicType, Person user, CommentVo commentVo) throws Exception{
 		//指定业务类型--主题类型
 		CommentExpand commentExpand = commentVo.getCommentExpand();
 		commentExpand.setTopicType(topicType);
@@ -92,10 +64,10 @@ public class CommentServiceImpl implements ICommentService {
 		commentExpand.setLikeNum(0);
 		//commentExpand.setTopicId(topicId);已经有了
 		commentExpand.setReplyNum(0);
+		
 		//业务指定str
 		String dateStr = DateUtil.formatDataTime3(date);
 		commentExpand.setCreateTimeStr(dateStr);
-		//业务指定key  id
 		customCommentMapper.insertAndReturnKey(commentVo);
 		return commentExpand;
 	}

@@ -17,9 +17,6 @@ public class PersonInfoVo {
 	//用户信息
 	private PersonInfo personInfo;
 	
-	//关注时间或被关注时间  业务拓展
-	private Date followTime;
-	
 	public PersonInfo getPersonInfo() {
 		return personInfo;
 	}
@@ -31,11 +28,5 @@ public class PersonInfoVo {
 	}
 	public void setPersonInfoExpand(PersonInfoExpand personInfoExpand) {
 		this.personInfoExpand = personInfoExpand;
-	}
-	public Date getFollowTime() {
-		return followTime;
-	}
-	public void setFollowTime(Date followTime) {
-		this.followTime = followTime;
 	}
 }

@@ -13,7 +13,7 @@ public interface SessionConst {
 	/**
 	 * 用户登入之后设置session的person实体
 	 */
-	String SESSION_LOGIN_USER = "user";
+	String SESSION_LOGIN_USER = "session_user";
 	/**
 	 * 提示用户没有登入
 	 */

@@ -60,6 +60,7 @@
         button span{
         	font-size:18px;
         }
+        
     </style>
 </head>
 <body>
@@ -132,7 +133,7 @@
 			window.location.href="person/followPerson.do?id=${nearby_personinfo.id}";
 		});
 		$("#btn-more-info").click(function(e){
-			$(this).attr("disabled", true);
+			$(this).attr("disabled", true).css("background", "#9575CD");
 			setTimeout(function() {
 				$("#btn-more-info").attr("disabled", false);
 			}, 5000);

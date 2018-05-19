@@ -67,15 +67,15 @@
      /*关注列表start*/
      .followed-info-box{
      	height:auto;
-     	width:inherit;
+     	width:100%;
      	overflow: hidden;
      }
      .followed-sex-img-box{
+     	width:10%;
      	display:block;
      	float:left;
      	max-height: 20px;
      	max-width: 20px;
-     	margin-left:10px;
      }
      .followed-sex-img{
      	float:left;
@@ -84,6 +84,7 @@
      }
      .followed-head-img-box{
      	float:left;
+     	width:20%;
      	max-height: 30px;
      	max-width: 30px;
      	margin-left:10px;
@@ -93,16 +94,31 @@
      }
 	 .followed-other-box{
      	float:left;
+     	width:75%;
      	margin-left:10px;
 	 }
-     .span-block{
+     .followed-other-box .span-block{
 	 	clear:left;
+     	float:left;
         display: block;
+     	font-size:16px;
         overflow: hidden; 		/*溢出隐藏*/
         text-overflow:ellipsis;/*超出则加省略号*/
         white-space:nowrap;	/*规定段落中的文本不进行换行*/
      }
-     
+     .followed-other-box .span-block2{
+     	float:right;
+     	margin-right:5px;
+     	font-size:14px;
+     	color:#3385ff;
+    	display: block;
+        overflow: hidden; 		/*溢出隐藏*/
+        text-overflow:ellipsis;/*超出则加省略号*/
+        white-space:nowrap;	/*规定段落中的文本不进行换行*/
+     }
+     .text-user-name{
+     	color:#FFCA28;
+     }
      /*评论区css*/
      .comment{
      	margin-top:20px;
@@ -169,16 +185,7 @@
 		<ul class="list-group">
 		  <li class="list-group-item active">ta关注的</li>
 		  <c:forEach items="${followedUsers }" var="user">
-		  <button type="button" class="list-group-item" value="${user.id }">
-		  
-		  
-		  
-		  button   click each
-		  
-		  
-		  
-		  
-		  
+		  <li class="list-group-item btn-go-user-info" value="${user.id }">
 		  	<div class="followed-info-box">
 	        	<div class="followed-sex-img-box">
 	                <c:set var="url" scope="request" value="sex_unknow.png"/>
@@ -194,11 +201,14 @@
 	                <img src="${user.headimg }" alt="img" class="img-responsive img-circle center-block followed-head-img" />
 	            </div>
 	            <div class="followed-other-box">
-	                <span class="text-nowrap span-block">昵称:&nbsp;&nbsp;${user.name } </span>
+	                <span class="text-nowrap span-block">昵称:&nbsp;&nbsp;<span class="text-user-name">${user.name }</span> </span>
 	                <span class="text-muted span-block">碎片号:&nbsp;&nbsp;${user.id }</span>
+	                <span class="text-muted span-block2">时间:&nbsp;&nbsp;
+	                	<fmt:formatDate value="${user.followTime }" pattern="yy/MM/dd HH:mm"/>
+	                </span>
 	            </div>
 	        </div>
-		  </button>
+		  </li>
 		  </c:forEach>
 		</ul>
         
@@ -235,7 +245,7 @@
 	        <div class="panel-heading">评论区</div>
 	        <!-- foreach start -->
 	        <div class="row" id="comment-container">
-		        <c:forEach items="${commentExpands }" var="commentExpand" >
+		        <c:forEach items="${commentExpandList }" var="commentExpand" >
 		        <div class="comment-item">
 				  	<!-- 第一层， 头像、id/name、点赞数 -->
 				 	<div class="col-xs-12 col-sm-12 first-level">
@@ -263,18 +273,20 @@
 	</div>
 	<script type="text/javascript">
 		function func_back(){
-			android.back();
+			history.back();
 		}
 		
 		function func_forward(){
-			android.forward();
+			history.forward();
 		}
 		function func_close(){
-			android.close();
+			window.opener=null;
+		  	window.open('','_self');
+		  	window.close();
 		}
 		
 		function func_reload(){
-			android.reload();
+			location.reload();
 		}
 		//jquery start
 		$(function(){
@@ -291,8 +303,8 @@
 			$("#btn-submit").click(function(e){
 				  $.ajax({
 						type:"POST",
-						url:"comment/addNeedCommentAsync.do",
-						data:{'topicId':"${needExpand.id}", 'content':$("#message-text").val()},
+						url:"comment/addPersonCommentAsync.do",
+						data:{'topicId':"${request_user.id}", 'content':$("#message-text").val()},
 						dataType:'json',
 						async:true,
 //					    crossDomain: true,
@@ -337,7 +349,12 @@
 							  alert("发送失败");
 						}
 		            });
-			  });
+			});//  ajax  end
+			
+			$(".btn-go-user-info").click(function(){
+				alert($(this).val())
+				
+			});//  btn-go-user-info click  event end
 		}); //jqeuery end
 		
 		

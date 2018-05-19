@@ -15,5 +15,13 @@ public interface RequestScopeConst {
 	 * 被关注的人
 	 */
 	String FOLLOWEDUSERS = "followedUsers";
+	/**
+	 * topic评论列表
+	 */
+	String COMMENTEXPANDLIST = "commentExpandList";
+	/**
+	 * 将该查看的用户信息传入另一个页面
+	 */
+	String REQUEST_USER = "request_user";
 	
 }

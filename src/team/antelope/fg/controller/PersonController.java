@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import team.antelope.fg.biz.IAttentionService;
+import team.antelope.fg.biz.ICommentService;
 import team.antelope.fg.biz.IPersonService;
+import team.antelope.fg.constant.DBConst;
 import team.antelope.fg.constant.RequestScopeConst;
 import team.antelope.fg.constant.SessionConst;
 import team.antelope.fg.pojo.AttentionKey;
 import team.antelope.fg.pojo.Person;
+import team.antelope.fg.pojo.expand.CommentExpand;
 import team.antelope.fg.pojo.expand.PersonInfoExpand;
+import team.antelope.fg.pojo.vo.CommentVo;
 import team.antelope.fg.pojo.vo.PersonInfoVo;
 
 /**
@@ -35,14 +39,18 @@ public class PersonController {
 	
 	@Autowired	//注入关注服务
 	private IAttentionService attentionService;
+	@Autowired //注入评论业务服务
+	private ICommentService commentService;
+	
+	
 	
 	
 	@RequestMapping(value="/userLogin", method={RequestMethod.GET, RequestMethod.POST})
 	public void userLogin(HttpServletRequest req, Person person){
-//		Person user = personService.loginByName(person.getName(), person.getPassword());
-//		System.out.println("loginUser:" +user.toString());
-//		HttpSession session = req.getSession();
-//		session.setAttribute(SessionConst.SESSION_LOGIN_USER, user);
+		Person user = personService.loginByName(person.getName(), person.getPassword());
+		System.out.println("loginUser:" +user.toString());
+		HttpSession session = req.getSession();
+		session.setAttribute(SessionConst.SESSION_LOGIN_USER, user);
 	}
 	/**
 	 * 关注用户
@@ -92,12 +100,19 @@ public class PersonController {
 		//关注列表
 		PersonInfoVo personInfoVo = new PersonInfoVo();
 		personInfoVo.setPersonInfoExpand(personInfoExpand);
-		
 		List<PersonInfoExpand> followedUsers = personService.getFollowedUsers(personInfoVo);
-		
+		//评论列表
+		Long topicId = personInfoExpand.getId();
+		Short topicType = DBConst.COMMENT_TOPICTYPE_USER;
+		CommentVo commentVo = new CommentVo();
+		commentVo.setCommentExpand(new CommentExpand());
+		List<CommentExpand> commentExpandList = commentService.getCommentsByTopicId(topicId, topicType, commentVo);
+		//需求列表
 		ModelAndView modelAndView = new ModelAndView();
 		//设置request域的数据
+		modelAndView.addObject(RequestScopeConst.REQUEST_USER, personInfoExpand);
 		modelAndView.addObject(RequestScopeConst.FOLLOWEDUSERS, followedUsers);
+		modelAndView.addObject(RequestScopeConst.COMMENTEXPANDLIST, commentExpandList);
 		modelAndView.setViewName("nearby/personDetail");
 		return modelAndView;
 	}

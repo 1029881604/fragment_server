@@ -1,5 +1,6 @@
 package team.antelope.fg.biz.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.PersonInfo;
 import team.antelope.fg.pojo.expand.PersonInfoExpand;
 import team.antelope.fg.pojo.vo.PersonInfoVo;
+import team.antelope.fg.util.DateUtil;
 @Service("personService")
 public class PersonServiceImpl implements IPersonService{
 
@@ -41,6 +43,13 @@ public class PersonServiceImpl implements IPersonService{
 	public List<PersonInfoExpand> getFollowedUsers(PersonInfoVo personInfoVo) throws Exception {
 		// 业务处理...可以按关注时间查询之类的
 		List<PersonInfoExpand> followedUsers = customePersonMapper.queryFollowedUsers(personInfoVo);
+		followedUsers.forEach(p->{
+			long current = System.currentTimeMillis();
+			String beginDate = DateUtil.formatDataTime2(new Date(current - (long)1000*3600*24*365*3));
+			String endDate = DateUtil.formatDataTime2(new Date(current));
+			Date randomDate = DateUtil.randomDate(beginDate, endDate);
+			p.setFollowTime(randomDate);
+		});
 		return followedUsers;
 	}
 

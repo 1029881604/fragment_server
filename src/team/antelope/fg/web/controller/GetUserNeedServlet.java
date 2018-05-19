@@ -28,7 +28,7 @@ import team.antelope.fg.service.impl.UserServiceImpl;
 
 /*
  * create by YY
- * 
+ * 找我的需求
  * */
 @WebServlet(name="GetUserNeedServlet", urlPatterns={"/GetUserNeedServlet"})  
 public class GetUserNeedServlet extends HttpServlet{

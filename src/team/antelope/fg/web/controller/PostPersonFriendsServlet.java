@@ -17,10 +17,17 @@ import team.antelope.fg.dao.IPersonDao;
 import team.antelope.fg.dao.IPersonInfoDao;
 import team.antelope.fg.dao.impl.PersonDaoImpl;
 import team.antelope.fg.dao.impl.PersonInfoDaoImpl;
+import team.antelope.fg.dao.impl.UFDaoImpl;
 import team.antelope.fg.entity.Person;
 import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
+
+/*
+ * YY
+ * ÕÒ¹Ø×¢
+ * 
+ * */
 @WebServlet(name="PostPersonFriendsServlet", urlPatterns={"/PostPersonFriendsServlet"})  
 public class PostPersonFriendsServlet extends HttpServlet{
 	
@@ -66,7 +73,7 @@ public class PostPersonFriendsServlet extends HttpServlet{
 //			response.sendRedirect("login.jsp");
 //			return;
 //		}
-		List<PersonInfo> friends = new UserServiceImpl().findFriend(person);
+		List<PersonInfo> friends = new UFDaoImpl().findFollow(person);
 		PrintWriter writer = response.getWriter();
 //		session.setAttribute("friends", friends);
 //		response.sendRedirect("friendList.jsp"); 

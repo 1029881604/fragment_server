@@ -22,4 +22,11 @@ public interface CustomSkillMapper {
 	 * SkillExpand
 	 */
 	SkillExpand querySkillInfoById(Long id);
+	/**
+	 * 根据用户id查询所属的技能部分字段信息
+	 * @param skillVo
+	 * @return 
+	 * List<SkillExpand>
+	 */
+	List<SkillExpand> querySkillInfosByPerson(SkillVo skillVo);
 }

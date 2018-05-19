@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%
 	String path = request.getContextPath();
@@ -15,6 +16,8 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/mynav.css">
+<link rel="stylesheet" href="css/personDetail-main.css">
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -22,133 +25,6 @@
         background: #fff;
         font-size:16px;
      }
-     /*导航start*/
-     .navbar{
-     	margin-top:-1px;
-     	font-size:35px;
-     	line-height:50px;
-     	background: #fcb2c9;
-     }
-     .my{
-     	display:block;
-     	position:absolute;
-     	text-decoration:none;
-     }
-     .navbar #my_back{
-     	font-size:18px;
-     	left:5%;
-     }
-     .navbar #my_forward{
-     	font-size:18px;
-     	left:18%;
-     }
-     .navbar #my_reload{
-     	left:35%;
-     	font-size:18px;
-     }
-      .navbar #my_list{
-     	height:30px;
-     	line-height:60px;
-     	right:30%;
-     	bottom: 25%;
-     }
-     .navbar #my_list li{
-     	margin-bottom:10px;
-     	font-size:16px;
-     }
-     .navbar #my_list li a{
-     	color: #ac75d2;
-     }
-     .navbar #my_close{
-     	font-size:18px;
-     	right:5%;
-     }
-     
-     /*关注列表start*/
-     .followed-info-box{
-     	height:auto;
-     	width:100%;
-     	overflow: hidden;
-     }
-     .followed-sex-img-box{
-     	width:10%;
-     	display:block;
-     	float:left;
-     	max-height: 20px;
-     	max-width: 20px;
-     }
-     .followed-sex-img{
-     	float:left;
-     	width:20px;
-     	height: 20px;
-     }
-     .followed-head-img-box{
-     	float:left;
-     	width:20%;
-     	max-height: 30px;
-     	max-width: 30px;
-     	margin-left:10px;
-     }
-     .followed-head-img{
-     	float:left;
-     }
-	 .followed-other-box{
-     	float:left;
-     	width:75%;
-     	margin-left:10px;
-	 }
-     .followed-other-box .span-block{
-	 	clear:left;
-     	float:left;
-        display: block;
-     	font-size:16px;
-        overflow: hidden; 		/*溢出隐藏*/
-        text-overflow:ellipsis;/*超出则加省略号*/
-        white-space:nowrap;	/*规定段落中的文本不进行换行*/
-     }
-     .followed-other-box .span-block2{
-     	float:right;
-     	margin-right:5px;
-     	font-size:14px;
-     	color:#3385ff;
-    	display: block;
-        overflow: hidden; 		/*溢出隐藏*/
-        text-overflow:ellipsis;/*超出则加省略号*/
-        white-space:nowrap;	/*规定段落中的文本不进行换行*/
-     }
-     .text-user-name{
-     	color:#FFCA28;
-     }
-     /*评论区css*/
-     .comment{
-     	margin-top:20px;
-     	border:0;
-     	overflow: hidden;
-     }
-     .comment .comment-item{
-     	padding-bottom:10px;
-     	width:100%;
-     }
-     .head-img{
-     	padding:2px;
-     }
-     .head-img .img-responsive{
-     	height:40px;
-     	max-width: 200%;
-     	width:40px;
-     }
-     .first-level{
-     	line-height: 40px;
-     }
-     .third-level{
-     	font-size:14px;
-     	color:#666;
-     	border-bottom: 1px solid #dddddd;
-     }
-     .title{
-     	margin-top:60px;
-     }
-     
 </style>
 </head>
 <body>
@@ -181,9 +57,14 @@
 		<div class="title">
             <h4 class="text-center text-info">详细信息</h4>
         </div>
+        
+		<!-- follow start -->
 		
 		<ul class="list-group">
 		  <li class="list-group-item active">ta关注的</li>
+		  <c:if test="${followedUsers == null or fn:length(followedUsers) == 0 }">
+			  <li class="list-group-item"><span>该用户没有关注任何人...</span></li>
+		  </c:if>
 		  <c:forEach items="${followedUsers }" var="user">
 		  <li class="list-group-item btn-go-user-info" value="${user.id }">
 		  	<div class="followed-info-box">
@@ -211,7 +92,44 @@
 		  </li>
 		  </c:forEach>
 		</ul>
+		
+		<!-- need start -->
+		<ul class="list-group">
+		  <li class="list-group-item active">ta的需求</li>
+		  <c:if test="${user_all_needinfo == null or fn:length(user_all_needinfo) == 0 }">
+			  <li class="list-group-item"><span>该用户没有发布过任何需求...</span></li>
+		  </c:if>
+		  <c:forEach items="${user_all_needinfo }" var="needinfo">
+		  <li class="list-group-item btn-go-user-need" value="${needinfo.id }">
+		  	<div class="needinfo-box">
+		  		<span class="text-nowrap span-block">标题:&nbsp;&nbsp;<span class="need-title">${needinfo.title }</span></span>
+		  		<span class="text-nowrap span-block">截止日期:&nbsp;&nbsp;
+		  			<span class="need-stopdate"><fmt:formatDate value="${needinfo.requestdate }" pattern="yy-MM-dd HH:mm"/></span>
+		  		</span>
+		  	</div>
+		  </li>
+		  </c:forEach>
+		</ul>
         
+        <!-- skill start -->
+       	<ul class="list-group">
+		  <li class="list-group-item active">ta的技能</li>
+		  <c:if test="${user_all_skillinfo == null or fn:length(user_all_skillinfo) == 0 }">
+			  <li class="list-group-item"><span>该用户没有发布过任何技能...</span></li>
+		  </c:if>
+		  <c:forEach items="${user_all_skillinfo }" var="skillinfo">
+		  <li class="list-group-item btn-go-user-skill" value="${skillinfo.id }">
+		  	<div class="skillinfo-box">
+		  		<span class="text-nowrap span-block">标题:&nbsp;&nbsp;<span class="skill-title">${skillinfo.title }</span></span>
+		  		<span class="text-nowrap span-block">截止日期:&nbsp;&nbsp;
+		  			<span class="skill-stopdate"><fmt:formatDate value="${skillinfo.stopdate }" pattern="yy-MM-dd HH:mm"/></span>
+		  		</span>
+		  	</div>
+		  </li>
+		  </c:forEach>
+		</ul>
+		
+		
 		<!-- Modal start -->
 		<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel">
 		  <div class="modal-dialog" role="document">
@@ -253,7 +171,9 @@
 					 		<img class="img-responsive img-circle" alt="img" src="${commentExpand.userImg != null ?commentExpand.userImg : 'images/commons/default_headimg.png' }" >
 				 		</div>
 				 		<div class="col-xs-9 text-primary">${commentExpand.nickname != null ? commentExpand.nickname : '匿名用户' }</div>
-				 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">${commentExpand.likeNum }</span></div>
+				 		<div class="col-xs-2">
+				 			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"><span class="badge">${commentExpand.likeNum }</span></span>
+				 		</div>
 				 	</div>
 				  	<!-- 第二层 ， 内容-->
 				 	<div class="col-xs-offset-1 col-xs-11 second-level">
@@ -262,7 +182,7 @@
 				  	<!-- 第三层 ， 日期、回复(如果有显示条数)-->
 				 	<div class="col-xs-offset-1 col-xs-11 third-level">
 				 		<span class="text-muted time">${commentExpand.createTimeStr}</span>
-				 		 <a href="#" class="text-primary col-xs-offset-1">回复${commentExpand.replyNum }</a>
+				 		 <a href="#" class="text-primary col-xs-offset-1">回复<span class="badge">${commentExpand.replyNum }</span></a>
 				 	</div>
 			  	</div>
 		        </c:forEach>
@@ -280,9 +200,7 @@
 			history.forward();
 		}
 		function func_close(){
-			window.opener=null;
-		  	window.open('','_self');
-		  	window.close();
+			android.close();
 		}
 		
 		function func_reload(){
@@ -327,14 +245,14 @@
 								'					 		<img class="img-responsive img-circle" alt="img" src="'+commentExpand.userImg+'" >'+
 								'				 		</div>'+
 								'				 		<div class="col-xs-9 text-primary">'+commentExpand.nickname+'</div>'+
-								'				 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">'+commentExpand.likeNum +'</span></div>'+
+								'				 		<div class="col-xs-2"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"><span class="badge">'+commentExpand.likeNum +'</span></span></div>'+
 								'				 	</div>'+
 								'				 	<div class="col-xs-offset-1 col-xs-11 second-level">'+
 								'				 		<p class="text-muted">'+commentExpand.content+'</p>'+
 								'				 	</div>'+
 								'				 	<div class="col-xs-offset-1 col-xs-11 third-level">'+
 								'				 		<span class="text-muted time">'+commentExpand.createTimeStr+'</span>'+
-								'				 		 <a href="#" class="text-primary col-xs-offset-1">回复'+commentExpand.replyNum+'</a>'+
+								'				 		 <a href="#" class="text-primary col-xs-offset-1">回复<span class="badge">'+commentExpand.replyNum+'</span></a>'+
 								'				 	</div>'+
 								'			  	</div>';
 						    $("#comment-container").prepend(str);
@@ -352,7 +270,12 @@
 			});//  ajax  end
 			
 			$(".btn-go-user-info").click(function(){
-				alert($(this).val())
+				$(this).attr("disabled", true).css("background", "#9575CD");
+				setTimeout(function() {
+					//$(this).attr("disabled", false);
+					alert($(this).val());
+				}, 5000);
+				window.location.href="person/getPersonDetail.do?id=" + $(this).val();
 				
 			});//  btn-go-user-info click  event end
 		}); //jqeuery end

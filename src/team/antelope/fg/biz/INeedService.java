@@ -29,4 +29,13 @@ public interface INeedService {
 	 * NeedExpand
 	 */
 	NeedExpand getNeedInfoById(Long id, Double latitude, Double longitude);
+	/**
+	 * 根据用户id获取所属需求
+	 * 这里不设置距离之类的， 只显示requestdate和addressdesc/iscomplete/title
+	 * 有业务逻辑
+	 * @param id
+	 * @return 
+	 * NeedExpand
+	 */
+	List<NeedExpand> getNeedInfosByPerson(Long uid, NeedVo needVo) throws Exception;
 }

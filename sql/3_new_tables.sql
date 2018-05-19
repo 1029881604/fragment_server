@@ -23,7 +23,7 @@ drop table if exists t_comment ;
 CREATE TABLE t_comment (
 	  id int(10)  NOT NULL AUTO_INCREMENT,
 	  topic_id int(10)  DEFAULT NULL ,  --   '主题id'
-	  topic_type smallint(2)   NOT NULL DEFAULT '1' ,  --   '1为user，2为skill，3为need'
+	  topic_type smallint(2)   NOT NULL DEFAULT '1' ,  --   '1为user，2为skill，3为need'   根据此类型关联表或为user或为skill/need，所以没有外键
 	  content text ,  --   '评论内容'
 	  user_id int(10)  DEFAULT NULL ,  --   '评论者id，一般为会员表的id'
 	  nickname varchar(60) DEFAULT NULL ,  --   '冗余用户昵称'
@@ -45,7 +45,9 @@ insert into t_comment (id, topic_id, topic_type, content, user_id ) values
 (null, 2, 2, 'ccccdddd',102),
 (null, 101, 1, '哈哈哈',100),
 (null, 1, 1, '啊啊啊',101),
-(null, 2, 3, '嘻嘻嘻',101);
+(null, 2, 3, '嘻嘻嘻',101),
+(null, 2, 3, '你的需求要求太高了， 我是实习不了',103),
+(null, 2, 3, '太难实习了，兄弟',102);
 
 
 --  评论回复表

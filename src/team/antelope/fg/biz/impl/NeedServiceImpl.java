@@ -34,4 +34,12 @@ public class NeedServiceImpl implements INeedService {
 		return needExpand;
 	}
 
+	@Override
+	public List<NeedExpand> getNeedInfosByPerson(Long uid, NeedVo needVo) throws Exception {
+		//…Ë÷√uid
+		needVo.getNeedExpand().setUid(uid);
+		List<NeedExpand> list = customNeedMapper.queryNeedInfosByPerson(needVo);
+		return list;
+	}
+
 }

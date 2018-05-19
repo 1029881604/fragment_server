@@ -20,6 +20,14 @@ public interface RequestScopeConst {
 	 */
 	String COMMENTEXPANDLIST = "commentExpandList";
 	/**
+	 * 用户的所有需求列表
+	 */
+	String USER_ALL_NEEDINFO = "user_all_needinfo";
+	/**
+	 * 用户的所有需求列表
+	 */
+	String USER_ALL_SKILLINFO = "user_all_skillinfo";
+	/**
 	 * 将该查看的用户信息传入另一个页面
 	 */
 	String REQUEST_USER = "request_user";

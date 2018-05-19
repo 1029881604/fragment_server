@@ -1,0 +1,45 @@
+/*!
+ *µ¼º½Ìõcss */
+ 
+/*µ¼º½start*/
+  .navbar{
+  	margin-top:-1px;
+  	font-size:35px;
+  	line-height:50px;
+  	background: #fcb2c9;
+  }
+  .my{
+  	display:block;
+  	position:absolute;
+  	text-decoration:none;
+  }
+  .navbar #my_back{
+  	font-size:18px;
+  	left:5%;
+  }
+  .navbar #my_forward{
+  	font-size:18px;
+  	left:18%;
+  }
+  .navbar #my_reload{
+  	left:35%;
+  	font-size:18px;
+  }
+   .navbar #my_list{
+  	height:30px;
+  	line-height:60px;
+  	right:30%;
+  	bottom: 25%;
+  }
+  .navbar #my_list li{
+  	margin-bottom:10px;
+  	font-size:16px;
+  }
+  .navbar #my_list li a{
+  	color: #ac75d2;
+  }
+  .navbar #my_close{
+  	font-size:18px;
+  	right:5%;
+  }
+ 

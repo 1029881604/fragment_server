@@ -22,10 +22,18 @@ public interface CustomNeedMapper {
 	List<NeedExpand> queryNearbyInfos(NeedVo needVo);
 	
 	/**
-	 * 根据id联合查询need和person相关信息
+	 * 根据需求的id联合查询need和person相关信息
 	 * @param id
 	 * @return 
 	 * NeedExpand
 	 */
 	NeedExpand queryNeedInfoById(Long id);
+	/**
+	 * 根据用户的id单表查询need
+	 * 可能还有业务条件， 比如时间之类的，是否完成
+	 * @param id
+	 * @return 
+	 * NeedExpand
+	 */
+	List<NeedExpand> queryNeedInfosByPerson(NeedVo needVo);
 }

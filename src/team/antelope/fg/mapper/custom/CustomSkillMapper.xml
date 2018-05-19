@@ -35,6 +35,21 @@
 			<include refid="query_skill_person_condition"/>
 		</where>
 	</select>
-	
-	
+	<!-- 通过用户id查询所属的技能 -->
+	<sql id="sql_query_skills_by_uid">
+		<choose>
+			<when test="skillExpand != null and skillExpand.uid != null">
+				and a.uid = #{skillExpand.uid}
+			</when>
+			<otherwise>and a.uid = -1</otherwise>
+		</choose>
+	</sql>
+	<select id="querySkillInfosByPerson" resultType="team.antelope.fg.pojo.expand.SkillExpand"
+		 parameterType="team.antelope.fg.pojo.vo.SkillVo">
+		 select id, title, stopdate, iscomplete, addressdesc
+		 from publishskill a
+		 <where>
+		 	<include refid="sql_query_skills_by_uid" />
+		 </where>
+	</select>
 </mapper>

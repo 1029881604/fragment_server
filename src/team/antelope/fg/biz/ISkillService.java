@@ -24,4 +24,5 @@ public interface ISkillService {
 	 * SkillExpand
 	 */
 	SkillExpand getSkillInfoById(Long id, Double latitude, Double longitude) throws Exception;
+	List<SkillExpand> getSkillInfosByPerson (Long uid, SkillVo skillVo) throws Exception;
 }

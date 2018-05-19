@@ -1,0 +1,112 @@
+/*!
+ *personDetail main css */
+/*关注列表start*/
+   .followed-info-box{
+   	height:auto;
+   	width:100%;
+   	overflow: hidden;
+   }
+   .followed-sex-img-box{
+   	width:10%;
+   	display:block;
+   	float:left;
+   	max-height: 20px;
+   	max-width: 20px;
+   }
+   .followed-sex-img{
+   	float:left;
+   	width:20px;
+   	height: 20px;
+   }
+   .followed-head-img-box{
+   	float:left;
+   	width:20%;
+   	max-height: 30px;
+   	max-width: 30px;
+   	margin-left:10px;
+   }
+   .followed-head-img{
+   	float:left;
+   }
+.followed-other-box{
+   	float:left;
+   	width:75%;
+   	margin-left:10px;
+}
+   .span-block{
+	clear:left;
+   	float:left;
+      display: block;
+   	font-size:16px;
+      overflow: hidden; 		/*溢出隐藏*/
+    text-overflow:ellipsis;/*超出则加省略号*/
+    white-space:nowrap;	/*规定段落中的文本不进行换行*/
+ }
+ .followed-other-box .span-block2{
+ 	float:right;
+ 	margin-right:5px;
+ 	font-size:14px;
+ 	color:#3385ff;
+	display: block;
+    overflow: hidden; 		/*溢出隐藏*/
+    text-overflow:ellipsis;/*超出则加省略号*/
+    white-space:nowrap;	/*规定段落中的文本不进行换行*/
+ }
+ .text-user-name{
+ 	color:#FFCA28;
+ }
+ 
+ /*需求列表start*/
+ .needinfo-box{
+ 	height:auto;
+ 	width:100%;
+ 	overflow: hidden;
+ }
+ .need-title{
+ 	color:#FFCA28;
+ }
+ .need-stopdate{
+ 	font-size:14px;
+ }
+ /*技能列表start*/
+ .skillinfo-box{
+ 	height:auto;
+ 	width:100%;
+ 	overflow: hidden;
+ }
+ .skill-title{
+ 	color:#FFCA28;
+ }
+ .skill-stopdate{
+ 	font-size:14px;
+ }
+ 
+ /*评论区css*/
+ .comment{
+ 	margin-top:20px;
+ 	border:0;
+ 	overflow: hidden;
+ }
+ .comment .comment-item{
+ 	padding-bottom:10px;
+ 	width:100%;
+ }
+ .head-img{
+ 	padding:2px;
+ }
+ .head-img .img-responsive{
+ 	height:40px;
+ 	max-width: 200%;
+ 	width:40px;
+ }
+ .first-level{
+ 	line-height: 40px;
+ }
+ .third-level{
+ 	font-size:14px;
+ 	color:#666;
+ 	border-bottom: 1px solid #dddddd;
+ }
+ .title{
+ 	margin-top:60px;
+ }

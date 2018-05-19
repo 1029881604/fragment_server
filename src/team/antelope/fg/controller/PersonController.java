@@ -13,16 +13,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import team.antelope.fg.biz.IAttentionService;
 import team.antelope.fg.biz.ICommentService;
+import team.antelope.fg.biz.INeedService;
 import team.antelope.fg.biz.IPersonService;
+import team.antelope.fg.biz.ISkillService;
 import team.antelope.fg.constant.DBConst;
 import team.antelope.fg.constant.RequestScopeConst;
 import team.antelope.fg.constant.SessionConst;
 import team.antelope.fg.pojo.AttentionKey;
 import team.antelope.fg.pojo.Person;
 import team.antelope.fg.pojo.expand.CommentExpand;
+import team.antelope.fg.pojo.expand.NeedExpand;
 import team.antelope.fg.pojo.expand.PersonInfoExpand;
+import team.antelope.fg.pojo.expand.SkillExpand;
 import team.antelope.fg.pojo.vo.CommentVo;
+import team.antelope.fg.pojo.vo.NeedVo;
 import team.antelope.fg.pojo.vo.PersonInfoVo;
+import team.antelope.fg.pojo.vo.SkillVo;
 
 /**
  * 会员后端控制器
@@ -41,6 +47,10 @@ public class PersonController {
 	private IAttentionService attentionService;
 	@Autowired //注入评论业务服务
 	private ICommentService commentService;
+	@Autowired //注入需求业务服务
+	private INeedService needService;
+	@Autowired //注入需求业务服务
+	private ISkillService skillService;
 	
 	
 	
@@ -108,11 +118,21 @@ public class PersonController {
 		commentVo.setCommentExpand(new CommentExpand());
 		List<CommentExpand> commentExpandList = commentService.getCommentsByTopicId(topicId, topicType, commentVo);
 		//需求列表
+		NeedVo needVo = new NeedVo();
+		needVo.setNeedExpand(new NeedExpand());
+		List<NeedExpand> needInfos = needService.getNeedInfosByPerson(personInfoExpand.getId(), needVo);
+		//技能列表
+		SkillVo skillVo = new SkillVo();
+		skillVo.setSkillExpand(new SkillExpand());
+		List<SkillExpand> skillInfos = skillService.getSkillInfosByPerson(personInfoExpand.getId(), skillVo);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		//设置request域的数据
 		modelAndView.addObject(RequestScopeConst.REQUEST_USER, personInfoExpand);
 		modelAndView.addObject(RequestScopeConst.FOLLOWEDUSERS, followedUsers);
 		modelAndView.addObject(RequestScopeConst.COMMENTEXPANDLIST, commentExpandList);
+		modelAndView.addObject(RequestScopeConst.USER_ALL_NEEDINFO, needInfos);
+		modelAndView.addObject(RequestScopeConst.USER_ALL_SKILLINFO, skillInfos);
 		modelAndView.setViewName("nearby/personDetail");
 		return modelAndView;
 	}

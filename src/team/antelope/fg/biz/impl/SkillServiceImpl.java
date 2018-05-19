@@ -35,4 +35,11 @@ public class SkillServiceImpl implements ISkillService {
 		return skillExpand;
 	}
 
+	@Override
+	public List<SkillExpand> getSkillInfosByPerson(Long uid, SkillVo skillVo) throws Exception {
+		skillVo.getSkillExpand().setUid(uid);
+		List<SkillExpand> list = customSkillMapper.querySkillInfosByPerson(skillVo);
+		return list;
+	}
+
 }

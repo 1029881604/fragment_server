@@ -21,7 +21,7 @@
 	</select>
 	
 	<!-- 通过需求id 联合查询person和需求的信息 -->
-	<sql id="query_need_person_condition">
+	<sql id="query_need_person_by_id">
 		and b.id = #{id}
 		and b.uid = a.id
 	</sql>
@@ -32,8 +32,28 @@
 		from
 		publishneed b, person a
 		<where>
-			<include refid="query_need_person_condition"/>
+			<include refid="query_need_person_by_id"/>
 		</where>
 	</select>
+	
+	<!-- 通过用户id查询所属的需求和person信息 -->
+	<sql id="sql_query_by_uid">
+		<choose>
+			<when test="needExpand != null and needExpand.uid != null">
+				and b.uid = #{needExpand.uid}
+			</when>
+			<otherwise>and b.uid = -1</otherwise>
+		</choose>
+	</sql>
+	<select id="queryNeedInfosByPerson" parameterType="team.antelope.fg.pojo.vo.NeedVo" resultType="team.antelope.fg.pojo.expand.NeedExpand">
+		select 
+			b.id, b.uid, title,requestdate,iscomplete,addressdesc
+		from
+		publishneed b
+		<where>
+			<include refid="sql_query_by_uid"/>
+		</where>
+	</select>
+	
 	
 </mapper>

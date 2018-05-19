@@ -319,7 +319,7 @@ create procedure sp_nearbyneed_infos (
 begin 
 	declare maxDistance double; 
 	declare distance double; 
-	SET maxDistance = 2500.0;
+	SET maxDistance = 2500.0;  
 	select b.id, b.uid, a.name, a.headimg, b.longitude, b.latitude, b.title, b.addressdesc
 		from person a, publishneed b
 	where a.id = b.uid and b.isonline = false and b.needtype = _type and 

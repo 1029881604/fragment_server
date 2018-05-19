@@ -177,8 +177,16 @@ public class UFDaoImpl implements IUFDao {
 	}
 
 	@Override
-	public List<PersonInfo> findFollowAll(Person person) {
+	public List<PersonInfo> findAllPerson(Person person) {
 		List<PersonInfo> all = (List<PersonInfo>) DBUtil.exeCSQuery("call sp_all_attention(?) ", 
+				new Long[]{person.getId()}, 
+				new BeanListHandler(PersonInfo.class));
+		return all;
+	}
+
+	@Override
+	public List<PersonInfo> findFollow(Person person) {
+		List<PersonInfo> all = (List<PersonInfo>) DBUtil.exeCSQuery("call sp_find_following(?) ", 
 				new Long[]{person.getId()}, 
 				new BeanListHandler(PersonInfo.class));
 		return all;

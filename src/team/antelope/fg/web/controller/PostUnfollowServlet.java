@@ -21,6 +21,10 @@ import team.antelope.fg.entity.Person;
 import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.service.impl.UserServiceImpl;
 
+/*
+ * YY
+ * È¡Ïû¹Ø×¢
+ * */
 @WebServlet(name = "PostUnfollowServlet", urlPatterns = { "/PostUnfollowServlet" })
 public class PostUnfollowServlet extends HttpServlet {
 

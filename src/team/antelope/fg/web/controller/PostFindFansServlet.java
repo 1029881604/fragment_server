@@ -20,8 +20,8 @@ import team.antelope.fg.entity.Person;
 import team.antelope.fg.entity.PersonInfo;
 import team.antelope.fg.service.impl.UserServiceImpl;
 /*
- * create by YY
- * 
+ *  YY
+ * 找粉丝
  * */
 @WebServlet(name = "PostFindFansServlet", urlPatterns = { "/PostFindFansServlet" })
 public class PostFindFansServlet extends HttpServlet {
@@ -66,14 +66,14 @@ public class PostFindFansServlet extends HttpServlet {
 		Person person = personDao.queryById(person_id);
 		List<PersonInfo> listFans = new ArrayList<>();
 		List<PersonInfo> fans=new ArrayList<>();
-		List<PersonInfo> friends = new UFDaoImpl().findFollowAll(person);
+		List<PersonInfo> friends = new UFDaoImpl().findAllPerson(person);
 		if (friends!=null&&friends.size()>0) {
 			for(int i=0;i<friends.size();i++) {
 				PersonInfo personinfo1=friends.get(i);
 				System.out.println("第"+i+"个friends*******"+personinfo1.getId());
 				Person fan = personDao.queryById(personinfo1.getId());
 //				System.out.println("id:"+fan.getId()+"名字是"+fan.getName());
-			 fans= new UserServiceImpl().findFriend(fan); 
+			 fans= new UFDaoImpl().findFollow(fan); 
 					if(fans!=null&&fans.size()>0) {
 						for(int j=0;j<fans.size();j++)
 						{

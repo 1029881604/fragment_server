@@ -46,11 +46,13 @@ public class AddOrderServlet extends HttpServlet {
 		String isdelete = req.getParameter("isdelete");
 		String iscomment = req.getParameter("iscomment");
 		
+		System.out.println("add"+uid);
+		System.out.println("add"+uid_s);
+		System.out.println("add"+ispay);
+		
 		IOrdersService iOrdersService = new OrdersServiceImpl();
-		iOrdersService.addOrder(uid, uid_s, skillid, title, content, img, skilltype, ispay, isdelete, iscomment);
+		iOrdersService.addOrderDetails(uid, uid_s, skillid, title, content, img, skilltype, ispay, isdelete, iscomment);
 	
-		System.out.println(uid);
-		System.out.println(uid_s);
-		System.out.println(ispay);
+		
 	}
 }

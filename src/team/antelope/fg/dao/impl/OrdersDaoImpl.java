@@ -26,7 +26,7 @@ public class OrdersDaoImpl implements IOrdersDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		conn = DBUtil.getConn();
-		pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?"
+		pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?,"
 				+ "now(), ?, ?, ?)");
 		try {
 			pstmt.setLong(1, orders.getUid());
@@ -166,6 +166,37 @@ public class OrdersDaoImpl implements IOrdersDao {
 			DBUtil.close(conn);
 		}
 		return count;
+	}
+
+	@Override
+	public int addOrder(Long uid, Long uid_s, Long skillid, String title, String content, String img, String skilltype,
+			int ispay, int isdelete, int iscomment) {
+		// TODO Auto-generated method stub
+		int affectRows = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try{
+			conn = DBUtil.getConn();
+			pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?,"
+					+ "now(), ?, ?, ?)");
+			pstmt.setLong(1, uid);
+			pstmt.setLong(2, uid_s);
+			pstmt.setLong(3, skillid);
+			pstmt.setString(4, title);
+			pstmt.setString(5, content);
+			pstmt.setString(6, img);
+			pstmt.setString(7, skilltype);
+			pstmt.setInt(8, ispay);
+			pstmt.setInt(9, isdelete);
+			pstmt.setInt(10, iscomment);
+			affectRows = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+		return affectRows;
 	}
 
 }

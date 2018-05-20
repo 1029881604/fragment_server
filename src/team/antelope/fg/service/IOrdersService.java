@@ -25,4 +25,16 @@ public interface IOrdersService {
 	List<Orders> getAllOrders(long uid);
 	List<Orders> getIsPayOrders(long uid);
 	List<Orders> getNotPayOrders(long uid);
+	
+	int addOrderDetails(
+			String uid,
+			String uid_s,
+			String skillid,
+			String title,
+			String content,
+			String img,
+			String skilltype,
+			String ispay,
+			String isdelete,
+			String iscomment);
 }

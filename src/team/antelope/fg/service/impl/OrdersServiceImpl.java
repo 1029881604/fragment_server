@@ -33,6 +33,7 @@ public class OrdersServiceImpl implements IOrdersService {
 		orders.setIsdelete(Boolean.parseBoolean(isdelete));
 		orders.setIscomment(Boolean.parseBoolean(iscomment));
 		iOrdersDao.insert(orders);
+		
 		return orders;
 	}
 
@@ -61,6 +62,19 @@ public class OrdersServiceImpl implements IOrdersService {
 	public List<Orders> getNotPayOrders(long uid) {
 		// TODO Auto-generated method stub
 		return iOrdersDao.queryOrdersByNotPay(uid);
+	}
+
+	@Override
+	public int addOrderDetails(String uid, String uid_s, String skillid, String title, String content, String img,
+			String skilltype, String ispay, String isdelete, String iscomment) {
+		// TODO Auto-generated method stub
+		try {
+			System.out.println("已执行添加订单");
+			return iOrdersDao.addOrder(Long.parseLong(uid), Long.parseLong(uid_s), Long.parseLong(skillid), title, content, img, skilltype, Integer.parseInt(ispay), Integer.parseInt(isdelete), Integer.parseInt(iscomment));
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 	}
 
 }

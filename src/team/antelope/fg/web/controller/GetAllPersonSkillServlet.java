@@ -36,7 +36,7 @@ public class GetAllPersonSkillServlet extends HttpServlet {
 	private void returnJson(List<PersonSkill> skills, PrintWriter writer){
 		Gson gson = new Gson();
 		String json = gson.toJson(skills);
-		System.out.println("GetAllPersonSkillServlet"+json);
+		System.out.println("skills.size="+skills.size());
 		writer.write(json);
 	}
 	@Override

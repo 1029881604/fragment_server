@@ -36,7 +36,7 @@ public class GetAllPersonNeedServlet extends HttpServlet {
 	private void returnJson(List<PersonNeed> needs, PrintWriter writer){
 		Gson gson = new Gson();
 		String json = gson.toJson(needs);
-		System.out.println("GetAllPersonNeedServlet"+json);
+		System.out.println("needs.size="+needs.size());
 		writer.write(json);
 	}
 	@Override

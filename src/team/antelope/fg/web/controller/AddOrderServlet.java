@@ -51,6 +51,8 @@ public class AddOrderServlet extends HttpServlet {
 		System.out.println("add"+ispay);
 		
 		IOrdersService iOrdersService = new OrdersServiceImpl();
+		
+		System.out.println("userID"+uid+"！！！！！！skillID"+skillid);
 		iOrdersService.addOrderDetails(uid, uid_s, skillid, title, content, img, skilltype, ispay, isdelete, iscomment);
 	
 		

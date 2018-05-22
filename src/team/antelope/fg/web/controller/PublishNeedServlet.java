@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import team.antelope.fg.entity.PublishNeed;
@@ -28,7 +29,8 @@ public class PublishNeedServlet extends HttpServlet {
 		
 		String json=req.getParameter("json");
 		if(json!=null) {
-			PublishNeed need=new Gson().fromJson(json, new TypeToken<PublishNeed>() {}.getType());
+			Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+			PublishNeed need=gson.fromJson(json, new TypeToken<PublishNeed>() {}.getType());
 			System.out.println("need:"+need.toString());
 			int state=new PublishServiceImpl().publishNeed(need);
 			if(state==1) {

@@ -25,6 +25,7 @@ public interface IOrdersService {
 	List<Orders> getAllOrders(long uid);
 	List<Orders> getIsPayOrders(long uid);
 	List<Orders> getNotPayOrders(long uid);
+	Orders getOrderDetails(long id);
 	
 	int addOrderDetails(
 			String uid,

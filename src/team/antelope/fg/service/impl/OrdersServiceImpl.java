@@ -77,4 +77,10 @@ public class OrdersServiceImpl implements IOrdersService {
 		}
 	}
 
+	@Override
+	public Orders getOrderDetails(long id) {
+		// TODO Auto-generated method stub
+		return iOrdersDao.queryById(id);
+	}
+
 }

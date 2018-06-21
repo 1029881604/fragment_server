@@ -154,11 +154,11 @@ public class PublishNeedDaoImpl implements IPublishNeedDao {
 	@Override
 	@SuppressWarnings(value="all")
 	public List<PersonNeed> queryAllPersonNeed() {
-		List<PersonNeed> personNeeds = (List<PersonNeed>) DBUtil.exeQuery("select n.id, n.uid, n.title, n.content, n.customdate, n.requestdate, " + 
-				" n.needtype, n.iscomplete, n.isonline, n.addressdesc, " + 
-				" p.name, p.email, p.headimg, p.starnum, p.phonenum, p.dealnum, p.fansnum " + 
-				" from publishneed n , person p " + 
-				" WHERE n.uid = p.id; ",
+		List<PersonNeed> personNeeds = (List<PersonNeed>) DBUtil.exeQuery("select n.id, n.uid, n.title, n.content, n.customdate, n.requestdate," + 
+				"n.needtype, n.iscomplete, n.isonline, n.addressdesc, " + 
+				"p.name, p.email, p.headimg, p.starnum, p.phonenum, p.dealnum, p.fansnum " + 
+				"from publishneed n , person p " + 
+				"WHERE n.uid = p.id order by n.customdate desc limit 10;",
 				null,
 				new BeanListHandler(PersonNeed.class));
 		return personNeeds;

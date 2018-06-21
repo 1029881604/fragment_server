@@ -18,10 +18,11 @@ public interface IOrdersService {
 			String content,
 			String img,
 			String skilltype,
+			String price,
 			String ispay,
 			String isdelete,
 			String iscomment);
-	int deleteOrder(String id);//这个方法暂时不完善，别用
+	Orders deleteOrder(String id);//这个方法暂时不完善，别用
 	List<Orders> getAllOrders(long uid);
 	List<Orders> getIsPayOrders(long uid);
 	List<Orders> getNotPayOrders(long uid);
@@ -35,6 +36,7 @@ public interface IOrdersService {
 			String content,
 			String img,
 			String skilltype,
+			String price,
 			String ispay,
 			String isdelete,
 			String iscomment);

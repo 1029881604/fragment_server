@@ -42,6 +42,7 @@ public class AddOrderServlet extends HttpServlet {
 		String content = req.getParameter("content");
 		String img = req.getParameter("img");
 		String skilltype = req.getParameter("skilltype");
+		String price = req.getParameter("price");
 		String ispay = req.getParameter("ispay");
 		String isdelete = req.getParameter("isdelete");
 		String iscomment = req.getParameter("iscomment");
@@ -53,7 +54,7 @@ public class AddOrderServlet extends HttpServlet {
 		IOrdersService iOrdersService = new OrdersServiceImpl();
 		
 		System.out.println("userID"+uid+"！！！！！！skillID"+skillid);
-		iOrdersService.addOrderDetails(uid, uid_s, skillid, title, content, img, skilltype, ispay, isdelete, iscomment);
+		iOrdersService.addOrderDetails(uid, uid_s, skillid, title, content, img, skilltype, price, ispay, isdelete, iscomment);
 	
 		
 	}

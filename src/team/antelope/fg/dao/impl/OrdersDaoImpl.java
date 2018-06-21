@@ -26,7 +26,7 @@ public class OrdersDaoImpl implements IOrdersDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		conn = DBUtil.getConn();
-		pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?,"
+		pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?, ?,"
 				+ "now(), ?, ?, ?)");
 		try {
 			pstmt.setLong(1, orders.getUid());
@@ -36,9 +36,10 @@ public class OrdersDaoImpl implements IOrdersDao {
 			pstmt.setString(5, orders.getContent());
 			pstmt.setString(6, orders.getImg());
 			pstmt.setString(7, orders.getSkilltype());
-			pstmt.setBoolean(8, orders.isIspay());
-			pstmt.setBoolean(9, orders.isIsdelete());
-			pstmt.setBoolean(10, orders.isIscomment());
+			pstmt.setDouble(8, orders.getPrice());
+			pstmt.setBoolean(9, orders.isIspay());
+			pstmt.setBoolean(10, orders.isIsdelete());
+			pstmt.setBoolean(11, orders.isIscomment());
 			affectRows = DBUtil.exeUpdate(pstmt);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,7 +59,7 @@ public class OrdersDaoImpl implements IOrdersDao {
 		try{
 			conn = DBUtil.getConn();
 			pstmt = DBUtil.getStmt(conn, "update orders set uid=?, uid_s=?, skillid=?, "
-					+ "title=?, content=?, img=?, skilltype=?, ispay=?, "
+					+ "title=?, content=?, img=?, skilltype=?, price=?, ispay=?, "
 					+ "isdelete=?, iscomment=? where id = ?");
 			pstmt.setLong(1, orders.getUid());
 			pstmt.setLong(2,orders.getUid_s());
@@ -67,9 +68,10 @@ public class OrdersDaoImpl implements IOrdersDao {
 			pstmt.setString(5, orders.getContent());
 			pstmt.setString(6, orders.getImg());
 			pstmt.setString(7, orders.getSkilltype());
-			pstmt.setBoolean(8, orders.isIspay());
-			pstmt.setBoolean(9, orders.isIsdelete());
-			pstmt.setBoolean(10, orders.isIscomment());
+			pstmt.setDouble(8, orders.getPrice());
+			pstmt.setBoolean(9, orders.isIspay());
+			pstmt.setBoolean(10, orders.isIsdelete());
+			pstmt.setBoolean(11, orders.isIscomment());
 			pstmt.setLong(11, orders.getId());
 			affectRows = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -88,7 +90,7 @@ public class OrdersDaoImpl implements IOrdersDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		conn = DBUtil.getConn();
-		pstmt = DBUtil.getStmt(conn, "delete from publishskill where id=?");
+		pstmt = DBUtil.getStmt(conn, "delete from orders where id=?");
 		try {
 			pstmt.setLong(1, orders.getId());
 			affectRows = DBUtil.exeUpdate(pstmt);
@@ -170,14 +172,14 @@ public class OrdersDaoImpl implements IOrdersDao {
 
 	@Override
 	public int addOrder(Long uid, Long uid_s, Long skillid, String title, String content, String img, String skilltype,
-			int ispay, int isdelete, int iscomment) {
+			double price, int ispay, int isdelete, int iscomment) {
 		// TODO Auto-generated method stub
 		int affectRows = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try{
 			conn = DBUtil.getConn();
-			pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?,"
+			pstmt = DBUtil.getStmt(conn, "insert into orders values(null, ?, ?, ?, ?, ?, ?, ?, ?,"
 					+ "now(), ?, ?, ?)");
 			pstmt.setLong(1, uid);
 			pstmt.setLong(2, uid_s);
@@ -186,9 +188,10 @@ public class OrdersDaoImpl implements IOrdersDao {
 			pstmt.setString(5, content);
 			pstmt.setString(6, img);
 			pstmt.setString(7, skilltype);
-			pstmt.setInt(8, ispay);
-			pstmt.setInt(9, isdelete);
-			pstmt.setInt(10, iscomment);
+			pstmt.setDouble(8, price);
+			pstmt.setInt(9, ispay);
+			pstmt.setInt(10, isdelete);
+			pstmt.setInt(11, iscomment);
 			affectRows = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

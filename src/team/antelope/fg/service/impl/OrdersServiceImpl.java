@@ -18,7 +18,7 @@ public class OrdersServiceImpl implements IOrdersService {
 	
 	@Override
 	public Orders addOrder(String uid, String uid_s, String skillid, String title, String content, String img,
-			String skilltype, String ispay, String isdelete, String iscomment) {
+			String skilltype, String price, String ispay, String isdelete, String iscomment) {
 		// TODO Auto-generated method stub
 		
 		Orders orders = new Orders();
@@ -29,6 +29,7 @@ public class OrdersServiceImpl implements IOrdersService {
 		orders.setContent(content);
 		orders.setImg(img);
 		orders.setSkilltype(skilltype);
+		orders.setPrice(Double.parseDouble(price));
 		orders.setIspay(Boolean.parseBoolean(ispay));
 		orders.setIsdelete(Boolean.parseBoolean(isdelete));
 		orders.setIscomment(Boolean.parseBoolean(iscomment));
@@ -37,13 +38,13 @@ public class OrdersServiceImpl implements IOrdersService {
 		return orders;
 	}
 
-	//这个方法暂时不完善，别用
 	@Override
-	public int deleteOrder(String id) {
+	public Orders deleteOrder(String id) {
 		// TODO Auto-generated method stub
 		Orders orders = iOrdersDao.queryById(Long.parseLong(id));
 		iOrdersDao.delete(orders);
-		return 1;
+		
+		return orders;
 	}
 
 	@Override
@@ -66,11 +67,11 @@ public class OrdersServiceImpl implements IOrdersService {
 
 	@Override
 	public int addOrderDetails(String uid, String uid_s, String skillid, String title, String content, String img,
-			String skilltype, String ispay, String isdelete, String iscomment) {
+			String skilltype,String price, String ispay, String isdelete, String iscomment) {
 		// TODO Auto-generated method stub
 		try {
 			System.out.println("已执行添加订单");
-			return iOrdersDao.addOrder(Long.parseLong(uid), Long.parseLong(uid_s), Long.parseLong(skillid), title, content, img, skilltype, Integer.parseInt(ispay), Integer.parseInt(isdelete), Integer.parseInt(iscomment));
+			return iOrdersDao.addOrder(Long.parseLong(uid), Long.parseLong(uid_s), Long.parseLong(skillid), title, content, img, skilltype, Double.parseDouble(price), Integer.parseInt(ispay), Integer.parseInt(isdelete), Integer.parseInt(iscomment));
 		} catch (Exception e) {
 			// TODO: handle exception
 			return 0;

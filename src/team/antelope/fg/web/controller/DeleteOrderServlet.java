@@ -26,20 +26,20 @@ public class DeleteOrderServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html; charset=utf-8");
 		
 		String orderId = req.getParameter("id");
 		
-		System.out.println("¶©µ¥ºÅ£º"+orderId);
-		
 		IOrdersService iOrdersService = new OrdersServiceImpl();
+		System.out.println("É¾³ý¶©µ¥ºÅ£º"+orderId);
 		iOrdersService.deleteOrder(orderId);
+		System.out.println("Ö´ÐÐÉ¾³ýÍê³É");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(req, resp);
 	}
 }

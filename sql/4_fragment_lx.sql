@@ -89,9 +89,10 @@ uid int(11) not null,	-- 用户id（当前登录者）
 uid_s int(11) not null,	-- 技能拥有者id
 skillid int (11) not null,  -- 技能id
 title varchar(60),  -- 技能标题
-content text,
-img varchar(300),
-skilltype varchar(50),
+content text,	-- 内容
+img varchar(300), -- 技能图片
+skilltype varchar(50),  -- 技能类型
+price double, -- 订单价格
 create_time datetime,	-- 创建日期
 ispay boolean,	-- 是否付款
 isdelete boolean, -- 是否删除
@@ -100,10 +101,18 @@ foreign key (skillid) references publishskill(id),   -- 外键约束
 foreign key (uid) references person(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 auto_increment=1000000;
 
-insert into orders (uid, uid_s, skillid, title, content, img, skilltype, create_time, ispay, isdelete, iscomment) values(101, 103, 53, "视频/后期制作制作1", "专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制"
-, "http://172.20.10.3:8080/fragment_server/images/skill_pre_img/SKILL_1486.JPG", "视频/后期制作",
-now(), 1, 0, 0);
+insert into orders values(null, 101, 103, 53, "视频/后期制作制作1", "专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制"
+, "http://192.168.1.108:8080/fragment_server/images/skill_pre_img/SKILL_1486.JPG", "视频/后期制作",
+0.1, now(), 1, 0, 0);
 
 insert into orders values(null, 101, 106, 58, "平面设计2", "专业的平面设计2，打造顶级平面设计样式，这里是具体的内容显示，专业的平面设计1，打造顶级平面设计样式，这里是具体的内容显示，专业的平面设计1，打造顶级平面设计样式，这里是具体的内容显示"
-, "http://172.20.10.3:8080/fragment_server/images/skill_pre_img/SKILL_1488.JPG", "平面设计",
-now(), 1, 0, 0);
+, "http://192.168.1.108:8080/fragment_server/images/skill_pre_img/SKILL_1488.JPG", "平面设计",
+0.1, now(), 1, 0, 0);
+
+insert into orders values(null, 101, 103, 53, "视频/后期制作制作1", "专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制,专业的视频/后期制作制作团队1，移动端视频/后期制作定制"
+, "http://192.168.1.108:8080/fragment_server/images/skill_pre_img/SKILL_1486.JPG", "视频/后期制作",
+0.1, now(), 0, 0, 0);
+
+insert into orders values(null, 101, 106, 58, "平面设计2", "专业的平面设计2，打造顶级平面设计样式，这里是具体的内容显示，专业的平面设计1，打造顶级平面设计样式，这里是具体的内容显示，专业的平面设计1，打造顶级平面设计样式，这里是具体的内容显示"
+, "http://192.168.1.108:8080/fragment_server/images/skill_pre_img/SKILL_1488.JPG", "平面设计",
+0.1, now(), 0, 0, 0);

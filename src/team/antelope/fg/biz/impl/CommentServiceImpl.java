@@ -31,8 +31,13 @@ public class CommentServiceImpl implements ICommentService {
 		commentExpand.setTopicId(topicId);
 		commentExpand.setTopicType(topicType);
 		List<CommentExpand> commentExpandList = customCommentMapper.queryCommentsByTopicId(commentVo);
+		System.out.println("--------------list--:"+commentExpandList);
 		commentExpandList.forEach(comment ->{
 			Date date = comment.getCreateTime();
+			if(date == null){
+				date = new Date();
+			}
+			System.out.println("--------------dd--:"+date);
 			//业务指定str
 			String dateStr = DateUtil.formatDataTime3(date);
 			comment.setCreateTimeStr(dateStr);

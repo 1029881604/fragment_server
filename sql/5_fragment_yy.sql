@@ -2,7 +2,7 @@
 -- ----------------------------
 -- Procedure structure for sp_all_attention
 -- ----------------------------
-----找除自己本身的person  start---
+-- --找除自己本身的person  start---
 DROP PROCEDURE IF EXISTS `sp_all_attention`;
 DELIMITER ;;
 CREATE  PROCEDURE `sp_all_attention`(IN `_id` int)
@@ -15,9 +15,9 @@ select id, name, email, sex, age, headimg, starnum, dealnum,  fansnum
 END
 ;;
 DELIMITER ;
-----找除自己本身的person  end---
+-- --找除自己本身的person  end---
 
-----找关注的人  start---
+-- --找关注的人  start---
 drop procedure if exists sp_find_following;
 delimiter //  
 create procedure sp_find_following (
@@ -35,4 +35,4 @@ select id, name, email, sex, age, headimg, starnum, dealnum,  fansnum
 end;
 //
 delimiter ;
-----找关注的人  end---
+-- --找关注的人  end---
